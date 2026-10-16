@@ -264,10 +264,11 @@ validate_args() {
 resolve_paths() {
   ROOT_ABS="$(abs_path "$DIR")"
 
-  local script_dir=""
-  script_dir="$(cd -- "$(dirname -- "$0")" && pwd)"
-  local repo_root=""
-  repo_root="$(cd -- "$script_dir/.." && pwd)"
+  # 仓库根需与 ROOT_ABS 用同一套规范化（realpath 会解析符号链接，
+  # 本仓库 /home/zhangxi/paper_read 即指向 /mnt/e/paper_read 的软链），否则相对写法判定会失效
+  local script_dir="" repo_root=""
+  script_dir="$(abs_path "$(dirname -- "$0")")"
+  repo_root="$(dirname -- "$script_dir")"
   SPEC_PATH="$repo_root/REPRO_SPEC.md"
 
   # 解析 L0 头部 "**版本**：**vX.Y**"；读不到则退化写法，不阻断
