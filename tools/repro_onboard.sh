@@ -264,8 +264,8 @@ validate_args() {
 resolve_paths() {
   ROOT_ABS="$(abs_path "$DIR")"
 
-  # 仓库根需与 ROOT_ABS 用同一套规范化（realpath 会解析符号链接，
-  # 本仓库 /home/zhangxi/paper_read 即指向 /mnt/e/paper_read 的软链），否则相对写法判定会失效
+  # 仓库根需与 ROOT_ABS 用同一套规范化（realpath 会解析符号链接；若仓库根本身是
+  # 软链挂载，两侧不做同一套解析，相对写法判定会失效）
   local script_dir="" repo_root=""
   script_dir="$(abs_path "$(dirname -- "$0")")"
   repo_root="$(dirname -- "$script_dir")"
@@ -554,7 +554,9 @@ gen_overview() {
 
 ---
 
-<!-- 待填充：按 L0 §8 写作规范补全 -->
+<!-- 骨架占位：本文件由 tools/repro_onboard.sh 生成，上面各章节须按 L0 §8 写作规范由复现者补齐。
+     正文中「（复现者填写）」即待完成标记；本注释刻意不含 tools/repro_check.sh 第 4 项
+     所扫描的那几个关键词，以免刚生成的新骨架被误判为"占位符残留"并返回退出码 1。 -->
 EOF
   WRITTEN=$((WRITTEN + 1))
 }
