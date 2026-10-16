@@ -62,7 +62,7 @@ paper_read/                        # 仓库根
 ### 1.2 项目目录命名
 
 - 格式：**`<YYYYMMDD>_<slug>`**；`YYYYMMDD` = 项目启动日期；`slug` = 3–6 个英文单词的下划线短语，概括主题与组学（例：`multi-omics_and_machine_learning`、`GBM_lactate_NFATc4_SPP1_macrophage`）。
-- 原文 PDF 放入项目目录，文件名**尽量保留原题全称**（可读性优先，允许空格与中文），并去掉文件系统非法字符（见 §3.2）。
+- 原文 PDF 放入项目目录，文件名用`tools/paper_renamer_cli.py`重命名, （可读性优先，不允许空格,  允许中文），并去掉文件系统非法字符（见 §3.2）。
 
 ### 1.3 项目文档编号约定
 
@@ -104,6 +104,8 @@ paper_read/                        # 仓库根
 | `spatial_cn_kmeans.py` | 空间邻域组成（CN）划分：窗口内细胞类型组成比例 → K-means → 每细胞 CN 标签；输出细胞级 CN、CN×类型组成矩阵、每样本 CN 频率（after Wang et al. 2026 bioRxiv, Methods「CN definition」） | `python3 tools/spatial_cn_kmeans.py --cells <细胞表> --group-col sample --window-mode radius --radius-um 70 --pixel-size-um 0.5 --k 15 --out-prefix <前缀>`；无像素尺寸时 `--window-mode knn --knn 70`；自检 `--selftest`（ARI > 0.7） | python3、numpy、pandas、scipy、scikit-learn |
 | `spatial_interaction_test.py` | 细胞-细胞空间互作：Delaunay 邻接 → 距离阈值 → 分组内置换（position/label/toroidal）→ Mann–Whitney U → logFC 与 BH-FDR；`logFC = log2(观测距离均值/置换距离均值)`，**负值 = 观测更近 = 空间富集**（after Wang et al. 2026 bioRxiv, Methods「Cell-cell interaction analysis」） | `python3 tools/spatial_interaction_test.py --cells <细胞表> --group-col fov --max-dist 30 --dist-unit um --pixel-size-um 0.5 --n-perm 100 --out-prefix <前缀>`；自检 `--selftest`（功效 > 0.8 且真 H0 FPR < 0.1） | python3、numpy、pandas、scipy、scikit-learn |
 | `patch_proximity.py` | Patch 邻近分析：按通道取 patch → HDBSCAN 聚类 → 凹包边界 → 边缘细胞 + k-NN 扩展（anchor）→ 半径环带内异类细胞计数与密度（after Wang et al. 2026 bioRxiv, Methods「Patch proximity analysis」） | `python3 tools/patch_proximity.py --cells <细胞表> --patch-by cn --patch-value cn_1 --cluster-method hdbscan --min-cluster-size 50 --edge-knn 3 --radii-um 5,10,15,20,25 --pixel-size-um 0.5 --out-prefix <前缀>`；自检 `--selftest`（环带计数相对误差 < 15%） | python3、numpy、pandas、scipy、scikit-learn；可选 `hdbscan`（缺失→`sklearn.cluster.HDBSCAN`）、`shapely ≥ 2.1`（缺失→自实现 alpha-shape，再→凸包） |
+| `paper_renamer_cli.py` | 学术论文 PDF 智能重命名（命令行版）：融合 PDF 内嵌元数据 / 首页文本 / BibTeX / Crossref(DOI) / arXiv 多源信息，按模板批量重命名——对应 L0 §1.2 的"项目目录命名"与 §3.2 的"原文 PDF 归档"流程 | `python3 tools/paper_renamer_cli.py <pdf> [-r 递归] [-t "{year}_{author}_{title}"] [-n 预览] [-b <bib目录>] [-v]` | python3、PyPDF2、pdfminer.six、pymupdf、bibtexparser、requests（见 `tools/requirements.txt`） |
+| `requirements.txt` | `tools/` 脚本的 Python 依赖清单 | `pip install -r tools/requirements.txt` | — |
 
 > 三个 `spatial_*.py` 的共同约定：**长度参数一律以 μm 为单位，必须显式给出 `--pixel-size-um`（μm/px）做换算，缺参数直接报错退出（不猜默认值）**；`--seed` 默认 `20260101`；统计表行序固定、可复现（`*_run_meta.csv` 含 `seconds` 运行耗时，故该文件非逐字节可复现）。退出码统一：`0`=成功、`1`=未预期异常、`2`=参数/输入校验失败、`3`=质量断言失败、`4`=selftest 失败、`5`=缺必需依赖。
 

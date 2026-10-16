@@ -31,9 +31,9 @@ spatial_cn_kmeans.py —— 空间邻域组成（Cellular Neighborhood, CN）的
       --window-mode radius --radius-um 70 --pixel-size-um 0.5 \\
       --k 15 --out-prefix results/cn
 
-  # 2) k-NN 窗口（无像素尺寸时）
+  # 2) k-NN 窗口（无像素尺寸时）：注意窗口邻居数用 --knn，K-means 簇数用 --k
   python3 tools/spatial_cn_kmeans.py --cells processed/cells.tsv --sep '\\t' \\
-      --window-mode knn --k 70 --kmeans-k 15 --out-prefix results/cn
+      --window-mode knn --knn 70 --k 15 --out-prefix results/cn
 
   # 3) 自检（合成组织 + ARI 断言）
   python3 tools/spatial_cn_kmeans.py --selftest
@@ -231,7 +231,7 @@ def fit_cn(df, x_col, y_col, ct_col, group_col, mode, radius_um, pixel_size_um,
             raise UsageError(
                 "--window-mode radius 需要 --pixel-size-um（像素物理边长，μm/px）"
                 "才能把 --radius-um 换算为像素。\n"
-                "        若确实没有像素物理尺寸，请改用 --window-mode knn --k <邻居数>。"
+                "        若确实没有像素物理尺寸，请改用 --window-mode knn --knn <邻居数>。"
                 "（REPRO_SPEC 附录 C「坐标错配」高危项，本脚本拒绝猜测默认值）"
             )
         radius_px = radius_um / float(pixel_size_um)
@@ -511,8 +511,9 @@ def build_parser():
 单位与符号约定
   --window-mode radius : 窗口半径由 --radius-um（μm）给出，必须配合 --pixel-size-um
                          （μm/px）换算为像素；缺 --pixel-size-um 直接报错退出（不猜默认值）。
-  --window-mode knn    : 窗口 = 空间上最近的 --k 个细胞（不含自身），与单位无关，
-                         不需要 --pixel-size-um。
+  --window-mode knn    : 窗口 = 空间上最近的 --knn 个细胞（不含自身），与单位无关，
+                         不需要 --pixel-size-um。注意 --knn（窗口邻居数）与 --k
+                         （K-means 簇数）是两个不同的参数，勿混用。
   窗口内计数不含细胞自身；组成向量按比例归一（和为 1）。
 
 输出表
@@ -524,7 +525,7 @@ def build_parser():
   python3 tools/spatial_cn_kmeans.py --cells processed/cells.csv --group-col sample \\
       --window-mode radius --radius-um 70 --pixel-size-um 0.5 --k 15 --out-prefix results/cn
   python3 tools/spatial_cn_kmeans.py --cells processed/cells.tsv --sep '\\t' \\
-      --window-mode knn --k 70 --out-prefix results/cn
+      --window-mode knn --knn 70 --k 15 --out-prefix results/cn
   python3 tools/spatial_cn_kmeans.py --selftest
 
 退出码：0=成功 1=未预期异常 2=参数/输入校验失败 3=质量断言失败 4=selftest 失败 5=缺必需依赖
@@ -589,7 +590,7 @@ def validate(args):
             raise UsageError(
                 "--window-mode radius 需要 --pixel-size-um（μm/px）。\n"
                 "        缺此参数会把 μm 当像素用，导致尺度错配（REPRO_SPEC 附录 C）。\n"
-                "        若没有像素物理尺寸，请用 --window-mode knn --k <邻居数>。"
+                "        若没有像素物理尺寸，请用 --window-mode knn --knn <邻居数>。"
             )
     if args.pixel_size_um is not None and not (args.pixel_size_um > 0):
         raise UsageError("--pixel-size-um 必须为正数，当前 %r" % args.pixel_size_um)

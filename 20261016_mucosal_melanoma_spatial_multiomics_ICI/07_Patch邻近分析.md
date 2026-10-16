@@ -49,7 +49,7 @@
 
 > ⚠️ **命名口径（与上游文档必须一致，否则会静默取到空子集）**：分组列是 **`response_timepoint`**（`pre_R` / `pre_NR` / `post_NR`），**不是** `group`；谱系列是 **`major_type`**，**不是** `major_celltype`。patch 的唯一键是 **`(core_id, cn, patch_id)`**（HDBSCAN 的 `patch_id` 在每个 `(core, cn)` 内独立编号，跨 CN 会撞号）。全文件的代码已按此命名。
 >
-> ⚠️ **跨文档产物名对齐（待同步）**：`08_细胞间相互作用推断与置换检验.md` 的对应关系表把本模块的产物写成 `results/07_patch_proximity_*.csv`。**以本模块的命名为准**（`results/07_proximity_*.csv`，见上面的清单）；该引用需在 08 号文档中同步（已登记到 `12_复现质控清单、排错与批判性评述.md` 的接口一致性项）。同时 08 号文档消费 05 的 `processed/05_cells_cn.h5ad`，本模块消费 05 的 `processed/05_cells_cn.parquet` —— 两者是同内容的两个容器（05 号文档 §4.2 已声明），**CN 标签只由 05 生成**，07/08 都不得重跑 K-means（L0 §4.2 生产者唯一）。
+> ⚠️ **跨文档产物名对齐（已核对一致）**：本模块的产物命名以**本节清单为准**（`results/07_proximity_*.csv`）。`08_细胞间相互作用推断与置换检验.md` 的对应关系表中该引用此前写作 `results/07_patch_proximity_*.csv`，**已在 08 号文档中改为 `results/07_proximity_*.csv` / `results/07_proximity_subset_tests.csv`**，两处现已一致。同时 08 号文档消费 05 的 `processed/05_cells_cn.h5ad`，本模块消费 05 的 `processed/05_cells_cn.parquet` —— 两者是同内容的两个容器（05 号文档 §4.2 已声明），**CN 标签只由 05 生成**，07/08 都不得重跑 K-means（L0 §4.2 生产者唯一）。
 
 ```mermaid
 flowchart TB
@@ -103,9 +103,10 @@ $$d_{\text{core}}(x) = \text{到第 } k \text{ 近邻的距离}$$
 2. **互达距离（mutual reachability distance）**：
 $$d_{\text{mreach}}(a,b) = \max\{\, d_{\text{core}}(a),\; d_{\text{core}}(b),\; \lVert a-b\rVert \,\}$$
 **直觉**：在稀疏区域里，$d_{\text{core}}$ 很大，把"稀疏区的两点之间距离"**抬升**到与局部密度同量级；在稠密区几乎不变（$d_{\text{mreach}} \approx \lVert a-b\rVert$）。这一步是 HDBSCAN 能用一个**统一标准**处理不同密度区域的关键。
-3. **密度层级与λ**：以 $\lambda = 1/d_{\text{mreach}}$ 为"密度水平"，从 $\lambda=0$（全部点连成一体）到 $\lambda\to\infty$（每个点自成一簇）构建**最小生成树**（MST），再按 $\lambda$ 下降构建**凝聚树**（condensed tree）：每个簇在某个 $\lambda$ 处"分裂"。**簇的稳定性**定义为
-$$\text{stability}(C) = \sum_{x \in C} \big(\lambda_{\text{birth}}(x) - \lambda_{\text{death}}(x)\big)$$
-（点在某密度水平进入该簇、在更高密度水平离开该簇）。
+3. **密度层级与λ**：以 $\lambda = 1/d_{\text{mreach}}$ 为"密度水平"，从 $\lambda=0$（全部点连成一体）到 $\lambda\to\infty$（每个点自成一簇）构建**最小生成树**（MST），再按 $\lambda$ 下降构建**凝聚树**（condensed tree）：每个簇在某个 $\lambda$ 处"分裂"。**簇的稳定性**（Campello et al. 2013 的定义）为
+$$\text{stability}(C_i) = \sum_{x_j \in C_i}\big(\lambda_{\max}(x_j, C_i) - \lambda_{\min}(C_i)\big)$$
+其中 $\lambda_{\min}(C_i)$ 是簇 $C_i$ **诞生**（首次从父簇分裂出来）时的密度水平，$\lambda_{\max}(x_j, C_i)$ 是点 $x_j$ **离开** $C_i$ 时的密度水平（即它在凝聚树中从 $C_i$ 分出去的那个 $\lambda$）。
+**注意符号方向**：$\lambda$ 越大 = 密度越高，且**恒有** $\lambda_{\max}(x_j,C_i) \ge \lambda_{\min}(C_i)$，因此每一项都 $\ge 0$、稳定性单调随"簇存活过多少密度区间"增长。若把两项写反（$\lambda_{\min} - \lambda_{\max}$），所有稳定性都会变成非正值、`eom` 选簇行为完全错乱 —— 这是实现/讲解 HDBSCAN 时最常见的符号错误。
 4. **簇选择**：`cluster_selection_method='eom'`（excess of mass，默认）取"总稳定性最大"的簇集合；`'leaf'` 取凝聚树的叶子簇（更细）。还可以用 `cluster_selection_epsilon`（**单位 = 坐标单位**，对我们的数据就是 μm）强制"在 $\varepsilon$ 以上的密度层级不再分裂"→ 把靠得很近的小簇合并。
 
 **（c）为什么 HDBSCAN 而不是 DBSCAN（本项目的选择依据）。**
@@ -234,6 +235,8 @@ $$N(r) \approx n_{\text{anchor}} \cdot \rho_0 \cdot \pi r^2 \quad\Rightarrow\qua
 
 > ⚠️ **导师批注（诚实性）**：**165 μm 这个数字不是原文报告的**，而是我们把三个已报告的尺度拼接后得到的"组织级视野"量级（$2\times70\,\mu m + 25\,\mu m$）。之所以值得写出，是因为它恰好对应"从瘤芯（CN15）经侵袭缘（CN14）到瘤界（CN13）再向外 25 μm"这一原文所描述的构型跨度，并解释了为什么 Fig. 4C 能看到清晰的**单侧梯度**而不是随机分布。**写作时必须标注"这是我们的综合，原文未报告该数字"**，不得写成"原文使用 165 μm 的组织级尺度"。
 >
+> ⚠️ **导师批注（原文疏漏 #4：265 pixels 的单位）**：上表第 3 行的 **60.95 μm 是我们按原文自报的 0.23 μm/pixel 反推出来的**，原文 Methods 只写 "**265 pixels**"，**没有给 μm 换算、也没有说明用的是哪一层坐标系的像素**（详见 `08_细胞间相互作用推断与置换检验.md` §2.3 的四种口径与 `05_细胞邻域CN分析与Kmeans.md` §2.4 的单位换算表）。本模块引用该数值时**必须同时写出 px 与 μm 两个口径**。
+>
 > 另一个必须写清的量级关系：**61 μm（265 px）的相互作用阈值 ≈ 70 μm 的邻域半径**，即"能算相互作用的最远距离"与"邻域尺度"几乎相同 —— 这意味着 Delaunay 相互作用分析（`08` 号文档）与 CN 分析**不是独立的证据**，两者在空间尺度上高度重叠。这一点在结题评述中要提出（`12` 号文档）。
 
 ### 2.7 为什么选 CN13（tumor boundary）作为中心
@@ -273,20 +276,42 @@ $$N(r) \approx n_{\text{anchor}} \cdot \rho_0 \cdot \pi r^2 \quad\Rightarrow\qua
 
 > 环境：Python 3.11；`numpy` 1.26、`pandas` 2.2、`scipy` 1.13、`scikit-learn` 1.5（含 `sklearn.cluster.HDBSCAN`，需 ≥ 1.3）、`hdbscan` 0.8.40（可选，若可用则优先）、`matplotlib` 3.9、`seaborn` 0.13、`tqdm` 4.66、`pyarrow` 16。
 > 随机种子：`SEED = 20260101`；参数落盘 `logs/07_params.json`。
-> **生产实现**：本模块的核心算法在仓库级脚本 **`tools/patch_proximity.py`** 中（HDBSCAN patch → concave hull → edge 3-NN 扩展 → 多半径环带计数 → 面积归一化），带 `--selftest`（合成弯月 patch 自检，见 `00_目录与复现总览.md` 的工程约定）。项目内 `code/07_*.py` 只做编排与项目特有参数（CN13 目标、分组口径、图形规格）：**先 `python tools/patch_proximity.py --selftest`，再跑编排脚本**。
+> **生产实现**：本模块的核心算法在仓库级脚本 **`tools/patch_proximity.py`** 中（HDBSCAN patch → 凹包边界 → edge 3-NN 扩展 → 多半径环带计数 → 面积归一化密度），带 `--selftest`（**合成椭圆 patch**自检：报告环带计数与理论值的相对误差，断言 < 15%，见 `00_目录与复现总览.md` 的工程约定）。项目内 `code/07_*.py` 只做编排与项目特有参数（CN13 目标、分组口径、图形规格）：**先 `python tools/patch_proximity.py --selftest`，再跑编排脚本**。
 > ```bash
-> python tools/patch_proximity.py --help      # 入参/出参以 --help 为准（tools/ 接口属 L0 契约）
+> python tools/patch_proximity.py --help      # 入参/出参**逐字以 --help 为准**（tools/ 接口属 L0 契约）
+>
+> # ① 输入适配：tools/ 脚本只读 CSV/TSV（read_table → pd.read_csv），不读 parquet；
+> #    且表型列必须与 CN 同表（脚本只有一个 --cells 输入，没有独立的表型表参数）
+> python - <<'PY'
+> import pandas as pd
+> cn = pd.read_parquet("processed/05_cells_cn.parquet")[["cell_id","core_id","x_um","y_um","cn"]]
+> ph = pd.read_parquet("processed/04_cells_phenotyped.parquet")[["cell_id","phenotype"]]
+> cn.merge(ph, on="cell_id", how="left", validate="one_to_one") \
+>   .to_csv("processed/07_cells_for_tool.tsv", sep="\t", index=False)
+> PY
+>
+> # ② 生产脚本（主分析 = CN13 patch；CN14/CN15 换 --patch-value 各跑一遍做梯度分析）
 > python tools/patch_proximity.py \
->     --cells processed/05_cells_cn.parquet \
->     --phenotypes processed/04_cells_phenotyped.parquet \
->     --core-col core_id --cn-col cn --target-cn 13 \
->     --radii-um 5,10,15,20,25 --hdbscan-min-cluster-size 50 --hdbscan-min-samples 10 \
->     --hull-coverage 0.99 --edge-knn 3 --seed 20260101 \
->     --out-patches processed/07_patches.parquet \
->     --out-anchors processed/07_patch_anchors.parquet \
->     --out-counts results/07_proximity_counts_by_radius.csv \
->     --log logs/07_patch_run.log
+>     --cells        processed/07_cells_for_tool.tsv \
+>     --x-col        x_um --y-col y_um \
+>     --celltype-col phenotype --group-col core_id \
+>     --patch-by     cn --cn-col cn --patch-value 13 \
+>     --cluster-method hdbscan --min-cluster-size 50 --hdbscan-min-samples 10 \
+>     --edge-method  auto --edge-knn 3 \
+>     --radii-um     5,10,15,20,25 --pixel-size-um 0.23 \
+>     --ring-origin  anchor --seed 20260101 \
+>     --out-prefix   results/07_proximity
 > ```
+> 脚本产物为 `results/07_proximity_patch_summary.csv`（逐 patch：`hull_method`、`n_patch`、`noise` 等）与 `results/07_proximity_ring_counts.csv`（环带计数与密度）。项目内的 `code/07_*.py` 再把它们展开成本模块契约中的长表与 QC 表（§1）。
+>
+> ⚠️ **导师批注（`tools/` 脚本与本文件代码的四处口径差异，必须核对）**：
+> 1. `--patch-value` 的比较实现是 `df[patch_col].astype(str) == str(patch_value)`，因此 `--patch-value 13` 对**整数 `cn` 列**有效；若上游把 `cn` 存成了 `cn_13`，则必须传 `--patch-value cn_13`（先 `print(df['cn'].unique())` 核对）。
+> 2. 脚本**没有 `--hull-coverage` 参数**：凹包走 `--edge-method {auto,concave,alpha,convex_fallback}`（默认 `auto` = 凹包→alpha-shape→凸包逐级回退）+ `--concave-ratio`（默认 0.3）。本文件 §2.3c 的"覆盖率 ≥ 99% 自适应 $R_{\max}$"是**项目内 `code/07_02` 独立实现**的规则，脚本不实现它——两条路径要交叉核对（`hull_method` 列 + `results/07_patch_hulls.csv`）。
+> 3. `--min-cluster-size`（不是 `--hdbscan-min-cluster-size`）；`--hdbscan-min-samples` 拼写正确。
+> 4. `--ring-origin {anchor,boundary}`（默认 `anchor`）决定环带半径的测量原点：`anchor` 与原文"以每个 anchor 为中心"一致但**系统性偏大 0~edge_band**；`boundary` 无偏、便于与几何理论值比较。本模块主口径 = `anchor`（对齐原文），敏感性 = `boundary`。
+> 5. ⚠️ **计数口径不同（最容易踩）**：脚本输出的是**互斥环带** $(r_{i-1}, r_i]$ 的计数（列 `ring_inner_um` / `ring_outer_um` 明确给出区间），**不是**原文"**within the radius**"的**累积**计数。要把脚本结果对齐原文口径，必须对 `radius_um` 做 `cumsum`（按 `group × patch_id × celltype` 分组、按半径升序累加 `count` 与 `ring_area_um2` 后再算密度）。**本模块 §4.4 的项目内实现才是累积口径的主路径**；脚本用于交叉验证时必须先做这一步转换，且比较的是**密度**而非计数。
+> 6. ⚠️ **列名与主键不同**：脚本用 `group`（= 我们传进去的 `--group-col core_id` 的列名）而非 `core_id`；用 `celltype` 而非 `phenotype`；`patch_id` 是**字符串**（形如 `patch_0`），不是整数。项目内契约表用的是 `core_id` / `phenotype` / 整数 `patch_id`，因此 `code/07_*.py` 需要一层显式改名与类型转换（并断言一一对应），否则 join 会**静默产生空表**（L0 附录 C 的"标签错配"）。
+> 7. `out_prefix` 是**前缀**而不是目录：产物固定为 `<PREFIX>_patch_summary.csv` 与 `<PREFIX>_ring_counts.csv`（脚本会自动创建输出目录）。
 
 ### 4.1 HDBSCAN 检测 patch（逐 core × 逐 CN）
 
@@ -695,33 +720,79 @@ json.dump({"radii_um": RADII, "mode": MODE, "mc_samples": MC_SAMPLES, "seed": SE
 
 ```python
 # code/07_04c_annulus_and_relative.py
+"""环带（差分）计数 + 两个口径的相对密度。**全部为可运行实现，无占位符**。"""
 import numpy as np, pandas as pd
-df = pd.read_csv("results/07_proximity_counts_by_radius.csv")
-RADII = [5, 10, 15, 20, 25]
-# ---------- 环带计数：A(r) = N(r) - N(r - dr)，dr = 相邻半径差 ----------
-wide = (df.groupby(["core_id", "cn", "patch_id", "phenotype", "radius_um"])["count"].sum()
-          .unstack("radius_um"))
-ann = wide.diff(axis=1)                     # 第一列（5 μm）保留为累积值（无更小半径）
-ann.columns = [f"annulus_{c}" for c in ann.columns]
-ann.reset_index().to_csv("results/07_proximity_annulus_counts.csv", index=False)
 
-# ---------- 相对密度：以"同 core 非 patch 区域的密度"为参照，消掉细胞总密度差异 ----------
-lab = pd.read_parquet("processed/07_patch_labels.parquet")
-per_core = (lab.groupby(["core_id", "phenotype"]).size().rename("n_all").reset_index())
-for core, g in df.groupby("core_id"):
-    pass      # 见下方向量化实现
-tot = lab.groupby("core_id").size().rename("n_core")
-ref = df[df["radius_um"] == 25].groupby(["core_id", "phenotype"])["density_per_um2"].median() \
-        .rename("dens_ref_25um")
-# 注意：更严格的参照应是"该 core 整体的非 patch 细胞密度 = n_nonpatch / area_nonpatch"，
-#       area_nonpatch 需用组织掩膜（processed/03_core_manifest.csv）与 patch 多边形面积之差得到；
-#       下面给出该严格版本的实现口径（生产脚本已实现）：
-#       dens_ref = (n_core_pheno - n_patch_pheno) / (area_tissue_core - area_patch)
-print("相对密度的严格实现需要 03 号文档的组织掩膜面积（area_tissue_core）与 07 的 patch 面积"
-      "（results/07_patch_hulls.csv 的 hull_area_um2）；两层口径都写入 results/07_*_relative.csv")
+RADII = [5, 10, 15, 20, 25]                       # μm（原文的五个半径）
+df = pd.read_csv("results/07_proximity_counts_by_radius.csv")
+
+# ---------- (1) 环带计数：A(r) = N(r) - N(r - dr)，dr = 相邻半径差 ----------
+wide = (df.groupby(["core_id", "cn", "patch_id", "phenotype", "radius_um"])["count"].sum()
+          .unstack("radius_um").sort_index(axis=1))
+ann = wide.diff(axis=1)                           # 第一列（5 μm）保持 NaN = 无更小半径可比
+ann = ann.rename(columns={c: f"annulus_{c}" for c in ann.columns})
+ann.reset_index().to_csv("results/07_proximity_annulus_counts.csv", index=False)
+assert list(wide.columns) == RADII, f"半径列顺序异常：{list(wide.columns)}"
+
+# ---------- (2) 相对密度口径 A（不依赖上游掩膜）：同一 core 内 25 μm 密度的中位数作参照 ----------
+ref_A = (df[df["radius_um"] == 25]
+         .groupby(["core_id", "phenotype"])["density_per_um2"].median().rename("dens_ref_25um"))
+rel_A = df.merge(ref_A.reset_index(), on=["core_id", "phenotype"], how="left", validate="many_to_one")
+rel_A["rel_density"] = rel_A["density_per_um2"] / rel_A["dens_ref_25um"].replace(0, np.nan)
+rel_A.to_csv("results/07_proximity_relative_density_A.csv", index=False)
+print("口径 A（core 内 25 μm 密度作参照）：",
+      rel_A.loc[rel_A["radius_um"] == 5, "rel_density"].describe()[["count", "50%"]].to_dict())
+
+# ---------- (3) 相对密度口径 B（严格）：以"该 core 的非 patch 细胞密度"作参照 ----------
+#     dens_ref = (该 core 该表型细胞总数 - 该 patch 内该表型细胞数) / (组织面积 - 该 patch 面积)
+#     ★ 两个上游量缺一不可：组织掩膜面积（03 号文档）与 patch 多边形面积（本模块 §4.2）。
+#       缺失时**显式报错退出**，不静默退化为绝对密度（L0 §4.2.5）。
+manifest = pd.read_csv("processed/03_core_manifest.csv")
+if "area_tissue_um2" not in manifest.columns:
+    raise KeyError("processed/03_core_manifest.csv 缺少 area_tissue_um2（03 号文档的组织掩膜面积）"
+                   "；相对密度口径 B 无法计算。请先在 03 号文档补齐该列，或改用口径 A。"
+                   "（禁止：自动搜寻同名文件 / 用 patch 面积代替组织面积 / 静默退化为绝对密度）")
+tissue_area = manifest.set_index("core_id")["area_tissue_um2"].astype(float)
+
+hull = pd.read_csv("results/07_patch_hulls.csv")                     # 逐 patch 的凹包面积
+if "hull_area_um2" not in hull.columns:
+    raise KeyError("results/07_patch_hulls.csv 缺少 hull_area_um2；请先跑 §4.2")
+patch_area = (hull.set_index(["core_id", "cn", "patch_id"])["hull_area_um2"].astype(float))
+
+lab = pd.read_parquet("processed/07_patch_labels.parquet")           # cell_id, core_id, cn, patch_label
+ph = pd.read_parquet("processed/04_cells_phenotyped.parquet")[["cell_id", "phenotype"]]
+lab = lab.merge(ph, on="cell_id", how="left", validate="one_to_one")
+assert lab["phenotype"].notna().all(), "表型合并失败 → 检查 04 号文档的产物名与 cell_id 唯一性"
+
+n_core_ph = lab.groupby(["core_id", "phenotype"]).size().rename("n_core_pheno")   # 该 core 该表型总数
+n_patch_ph = (lab[lab["patch_label"] != -1]
+              .groupby(["core_id", "cn", "patch_label", "phenotype"]).size()
+              .rename("n_patch_pheno").reset_index()
+              .rename(columns={"patch_label": "patch_id"}))
+rows = []
+for r in n_patch_ph.itertuples(index=False):
+    key = (r.core_id, r.cn, r.patch_id)
+    if key not in patch_area.index or r.core_id not in tissue_area.index:
+        continue                                        # 该 patch 无面积或无组织掩膜 → 记入 QC，不参与口径 B
+    n_core = int(n_core_ph.get((r.core_id, r.phenotype), 0))
+    area_np = float(tissue_area[r.core_id]) - float(patch_area[key])
+    if area_np <= 0:
+        continue
+    rows.append(dict(core_id=r.core_id, cn=r.cn, patch_id=r.patch_id, phenotype=r.phenotype,
+                     n_nonpatch=int(n_core - r.n_patch_pheno), area_nonpatch_um2=area_np,
+                     dens_ref_nonpatch=float((n_core - r.n_patch_pheno) / area_np)))
+ref_B = pd.DataFrame(rows)
+rel_B = df.merge(ref_B, on=["core_id", "cn", "patch_id", "phenotype"],
+                 how="inner", validate="many_to_one")
+rel_B["rel_density"] = rel_B["density_per_um2"] / rel_B["dens_ref_nonpatch"].replace(0, np.nan)
+rel_B.to_csv("results/07_proximity_relative_density_B.csv", index=False)
+print(f"口径 B（严格，非 patch 密度作参照）：覆盖 {len(rel_B):,} 行；"
+      f"被跳过（缺面积/缺掩膜）= {len(n_patch_ph) - len(ref_B):,} 个 patch-表型组合")
+# ★ 判据：口径 A 与 B 的**方向必须一致**（同一 (cn, radius, phenotype) 下组间 mean_diff 同号）；
+#   不一致 → 结论降级（说明"富集"主要来自"细胞总密度差异"而非"patch 周边的相对富集"）。
 ```
 
-> ⚠️ **导师批注（这一格代码故意留了"严格口径"的说明而不是残缺实现）**：上面 `07_04c` 的**去重计数**与**相对密度**需要两个额外的上游量：(a) 组织掩膜面积（`03_影像预处理配准与细胞分割.md` 的 `processed/03_core_manifest.csv` 中的 `area_tissue_um2`），(b) patch 多边形面积（本模块 `results/07_patch_hulls.csv` 的 `hull_area_um2`）。**这两个量在 03 号文档定稿前可能不存在**，因此 `tools/patch_proximity.py` 将其设为可选输入：若缺失，脚本**必须显式报错退出**（而不是静默退化为"绝对密度"）—— 遵守 L0 §4.2.5「上游缺失可降级：消费方应能识别上游产物不存在并给出清晰报错，而不是自动猜路径」。这段注释说明的就是这个契约边界，生产脚本中的实现与之完全一致。
+> ⚠️ **导师批注（为什么口径 B 必须"报错退出"而不是降级）**：口径 B 需要两个额外上游量 —— (a) 组织掩膜面积（`03_影像预处理配准与细胞分割.md` 的 `processed/03_core_manifest.csv` 中的 `area_tissue_um2`），(b) patch 多边形面积（本模块 `results/07_patch_hulls.csv` 的 `hull_area_um2`）。**这两个量在 03 号文档定稿前可能不存在**。按 L0 §4.2.5「上游缺失可降级：消费方应能识别上游产物不存在并给出清晰报错，而不是自动猜路径」，代码在上游列缺失时**直接 `raise`**；只有到"缺个别 core 的掩膜"这一层面才允许**逐条跳过并计数**（上面的 `continue` + 打印跳过数），因为那是数据完整性而非契约问题。**绝不允许**静默退化成"绝对密度"或自动搜索同名文件。
 
 ### 4.5 组间统计（Fig. 4B 的判据）：core 层 + 三个量口径
 
@@ -1128,7 +1199,8 @@ for r in (5, 10, 15, 20, 25):
 | **3-NN 距离上限** | 是否限制扩展距离 | **未报告**（未设上限） | 主路径**无上限**（对齐原文）；敏感性丢弃 >15 μm | 稀疏区可能出现"远距离邻居"把锚点拉离边界 |
 | **半径集合** | 邻近带的尺度 | **5/10/15/20/25 μm** | 同（累积）；另输出环带差分 | 半径单位必须是 μm（5–25 μm = 21.7–108.7 px） |
 | **有效面积口径** | 归一化用什么面积 | **未报告**（只写计数） | **全盘 $\pi r^2$**（主）；半盘 / 蒙特卡洛暴露面积（敏感性） | 用全盘 → 内外两半平均；用半盘 → 只看外侧；差异大时结论必须降级 |
-| **计数口径** | per-anchor 累加 vs 去重 | 未报告（"counted"） | 两者都输出 | per-anchor 累加会被重复采样放大（anchor 密时） |
+| **计数口径（累积 vs 环带）** | "within the radius" → **累积** | **累积**（原文句） | 主路径**累积**（对齐原文）；同时输出**环带差分** $A(r)=N(r)-N(r-\Delta r)$ | 把环带的数当成累积数 → 曲线形状完全相反（环带计数在远端通常下降、累积恒升）。**`tools/patch_proximity.py` 输出的是环带**，交叉验证前必须先 `cumsum`（见 §4 开头的批注第 5 条） |
+| **计数口径（per-anchor vs 去重）** | 同一邻近细胞被多个 anchor 重复计数 | 未报告（"counted"） | 两者都输出（`count` / `count_unique`） | per-anchor 累加会被重复采样放大（anchor 密时） |
 | **统计单元** | 检验的独立单位 | **未报告** | **core 层**（patch 级先聚合到 core） | 细胞/patch 层 → 伪重复（p 值虚小）；这正是原文 $p<2.22\times10^{-16}$ 的成因（见 `08`） |
 | **多重校正** | 半径 × 表型 的双维检验 | 未报告 | **按半径分层做 BH**；同时报告"按全体检验做 BH"的结果 | 双口径报告，避免"校正方式决定结论"的质疑 |
 | **显著性阈值** | p 或 q | **< 0.05** | p 与 q < 0.05 双口径 | — |
@@ -1242,6 +1314,7 @@ for r in (5, 10, 15, 20, 25):
 | 16 | 用"从 patch 质心指向 anchor 的单位向量"定义外法线，在强凹 patch 上方向错误 | 质心-锚点方向 ≠ 局部外法线（凹处指向相反侧） | 半盘口径只对近似凸的 patch 有效；对强凹 patch 用蒙特卡洛暴露面积（口径 3）或按**边界环的局部边方向**取法线（相邻边界顶点连线的垂线，取指向外侧者） |
 | 17 | 表型名写错导致计数表全为 0 但脚本"成功"退出 | L0 附录 C 的"标签错配"：`+` 号、大小写、`Granzyme B` vs `GZMB` 不一致 | 先 `print(sorted(phenotype.unique()))` 再写常量；生产脚本对目标表型做存在性断言并**报错退出**（不得静默继续） |
 | 18 | 相对密度算不出来（报错或得到 inf） | 上游缺 `area_tissue_um2`（组织掩膜面积）或 `hull_area_um2` | 契约要求：缺失时**报错退出**并指明缺哪个文件/列（L0 §4.2.5）；不要自动猜路径或静默退化为绝对密度 |
+| 19 | 与 `tools/patch_proximity.py` 的结果"对不上"（形状相反、量级差几倍） | 三处口径差异：① 脚本给**环带**计数而本模块主路径给**累积**计数；② 脚本列名是 `group`/`celltype`/字符串 `patch_id`，契约表是 `core_id`/`phenotype`/整数 `patch_id`；③ 脚本的凹包走 `--edge-method auto`，本模块走"覆盖率 ≥99% 自适应 $R_{\max}$" | 交叉验证前：先按 `group × patch_id × celltype` 分组、按 `radius_um` 升序对 `count` 与 `ring_area_um2` 做 `cumsum`，改名对齐，并**只比密度不比计数**；若仍不一致，比对 `hull_method` 列与 `results/07_patch_hulls.csv` 的 $R_{\max}$（凹包不同 → anchor 位置不同 → 环带必然不同） |
 
 ---
 
@@ -1255,7 +1328,7 @@ for r in (5, 10, 15, 20, 25):
 | Fig. 4B（middle） | macrophage 亚型 | `figures/Fig4B_proximity_macrophage.pdf|png`、`results/07_proximity_subset_tests.csv` | CD163⁺ 在 R 更高（density 与 subset_fraction 口径） |
 | Fig. 4B（bottom） | T 细胞亚型 | `figures/Fig4B_proximity_tcell.pdf|png` | Ki67⁺CD8⁺ ↑、GZMB⁺CD8⁺ ↑、FOXP3⁺CD4⁺ ↓（R vs NR） |
 | Fig. 4C | 代表性 core 的 CN 区域 + 免疫梯度 | `figures/Fig4C_CN_regions_and_gradient.pdf|png`、`results/07_gradient_test.csv` | JT 置换 p < 0.05 且 Spearman ρ > 0（CN15→CN13 免疫上升） |
-| Methods「Patch proximity analysis」 | HDBSCAN → concave hull → 3-NN → 5 半径计数 | `logs/07_params.json`、`logs/07_proximity_params.json`、`processed/07_patch_labels.parquet`、`processed/07_patch_anchors.parquet`、`results/07_patch_hulls.csv`、`results/07_patch_qc.csv` | 全部参数、引擎、覆盖率、半径、面积口径可追溯 |
+| Methods「Patch proximity analysis」 | HDBSCAN → concave hull → 3-NN → 5 半径计数 | `logs/07_params.json`、`logs/07_proximity_params.json`、`processed/07_patch_labels.parquet`、`processed/07_patch_anchors.parquet`、`results/07_patch_hulls.csv`、`results/07_patch_qc.csv` | 全部参数、引擎、覆盖率、半径、面积口径可追溯；与 `tools/patch_proximity.py` 的 `_patch_summary.csv` / `_ring_counts.csv`（环带口径、`group`/`celltype`/字符串 `patch_id`）逐项对齐后再比较 |
 | Methods（图外补充） | 参数敏感性（HDBSCAN、凹包、3-NN 上限、面积口径） | `results/07_hdbscan_param_sensitivity.csv`、`results/07_proximity_annulus_counts.csv` | 敏感性方向一致才写"稳健" |
 | Fig. 5H–I（下游） | CN13 内的代谢物–CD163 相关与 tryptophan score | **接口输出**：CN13 patch 的细胞清单（`processed/07_patch_labels.parquet` 的 `cn==13`） | 见 `10_空间代谢组学分析.md` / `11_蛋白-代谢物空间耦合与多组学整合.md` |
 | Fig. 4D–H（下游） | CN13/CN14 内的细胞对相互作用与 IRF4/Arg1 表达 | 本模块提供**细胞 → patch/CN 区域的映射** | 见 `08_细胞间相互作用推断与置换检验.md` |
@@ -1271,5 +1344,5 @@ for r in (5, 10, 15, 20, 25):
 5. **Fig. 4B 的"abundance/frequent"口径不明**（密度？计数？亚型构成比？区域内比例？）。三种量的含义不同，可能给出不同结论。我们三个都算并全部报告。
 6. **Fig. 4B 的 p 值与 n 完全缺失**：原文只给"higher/lower"。我们的 core 层检验只能校验**方向**，不能校验数值。
 7. **伪重复风险**：97 个 core 来自 26 位患者（每人 ≤3 芯）。若原文的统计以细胞或 patch 为单位，则 p 值被严重高估显著性。我们在 core 层做检验，并把患者层聚合留给 `09` 号文档。
-8. **产物命名与跨文档引用**：`08_细胞间相互作用推断与置换检验.md` 引用本模块产物为 `results/07_patch_proximity_*.csv`，实际以本模块的 `results/07_proximity_*.csv` 为准；`08` 号文档消费 05 的 **h5ad** 容器而本模块消费 **parquet** 容器（同内容），两处命名/容器口径需同步（L0 §3.3、§4.2）。另外 08 号文档提到「COMET 的 25 个 phenotype」，与我方 23 个状态的差异同样需在结题报告中统一说明。
+8. **产物命名与跨文档引用（已解决）**：`08_细胞间相互作用推断与置换检验.md` 原先引用本模块产物为 `results/07_patch_proximity_*.csv`，现已改为本模块的实际产物名 `results/07_proximity_*.csv`。`08` 号文档消费 05 的 **h5ad** 容器、本模块消费 **parquet** 容器（内容等价，05 号 §4.2 已声明同源）。另：原文报告 **25 个 cellular phenotypes**，我方 `04_细胞表型定义与注释.md` 给出 **23 个状态**（差 2 不可复现，04 号文档已登记 gap 且禁止硬凑）；**08 号文档已按 23 类运行并以 `N_PHENO = 23` 常量声明**，本模块同样按 23 个状态分层计数 —— 全项目口径一致，结题时仍需在 gap 表中说明 25 vs 23 的差异。
 9. **相关性不等于因果**：patch 邻近的免疫富集只说明"空间共定位"，不说明"招募/排斥机制"。原文 Discussion 已声明 "our data are correlative"，我们在结论中保持一致（L0 §12.4）。

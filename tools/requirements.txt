@@ -1,0 +1,6 @@
+PyPDF2
+pdfminer.six
+pymupdf
+bibtexparser
+requests
+# tkinter  # 仅GUI版需要；通常Python已自带 (GUI only; usually bundled with Python)

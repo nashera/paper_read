@@ -21,7 +21,8 @@
                     │
                     ▼
      本模块(05)：CN = 局部组成的无监督离散化
-     ├─ 每细胞 70 μm 窗口内的 25 维组成向量 p_i ∈ Δ²⁴
+     ├─ 每细胞 70 μm 窗口内的 K 维组成向量 p_i ∈ Δ^(K-1)
+     │   （K = 状态粒度 phenotype 数；**原文层级 25，我方 04 号文档 23**，见 §1.1）
      ├─ K-means(k=15) → 15 个 CN 标签（CN1–CN15）
      ├─ 生物学命名（composition heatmap + 与原文 15 个 CN 逐一对齐）
      └─ 每 core 的 CN 频率表 → pre-R / pre-NR / post-NR 组间比较（Fig. 2D）
@@ -62,8 +63,8 @@ flowchart TB
     B1 --> B2["按 core_id 分组<br/>（禁止跨 core 建 KDTree！）"]
     A2 --> B2
     B2 --> C1["cKDTree(每 core 独立)<br/>query_ball_point(r = 70 um)"]
-    C1 --> C2["chunk 分块 -> bincount(phenotype)<br/>得组成计数矩阵 C (N x 25)"]
-    C2 --> C3["行归一化 p_i = C_i / sum(C_i)<br/>p_i in Δ^24"]
+    C1 --> C2["chunk 分块 -> bincount(phenotype)<br/>得组成计数矩阵 C (N x K)"]
+    C2 --> C3["行归一化 p_i = C_i / sum(C_i)<br/>p_i in Δ^(K-1)<br/>（K = 状态粒度 phenotype 数）"]
     C3 --> D1["KMeans(n_clusters=15, init='k-means++',<br/>n_init=20, random_state=20260101)"]
     D1 --> D2["每细胞 CN 标签 0..14 -> CN1..CN15"]
     D2 --> E1["Fig2B 组成热图 -> 人工命名"]
@@ -161,6 +162,8 @@ $$r_{px} = \frac{r_{\mu m}}{0.23} = \frac{70}{0.23} \approx 304.3\ \text{px}$$
 | patch 邻近半径 | 5 / 10 / 15 / 20 / 25 | 21.7 / 43.5 / 65.2 / 87.0 / 108.7 |
 | Delaunay 互作阈值 | **60.95**(≈61，由 265 px 反推) | **265**（原文写法） |
 | TMA 芯直径 | 1000 | 4348 |
+
+> ⚠️ **导师批注（原文第 4 号矛盾：265 pixels 未给 μm 换算，须登记到 `12_复现质控清单、排错与批判性评述.md`）**：原文 Methods「Cell-cell interaction analysis」只写 "Cell-to-cell interactions within **265 pixels** were identified"，**没有说明用的是哪一层坐标系的像素、也没有给 μm 换算**。按原文自报的 **0.23 μm/pixel**（COMET OME-TIFF）反推得 **265 × 0.23 = 60.95 μm**（上表第 3 行）。这个换算在本项目中由 `08_细胞间相互作用推断与置换检验.md` §2.3 承担（口径 A 主路径），本模块只负责把**单位换算表**统一——**凡跨模块引用长度，必须同时写 μm 与 px 两个口径并标明换算因子 0.23**（L0 附录 C「坐标错配」）。另注意 60.95 μm 与 CN 窗口 70 μm 数值接近纯属巧合，两者的几何对象完全不同（前者是"稀疏图上的边长上限"，后者是"稠密球内的全部细胞"），**不得据此说两个窗口定义等价**。
 
 > ⚠️ **导师批注（本模块第一号陷阱）**：如果把 70 当成**像素**传给 `query_ball_point`，窗口半径变成 70 × 0.23 = 16.1 μm（相当于只覆盖 1–2 个细胞直径、平均 ~5 个细胞），组成向量几乎退化为独热向量（one-hot）→ K-means 会把 CN 拆成"细胞类型"→ **CN 完全失去意义，但代码不报错**（L0 附录 C 的"静默失败"典型）。防御：在脚本里加断言 `assert 50 <= radius_um <= 200`，并把 `um_per_px` 作为**显式参数**（默认 0.23）写入 `logs/05_params.json`。
 
@@ -293,21 +296,72 @@ $$\mathrm{clr}(p)_k = \log p_k - \frac{1}{K}\sum_{k'}\log p_{k'}$$
 > 环境：Python 3.11；`numpy` 1.26、`pandas` 2.2、`scipy` 1.13、`scikit-learn` 1.5、`pyarrow` 16（parquet）、`matplotlib` 3.9、`seaborn` 0.13、`squidpy` 1.6（可选，QC）、`scimap` 1.4（可选，交叉验证）、`tqdm` 4.66。
 > 随机种子：`SEED = 20260101`（L0 §6.1，写在各脚本首行）。
 > **生产实现**：本模块的核心算法已上移到仓库级可复用脚本 **`tools/spatial_cn_kmeans.py`**（L0 §1.4）。项目内 `code/05_*.py` 只放**编排与项目特有参数**（0.23 μm/px、分组口径、图形规格）。
-> 运行生产脚本：
+> 运行生产脚本（**以下参数名逐字以 `python tools/spatial_cn_kmeans.py --help` 为准**；`tools/` 脚本接口属 L0 契约，变更需走 §11.1 流程）：
 > ```bash
-> # 入参/出参以脚本 --help 为准（tools/ 脚本接口属 L0 契约，变更需走 §11.1 流程）
-> python tools/spatial_cn_kmeans.py --selftest     # 合成数据自检（`00_目录与复现总览.md` §工程约定 要求）
+> python tools/spatial_cn_kmeans.py --selftest     # 合成组织自检：跑完整流程并报告 ARI（断言 ARI > 0.7）
 > python tools/spatial_cn_kmeans.py --help
+>
+> # ① 输入适配：tools/ 脚本只读 CSV/TSV（read_table → pd.read_csv），**不读 parquet**。
+> #    先由项目内编排脚本把 04 号文档的产物导出为扁平表（见下方 §4.0 的代码）
+> python code/05_00_prepare_input.py \
+>     --in  processed/04_cells_phenotyped.parquet \
+>     --out processed/05_cells_for_tool.tsv
+>
+> # ② 生产脚本（主路径 = 半径 70 μm 窗口）
 > python tools/spatial_cn_kmeans.py \
->     --cells   processed/04_cells_phenotyped.parquet \
->     --core-col core_id --x-col x_um --y-col y_um --label-col phenotype \
->     --mode radius --radius-um 70 --k 15 --seed 20260101 \
->     --out-cells processed/05_cells_cn.parquet \
->     --out-composition processed/05_cn_composition.parquet \
->     --out-frequencies results/05_cn_frequencies_per_core.csv \
->     --log logs/05_cn_run.log
+>     --cells        processed/05_cells_for_tool.tsv \
+>     --x-col        x_um \
+>     --y-col        y_um \
+>     --celltype-col phenotype \
+>     --group-col    core_id \
+>     --window-mode  radius --radius-um 70 --pixel-size-um 0.23 \
+>     --min-cells-in-window 5 \
+>     --k            15 --seed 20260101 \
+>     --out-prefix   results/05_tool
+>
+> # ③ 敏感性（70 近邻窗口）。注意：k-NN 窗口大小是 --knn，**不是 --k**（--k 是 K-means 簇数）
+> python tools/spatial_cn_kmeans.py \
+>     --cells        processed/05_cells_for_tool.tsv \
+>     --x-col        x_um \
+>     --y-col        y_um \
+>     --celltype-col phenotype \
+>     --group-col    core_id \
+>     --window-mode  knn --knn 70 \
+>     --k            15 --seed 20260101 \
+>     --out-prefix   results/05_tool_knn70
 > ```
+> 脚本产物为 `results/05_tool_cell_cn.csv`（细胞级：原列 + `cn` / `cn_raw` / `n_cells_in_window` / `window_valid`）、`results/05_tool_cn_composition.csv`（CN × 细胞类型组成）、`results/05_tool_cn_freq_by_sample.csv`（每 `core_id` 的 CN 频率宽表）。项目内的 `code/05_*.py` 再把它转成本模块契约中的 parquet 主产物与 h5ad 镜像（§1）。
+>
+> ⚠️ **导师批注（脚本 help 自身的笔误）**：`tools/spatial_cn_kmeans.py --help` 的「示例」区块第 2 行写的是 `--window-mode knn --k 70`，但该脚本的 `--k` 是 **K-means 簇数**、k-NN 窗口大小是 **`--knn`**（help 的「窗口定义」与「K-means」两节已各自写明）。照抄那一行会把 K-means 的 `k` 设成 70。**本项目一律使用 `--knn 70`**；该 help 笔误已登记到 `12_复现质控清单、排错与批判性评述.md` 的"工具接口"项。
+>
 > 下面的代码块给出**该脚本的最小自实现版本**（保证在 `tools/` 不可用时仍能独立跑通，也便于逐行核对算法）。
+
+### 4.0 输入适配：把 04 号文档的 parquet 导出成 `tools/` 脚本可读的 TSV
+
+```python
+# code/05_00_prepare_input.py
+"""tools/ 脚本只读 CSV/TSV（`read_table` → `pd.read_csv`）。本步把 04 号文档的
+   parquet 契约表导成一张扁平 TSV，列名按 tools/ 脚本的参数传入（--x-col/--y-col/
+   --celltype-col/--group-col）。"""
+import argparse, pandas as pd
+
+ap = argparse.ArgumentParser()
+ap.add_argument("--in", dest="inp", required=True)
+ap.add_argument("--out", dest="out", required=True)
+a = ap.parse_args()
+
+cells = pd.read_parquet(a.inp)
+need = ["cell_id", "core_id", "patient_id", "response_timepoint",
+        "major_type", "phenotype", "x_um", "y_um"]
+missing = [c for c in need if c not in cells.columns]
+assert not missing, f"04 号文档产物缺列：{missing}（契约见 §1.1）"
+# 坐标单位自检（与 §4.1 的断言一致）：1.0 mm 芯内 x 跨度应 ~1000 μm
+span = cells.groupby("core_id")["x_um"].agg(lambda s: s.max() - s.min()).median()
+assert 200 < span < 1200, f"x 跨度中位数 {span:.1f} 不像 μm → 检查 03 号的 0.23 μm/px 换算"
+# group_col 用 core_id：TMA 上多芯共片，跨芯建树会产生虚假邻居（§2.7 要点 1）
+cells[need].to_csv(a.out, sep="\t", index=False)
+print(f"[OK] {a.out}  {cells.shape[0]:,} 行 × {len(need)} 列；core 数 = {cells['core_id'].nunique()}")
+```
 
 ### 4.1 构造组成向量（半径 70 μm，逐芯分块）
 
@@ -608,15 +662,32 @@ for cn, row in prof.iterrows():
 T = pd.DataFrame(recs).set_index("cn")
 
 # ---- 规则化命名（按原文 Fig.2B 的定性描述转成可执行判据；阈值见 logs/05_naming_rules.json）----
+# 排序前提：idxmax 在并列（tie）时返回**第一个**最大值的位置，因此必须让 T 的行序确定 —— 
+# T 的索引是 "CN1".."CN15" 字符串，字符串序与编号序一致，但仍显式按编号排序以防上游改动。
+T = T.loc[sorted(T.index, key=lambda c: int(str(c).replace("CN", "")))]
 name = {}
-name[T["ki67_tumor"].idxmax()] = "CN6_proliferative_tumor"
-name[T["mif_tumor"].idxmax()] = "CN15_central_tumor"
-name[T["vim_stroma"].idxmax()] = "CN10_vimentin_stroma"
-name[T["vimsma_stroma"].idxmax()] = "CN1_vimentin_sma_stroma_myCAF"
-name[T["dc"].idxmax()] = "CN3_DC"
-name[T["nk"].idxmax()] = "CN2_NK"
-name[T["bcell"].idxmax()] = "CN4_B_cells"
-name[T["cd8"].idxmax()] = "CN7_CD8_T"
+
+def assign(cluster, label):
+    """登记"簇 → 原文 CN 名"的映射；**同名重复分配直接报错**。
+
+    为什么必须显式检查：下面的规则全是 idxmax/argmax，两条规则可能同时指向同一个簇
+    （例如"Ki67⁺ 肿瘤最多的簇"恰好也是"组成熵最大的簇"）。若只做 `name[x] = ...`，
+    后写的一条会**静默覆盖**前一条，最终 name 少一项、尾部的 `assert len(name) == 15`
+    才报错，而报错信息指向的是"未覆盖的簇"，排查方向被误导。
+    """
+    if cluster in name:
+        raise ValueError(f"簇 {cluster} 被重复命名：已有 {name[cluster]!r}，"
+                         f"又试图赋成 {label!r} —— 请检查规则阈值（logs/05_naming_rules.json）")
+    name[cluster] = label
+
+assign(T["ki67_tumor"].idxmax(),    "CN6_proliferative_tumor")
+assign(T["mif_tumor"].idxmax(),     "CN15_central_tumor")
+assign(T["vim_stroma"].idxmax(),    "CN10_vimentin_stroma")
+assign(T["vimsma_stroma"].idxmax(), "CN1_vimentin_sma_stroma_myCAF")
+assign(T["dc"].idxmax(),            "CN3_DC")
+assign(T["nk"].idxmax(),            "CN2_NK")
+assign(T["bcell"].idxmax(),         "CN4_B_cells")
+assign(T["cd8"].idxmax(),           "CN7_CD8_T")
 
 # 组合型 CN：需要"共主导"判据
 rest = [c for c in T.index if c not in name]
@@ -626,31 +697,32 @@ T["immune_sum"] = T[["dc", "nk", "bcell", "cd4", "cd8"]].sum(1)
 
 # CN13 tumor boundary = 肿瘤 + CD163+ 巨噬共主导（两者都 > 0.15）
 cand13 = T.loc[rest].assign(b=lambda d: np.minimum(d["tumor_sum"], d["cd163_mac"]))
-name[cand13["b"].idxmax()] = "CN13_tumor_boundary"
+assign(cand13["b"].idxmax(), "CN13_tumor_boundary")
 rest = [c for c in rest if c not in name]
 # CN14 invasive tumor = 三种肿瘤状态混合（tumor_sum 高 且 单一状态不极端 且 肿瘤类型多样性高）
 cand14 = T.loc[rest].assign(d=lambda d: d["tumor_sum"] - d[["ki67_tumor", "mif_tumor"]].max(1))
-name[cand14["d"].idxmax()] = "CN14_invasive_tumor"
+assign(cand14["d"].idxmax(), "CN14_invasive_tumor")
 rest = [c for c in rest if c not in name]
 # CN12 immune-infiltrated stroma / CN9 tumor-infiltrated stroma
 cand_str = T.loc[rest].assign(s=lambda d: np.minimum(d["stroma_sum"], d["immune_sum"]))
-name[cand_str["s"].idxmax()] = "CN12_immune_infiltrated_stroma"
+assign(cand_str["s"].idxmax(), "CN12_immune_infiltrated_stroma")
 rest = [c for c in rest if c not in name]
 cand_str9 = T.loc[rest].assign(s=lambda d: np.minimum(d["stroma_sum"], d["tumor_sum"]))
-name[cand_str9["s"].idxmax()] = "CN9_tumor_infiltrated_stroma"
+assign(cand_str9["s"].idxmax(), "CN9_tumor_infiltrated_stroma")
 rest = [c for c in rest if c not in name]
 # CN5 B & CD4 T（共主导）
 cand5 = T.loc[rest].assign(s=lambda d: np.minimum(d["bcell"], d["cd4"]))
-name[cand5["s"].idxmax()] = "CN5_B_and_CD4_T"
+assign(cand5["s"].idxmax(), "CN5_B_and_CD4_T")
 rest = [c for c in rest if c not in name]
 # CN11 immune-enriched（免疫总量高但无单一主导）
 cand11 = T.loc[rest].assign(s=lambda d: d["immune_sum"] - 2 * d["pmax"])
-name[cand11["s"].idxmax()] = "CN11_immune_enriched"
+assign(cand11["s"].idxmax(), "CN11_immune_enriched")
 rest = [c for c in rest if c not in name]
 # CN8 mixed cells（组成熵最大）
-name[max(rest, key=lambda c: T.loc[c, "ent"])] = "CN8_mixed_cells"
+assign(max(rest, key=lambda c: T.loc[c, "ent"]), "CN8_mixed_cells")
 
 assert len(name) == 15, f"命名未覆盖全部 15 个 CN：{sorted(set(T.index)-set(name))}"
+assert len(set(name.values())) == 15, f"出现重名（两个簇被赋了同一个 CN 名）：{sorted(name.items())}"
 pd.DataFrame(sorted(name.items()), columns=["cluster", "cn_name"]) \
   .to_csv("results/05_cn_naming_table.csv", index=False)
 # 名称写回细胞表（保留两列：cn 整数编号 + cn_name），供下游 06–11 号文档消费
@@ -681,6 +753,8 @@ cells.to_parquet("processed/05_cells_cn.parquet", index=False)
 | **CN8** mixed cells | "diverse composition **without dominance of a single lineage**" | 剩余 CN 中**组成熵最大**者 | — |
 
 > ⚠️ **导师批注（命名与编号的关系，必须写清楚）**：原文的 CN 编号（CN1–CN15）是**原文自己聚类后的编号**，与我们的 K-means 输出编号**没有任何对应关系**（K-means 的簇编号是任意的、随机的 —— 这是"标签切换/label switching"问题）。我们的 `results/05_cn_naming_table.csv` 建立的映射是**基于组成判据的语义对齐**，不是编号对齐。**所有产物、图表、正文里都必须用 `cn_name`（如 `CN15_central_tumor`），只有在与原文对照的表格里才写原文编号。** 评审若把我们的"cluster 7"直接当成原文"CN7"会得出完全错误的结论。
+>
+> ⚠️ **导师批注（`tools/` 脚本与本文件代码的编号口径差异，务必核对）**：`tools/spatial_cn_kmeans.py` **默认开启 `--relabel-by-size`**，输出的 `cn` 是字符串 `cn_1`…`cn_15`，且 **`cn_1` = 细胞数最多的簇**（编号按簇大小降序重排）；而本文件 §4.2 的最小实现输出的是 `cn = KMeans.labels_ + 1`（**编号任意**）。两者都合法，但**同一项目内只能有一个约定**。本项目裁决：**以 `tools/` 脚本的输出为准**（`cn_1`…`cn_15` 按簇大小降序），并在 `code/05_*.py` 里把它映射为整数 `1..15` 后写入契约产物；若需与 §4.2 的最小实现逐位对照，用 `--no-relabel-by-size`。无论哪条路径，**`cn` 只是编号、`cn_name` 才是语义**，下游一律消费 `cn_name`。
 
 ### 4.6 kNN 版本（70 近邻）—— 敏感性分析用的对照实现
 
