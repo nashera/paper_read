@@ -61,9 +61,15 @@ cor.test(fib_scores[[g]], m["PLG", ])      # 期望 R=0.639, p=1.1e-4
 cor.test(m["RUNX2", ], m["PLG", ])         # 期望 R=0.655, p=6.33e-5
 ```
 
+原文报告值：$\mathrm{cor}(\mathrm{fibrosis}, \mathrm{PLG}) = 0.639,\; p = 1.1 \times 10^{-4}$；$\mathrm{cor}(\mathrm{RUNX2}, \mathrm{PLG}) = 0.655,\; p = 6.33 \times 10^{-5}$。
+
 ### 2.4 PLG 高/低分组（DTNA⁺ Mac 来源，75 分位）与 DEG（Fig. 7A）
 
-原文逻辑：在**单细胞**的 DTNA⁺ Mac 中计算 PLG 表达，以 75 分位把**样本/细胞**分为 high-PLG 与 low-PLG，再比较 DTNA⁺ Mac 的 DEG。两种可复现口径（建议都做并报告）：
+原文逻辑：在**单细胞**的 DTNA⁺ Mac 中计算 PLG 表达，以第 75 百分位数
+
+$$\theta = Q_{0.75}\left(\{x_{\mathrm{PLG},i} : i \in \text{DTNA}^+ \text{Mac}\}\right)$$
+
+把**样本/细胞**分为 high-PLG（$x > \theta$）与 low-PLG（$x \le \theta$），再比较 DTNA⁺ Mac 的 DEG。两种可复现口径（建议都做并报告）：
 
 ```r
 mye <- readRDS("processed/myeloid_annotated.rds")

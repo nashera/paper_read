@@ -18,7 +18,11 @@ $$y_{sg} \sim \mathrm{Poisson}\!\left(\mathrm{lib}_s \sum_{c} w_{sc}\,\mu_{cg}\r
 3. **模式**：`doublet`（每个 spot 最多 2 类，即 $w_{sc}$ 至多 2 个非零元）与 `full`（多类 + 稀疏惩罚）。原文对全部 Visium 做 spot 注释 + 单细胞分辨率 deconvolution，建议 full mode；
 4. **输出**：spot × celltype 的权重矩阵（细胞数估计 $\hat{n}_{sc} = w_{sc} \times \hat{N}_s$，$\hat{N}_s$ 为 spot $s$ 的细胞总数估计）。
 
-**共定位定量**：对每个 spot 得到 w(DTNA⁺Mac/mono-mac) 与 w(aHSC/HSC)，计算两 signature score 的 Pearson 相关 + 空间自相关对照（打乱 spot 坐标的零分布），即原文 Fig.7D–E 的散点与 p<0.001。
+**共定位定量**：对每个 spot $s$ 得到 $w_{s,\mathrm{Mac}}$（DTNA⁺Mac/mono-mac 权重）与 $w_{s,\mathrm{HSC}}$（aHSC/HSC 权重），计算两 signature score 的 Pearson 相关
+
+$$r = \frac{\sum_s (w_{s,\mathrm{Mac}} - \bar{w}_{\mathrm{Mac}})(w_{s,\mathrm{HSC}} - \bar{w}_{\mathrm{HSC}})}{\sqrt{\sum_s (w_{s,\mathrm{Mac}} - \bar{w}_{\mathrm{Mac}})^2}\sqrt{\sum_s (w_{s,\mathrm{HSC}} - \bar{w}_{\mathrm{HSC}})^2}}$$
+
+并做空间自相关对照（打乱 spot 坐标 1000 次构建零分布，得经验 $p$ 值），即原文 Fig.7D–E 的散点与 $p<0.001$。
 
 ---
 

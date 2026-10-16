@@ -1,7 +1,7 @@
 # 07 CellChat 细胞通讯分析与 RUNX2–PLG–PARD3 轴验证
 
 > **前置依赖**：04（HSC 亚型）、05（髓系亚群）、06（RUNX2）。**对应原文**：Fig. 6A–F、Fig. S4；Methods "Cell-cell communication analysis"。
-> **产出**：MASLD/MASH 通讯网络对比、差异互作热图、PLG–PARD3 配受体证据、bulk 相关（R=0.639 / 0.655）、9 队列 DTNA⁺Mac–aHSC 相关矩阵。
+> **产出**：MASLD/MASH 通讯网络对比、差异互作热图、PLG–PARD3 配受体证据、bulk 相关（$R=0.639$ / $0.655$）、9 队列 DTNA⁺Mac–aHSC 相关矩阵。
 
 ---
 
@@ -94,6 +94,8 @@ cor.test(expr["RUNX2", ], expr["PLG", ], method = "pearson")  # 期望 R=0.655, 
 # 散点 + 线性拟合 + 置信带，复现 Fig.6E
 ```
 
+原文报告值（GSE126848）：纤维化评分–PLG 相关 $R = 0.639,\; p = 1.1 \times 10^{-4}$；RUNX2–PLG 相关 $R = 0.655,\; p = 6.33 \times 10^{-5}$。
+
 > 正态性检查：原文统计约定为"正态→Pearson，否则 Spearman"；对每个相关先做 Shapiro–Wilk，并在结果表中记录所用方法。若复现值与原文偏差 >0.1，检查①基因探针映射②样本过滤③log 转换口径。
 
 **Fig. S4**：在其余 bulk 队列（GSE135251 等）重复上述两个相关，作为跨队列稳健性。
@@ -115,7 +117,7 @@ for (gse in nine_bulk) {
 # 汇总为相关矩阵/热图（Fig.6F）；讨论中总相关 R=0.36, p<2.2e-16 为合并口径
 ```
 
-**口径提醒**：原文摘要级数字有两处——Fig.6F 为"6/9 数据集 p<0.05, R>0.8"，Discussion 为合并相关 R=0.36。复现时分别记录两口径，不要混用。
+**口径提醒**：原文摘要级数字有两处——Fig.6F 为"9 数据集中 6 个满足 $p<0.05$ 且 $R>0.8$"，Discussion 为合并相关 $R=0.36,\; p<2.2 \times 10^{-16}$。复现时分别记录两口径，不要混用。
 
 ---
 
