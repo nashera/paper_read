@@ -1,0 +1,6364 @@
+
+
+===== PAGE 1 =====
+876  |  Nature  |  Vol 631  |  25 July 2024
+Article
+Cellular adaptation to cancer therapy along 
+a resistance continuum
+Gustavo S. França1,2, Maayan Baron1,12, Benjamin R. King2,9,12, Jozef P. Bossowski3,12, 
+Alicia Bjornberg4,12, Maayan Pour1,2,12, Anjali Rao1,12, Ayushi S. Patel1,2,12, Selim Misirlioglu5, 
+Dalia Barkley1, Kwan Ho Tang5,10, Igor Dolgalev6, Deborah A. Liberman1,2, Gal Avital1, 
+Felicia Kuperwaser1,2, Marta Chiodin1, Douglas A. Levine5,11, Thales Papagiannakopoulos5,9, 
+Andriy Marusyk4, Timothée Lionnet2,7,13 & Itai Yanai1,2,5,8,13 ✉
+Advancements in precision oncology over the past decades have led to new 
+therapeutic interventions, but the efficacy of such treatments is generally limited by 
+an adaptive process that fosters drug resistance1. In addition to genetic mutations2, 
+recent research has identified a role for non-genetic plasticity in transient drug 
+tolerance3 and the acquisition of stable resistance4,5. However, the dynamics of 
+cell-state transitions that occur in the adaptation to cancer therapies remain unknown 
+and require a systems-level longitudinal framework. Here we demonstrate that 
+resistance develops through trajectories of cell-state transitions accompanied by a 
+progressive increase in cell fitness, which we denote as the ‘resistance continuum’. 
+This cellular adaptation involves a stepwise assembly of gene expression programmes 
+and epigenetically reinforced cell states underpinned by phenotypic plasticity, 
+adaptation to stress and metabolic reprogramming. Our results support the notion 
+that epithelial-to-mesenchymal transition or stemness programmes—often considered 
+a proxy for phenotypic plasticity—enable adaptation, rather than a full resistance 
+mechanism. Through systematic genetic perturbations, we identify the acquisition of 
+metabolic dependencies, exposing vulnerabilities that can potentially be exploited 
+therapeutically. The concept of the resistance continuum highlights the dynamic 
+nature of cellular adaptation and calls for complementary therapies directed at the 
+mechanisms underlying adaptive cell-state transitions.
+The ability of malignant cells to consistently evolve resistance to initially 
+effective therapies poses one of the major obstacles to cancer treat-
+ment1. Models to explain the emergence of resistance have traditionally 
+relied on the selection of genetic mutations enabling cells to escape 
+therapy2. More recently, however, the roles of non-genetic mechanisms 
+have been increasingly recognized5. In particular, a subset of cancer 
+cells can avoid therapeutic elimination by entering a drug-tolerant per-
+sister cell state through transcriptional reprogramming3,6,7. Although 
+such a drug-tolerant state may be initially reversible, over long-term 
+exposure to the drug, heritable adaptive states can eventually impart 
+stable resistance8–10.
+Recent evidence also suggests that drug resistance unfolds as a 
+gradual and multifactorial process11. However, the underlying dynam-
+ics and the phenotypic trajectories that mediate drug adaptation 
+remain unknown. Here we systematically probe and functionally char-
+acterize these trajectories in a series of longitudinal experiments. We 
+demonstrate that drug adaptation from initial sensitivity to stable 
+resistance can be conceptualized as a series of transitions between 
+distinct and progressively adaptive cellular states, which we term the 
+‘resistance continuum’.
+Drug adaptation along a resistance continuum
+To study the dynamics of the adaptive potential of cancer cells, we 
+reasoned that long-term dose escalation coupled with single-cell and 
+functional tools would provide an experimental framework to reveal 
+the gene programmes associated with the emergence of resistance. 
+We treated a human BRCA2-deficient high-grade serous ovarian cancer 
+(HGSOC) cell line (Kuramochi12) with the PARP-inhibitor (PARPi) olapa-
+rib, which induces synthetic lethality in tumours deficient in BRCA1 or 
+BRCA213. Drug-naive cells were initially treated with 1 μM of olaparib— 
+a relatively low dose—until the population reached confluency, indi-
+cating adaptation to the dose. The resulting population was then 
+seeded onto a fresh plate and treated with an increased dose of 2.5 μM. 
+https://doi.org/10.1038/s41586-024-07690-9
+Received: 17 June 2022
+Accepted: 7 June 2024
+Published online: 10 July 2024
+ Check for updates
+1Institute for Computational Medicine, NYU Grossman School of Medicine, New York, NY, USA. 2Institute for Systems Genetics, NYU Grossman School of Medicine, New York, NY, USA. 3Department 
+of Pathology, NYU Grossman School of Medicine, New York, NY, USA. 4Department of Cancer Physiology, H. Lee Moffitt Cancer Center and Research Institute, Tampa, FL, USA. 5Laura and Isaac 
+Perlmutter Cancer Center, NYU Grossman School of Medicine, New York, NY, USA. 6Applied Bioinformatics Laboratories, NYU Grossman School of Medicine, New York, NY, USA. 7Department of 
+Cell Biology, NYU Grossman School of Medicine, New York, NY, USA. 8Department of Biochemistry and Molecular Pharmacology, NYU Grossman School of Medicine, New York, NY, USA. 9Present 
+address: Bristol-Myers Squibb Company, Lawrenceville, NJ, USA. 10Present address: Translational Medicine, Oncology R&D, AstraZeneca, Boston, MA, USA. 11Present address: Merck & Co., Rahway, 
+NJ, USA. 12These authors contributed equally: Maayan Baron, Benjamin R. King, Jozef P. Bossowski, Alicia Bjornberg, Maayan Pour, Anjali Rao, Ayushi S. Patel. 13These authors jointly supervised this 
+work: Timothée Lionnet, Itai Yanai. ✉e-mail: itai.yanai@nyulangone.org
+
+
+===== PAGE 2 =====
+Nature  |  Vol 631  |  25 July 2024  |  877
+We then repeated this process, each time doubling the drug concentra-
+tions, until cells were able to reach confluency at an extreme dose of 
+320 μM, thereby generating a panel of 9 adapted cell populations (T1 
+to T320) (Fig. 1a). We found that these populations (hereafter ‘lines’) 
+became progressively more resistant, with the half maximal inhibi-
+tory concentration (IC50) increasing from around 2 μM for the control 
+population to around 60 μM for the cells adapted to 320 μM (Fig. 1b). 
+This shift indicates an increase in drug tolerance toward higher doses, 
+rather than full resistance, as even the most resistant lines continued 
+to exhibit sensitivity to the doses to which they had adapted.
+To assess the generality of the observed progressive fitness increases, 
+we repeated the dose-escalation experiment for two additional 
+BRCA-mutant ovarian cancer cell lines, Ovsaho and COV36212, a mela-
+noma cell line (A375) treated with dabrafenib (a BRAF inhibitor), and 
+a lung adenocarcinoma line (PC9) treated with osimertinib (an EGFR 
+inhibitor). We found that the dose-escalation experiments across these 
+distinct models and therapies reproducibly generated continuous 
+resistant phenotypes (Extended Data Fig. 1a–h).
+To test for the possibility that pre-existing fully resistant clones were 
+already present in the initial population and selected in the course of our 
+assay, we performed two rounds of treatment-recovery experiments on 
+drug-naive cells under the highest dose exposure (320 μM). A prediction 
+of this scenario is that cells would exhibit increased resistance after the 
+first and/or second rounds. However, we observed that the surviving 
+cells maintained a sensitive state, suggesting a drug-tolerant persister 
+phenotype3 (Extended Data Fig. 2a). We next tested whether the duration 
+of the treatment alone in the adapted lines could account for increased 
+resistance. We found that prolonged exposure at constant doses con-
+tributed to increased resistance but did not elicit similar resistance levels 
+to the dose-escalated populations, especially for the less-adapted lines 
+(Extended Data Fig. 2b–d). We further tested whether dose escalation 
+facilitates adaptation by comparing drug-naive populations exposed 
+to acute doses with dose escalation and found that the dose escalation 
+resulted in faster adaptation (Extended Data Fig. 2e–h), suggesting that 
+lower doses may prime cells to achieve higher resistance.
+Overall, these results indicate that gradual drug exposure elicits incre-
+mental adaptive responses unfolding along a resistance continuum. We 
+therefore hypothesized that this fitness increase is accompanied by a 
+series of cellular state transitions occurring along an adaptive path.
+Drug-induced cell-state transitions
+We applied single-cell RNA sequencing (scRNA-seq) to characterize the 
+cellular states along the resistance continuum. Comparing the average 
+e
+Correlation
+C-1
+C-0
+T1-1
+T1-0
+T1-2
+T2.5-3
+T5-1
+T2.5-1
+T1-3
+T2.5-0
+T2.5-2
+T5-0
+T10-1
+T10-0
+T20-0
+T10-3
+T20-1
+T40-1
+T80-2
+T40-2
+T80-1
+T10-2
+T20-2
+T40-0
+T80-0
+T160-0
+T320-0
+T160-2
+T160-1
+T320-2
+T320-1
+C-1
+C-0
+T1-1
+T1-0
+T1-2
+T2.5-3
+T5-1
+T2.5-1
+T1-3
+T2.5-0
+T2.5-2
+T5-0
+T10-1
+T10-0
+T20-0
+T10-3
+T20-1
+T40-1
+T80-2
+T40-2
+T80-1
+T10-2
+T20-2
+T40-0
+T80-0
+T160-0
+T320-0
+T160-2
+T160-1
+T320-2
+T320-1
+Treatment
+C
+T1
+T2.5
+T5
+T10
+T20
+T40
+T80
+T160
+T320
+State
+C
+S1
+S2
+S3
+S4
+S5
+a
+6
+119
+139
+311
+Time (cumulative days)
+Conﬂuency
+Olaparib dose (μM)
+T1
+T2.5
+T5
+T10
+T20
+T40
+T80
+T160
+T320
+C
+C
+T1
+T2.5
+T5
+T10
+T20
+T40
+T80
+T160
+T320
+C
+T1
+T2.5
+T5
+T10
+T20
+T40
+T80
+T160
+T320
+Correlation
+c
+f
+0
+25
+50
+75
+100
+C
+T1
+T2.5
+T5
+T10
+T20
+T40
+T80
+T160
+T320
+Percentage of cells
+d
+0
+1
+2
+3
+T2.5
+0
+1
+2
+3
+0
+1
+T5
+0
+1
+0
+1
+2
+3
+T10
+0
+1
+2
+3
+0
+1
+2
+T20
+0
+1
+2
+0
+1
+2
+T40
+0
+1
+2
+0
+1
+2
+T80
+0
+1
+2
+0
+1
+2
+T160
+0
+1
+2
+0
+1
+2
+T320
+0
+1
+2
+UMAP1
+UMAP2
+0
+1
+C
+0
+1
+0
+1
+2
+3
+T1
+0
+1
+2
+3
+b
+C
+T1
+T2.5
+T5
+T10
+T20
+T40
+T80
+T160
+T320
+0
+25
+50
+75
+100
+125
+150
+Cell viability (%)
+C
+T1
+T2.5
+T5
+T10
+T20
+T40
+T80
+T160
+T320
+1
+2
+4
+8
+16
+32
+64
+128
+IC50
+Adapted lines
+Control
+16
+39
+69
+224
+271
+179
+0
+10.0
+20.0
+320.0
+1.0
+2.5
+5.0
+80.0
+160.0
+40.0
+[Olaparib] (μM)
+10.0
+20.0
+320.0
+1.0
+2.5
+5.0
+80.0
+160.0
+40.0
+State
+C
+S1
+S2
+S3
+S4
+S5
+0.6
+0.7
+0.8
+0.9
+1.0
+0.6
+0.7
+0.8
+0.9
+1.0
+Fig. 1 | Progressive cell-state transitions along a resistance continuum.  
+a, Schematic of the experimental design for the generation of the drug-adapted 
+lines. Specific doses and durations of treatments are indicated. Cell morphology 
+is shown from representative microscopic images (scale bar 50 μm, one replicate). 
+b, Cell viability of the olaparib response during 9 days of treatment. Data points 
+are normalized relative to vehicle-treated controls for each respective line and 
+represent the average of 3 independent experiments (6 technical replicates per 
+experiment) with their standard deviations. c, Spearman’s correlations among 
+the averaged transcriptomes of the adapted cell lines. d, Uniform manifold 
+approximation and projection (UMAP) representation of scRNA-seq data for 
+the individual lines. Colours and numbers indicate subpopulations determined 
+by Louvain clustering. e, Clustering of subpopulations based on their Spearman’s 
+rank correlation coefficients across the adaptive lines. Five major transcriptional 
+states are defined (S1–S5). f, Frequency of cells in each of the five states across 
+the adaptive lines. Cells were assigned to their respective states on the basis of 
+their subpopulation clustering shown in e.
+
+
+===== PAGE 3 =====
+878  |  Nature  |  Vol 631  |  25 July 2024
+Article
+transcriptomes across the ten lines, a similarity dendrogram recovered 
+the treatment history, indicating the divergence of the adapted lines 
+(Fig. 1c and Extended Data Figs. 3a,f and 4a,g). Examining single-cell 
+transcriptomes, we identified distinct subpopulations within the lines 
+(Fig. 1d and Methods) and compared them to inquire whether they 
+comprise shared states. By clustering their average profiles, we found 
+that subpopulations coalesced into distinct states (Fig. 1e). Notably, 
+subpopulations from earlier adaptive lines (such as T2.5-2 and T5-0) 
+clustered with those from later ones (such as T10-0 and T20-0, in 
+state S2), indicating cell-state variability14 within and across the lines. 
+Along the resistance continuum, multiple states emerge and shifts in 
+frequency reveal differential fitness (Fig. 1f). Repeating this analysis 
+across other resistance models revealed similar dynamics of progres-
+sive cell-state transitions (Extended Data Figs. 3b–d,g–i and 4b–e,h–k).
+We next sought to identify the gene expression programmes that 
+underpin these adaptive states. Implementing a gene module detec-
+tion approach, we defined six modules (Fig. 2a). The modules were 
+enriched with genes of distinct functional annotations, many of which 
+have been previously identified in cell survival programmes in response 
+to therapy15 (Fig. 2b). Module A, expressed by the less-adapted cells, 
+included the lineage-defining transcription factors SOX17, PAX8 and 
+WT116 as well as epithelial markers (KRT8 and DSP). The expression 
+of these genes decreases along the resistance continuum, reflecting 
+dedifferentiation (Fig. 2a), which was also observed in the other ovar-
+ian cancer models (Extended Data Fig. 3e,j). Module A is also enriched 
+for the interferon response (IFI6 and IFI27), an endogenous signature 
+that is induced upon DNA damage17 (Fig. 2a,b). Module B genes include 
+epithelial (KRT8 and KRT18) and mesenchymal markers (FN1), suggest-
+ing a hybrid state. Module C includes genes involved in extracellular 
+matrix remodelling (COL3A1 and SERPINE2), epithelial-to-mesenchymal 
+transition (EMT) (SOX4 and VIM) and hypoxia (Fig. 2a,b). Module D also 
+includes hypoxia genes (CITED2, SGK1 and DUSP1), EMT (SNAI2 and 
+VIM), mediators of TGFβ signalling (SMAD3 and DAB2) and stemness 
+markers (CD44 and KLF4), suggesting a spectrum of dedifferentiated 
+states (Fig. 2a,b and Extended Data Fig. 3e,j). Indeed, we observed 
+morphological changes to mesenchymal-like phenotypes early on 
+in the adaptive process (Fig. 1a) and found high expression of those 
+markers in the resistant populations from the additional ovarian cancer 
+models (Extended Data Fig. 3e,j and Supplementary Tables 2 and 3). 
+Studying other resistance models confirmed dedifferentiation as a 
+general feature of drug adaptation (Extended Data Figs. 3e,j and 4f,l).
+The genes assigned to modules E and F reflect metabolic rewiring in 
+the highly resistant cells in state S5. These include the hypoxia regula-
+tor HIF1A and its target DDIT4, as well as glycolytic enzymes (PFKP and 
+GAPDH). Notably, we observed enrichment of NRF2 cytoprotective 
+programmes for oxidative stress (TXNRD1, AKR1B1 and GGH) and fer-
+roptosis (HMOX1, GPX4 and FTL), which are associated with survival 
+advantage in drug-tolerant persisters7. NRF2 regulates the pentose 
+phosphate pathway (PPP) (TKT), which contributes to maintaining 
+redox balance and provides precursors for de novo nucleotide biosyn-
+thesis (IMPDH2) (Fig. 2a,b). A number of ribosomal (RPL14 and RPS15A) 
+and mRNA translation genes (EIF1, EIF2D and RACK1) in modules D and 
+E suggests translation reprogramming (Supplementary Table 1) con-
+trolled by ATF4, a transcription factor that cooperates with NRF2 in the 
+integrated stress response18. Genes regulated by NRF2 and ATF4 (ASNS, 
+CHAC1 and SHMT2) were consistently detected in the highly resistant 
+populations from the additional ovarian, lung and melanoma models 
+(Extended Data Figs. 3e,j and 4f,l and Supplementary Tables 2–5).
+As the resistance continuum implies that state transitions are caus-
+ally related to fitness, we tested whether, within and across adapted 
+lines, cells have differential fitnesses according to their states. As our 
+gene module definitions identified CD24 and CD44 as markers for 
+specific states (Extended Data Fig. 5a), we sorted subpopulations 
+from a representative set of lines (C, T10, T40 and T320; Extended 
+Data Fig. 5b). Indeed, we found that within the T10 population, state 
+S4 cells (CD24lowCD44hi) were more resistant than the state S2 cells 
+(CD24lowCD44low; Extended Data Fig. 5c), but were less resistant than 
+the CD24lowCD44hi cells from T40 and T320. This indicates that subop-
+timal cellular states coexist alongside states of higher fitness within a 
+population, whereas fitness increases across the adapted populations.
+We next tested whether transcriptional changes in the adapted lines 
+could be explained exclusively by exposure to acute high doses. We 
+generated populations of drug-tolerant persisters that survived treat-
+ment with 10 μM of olaparib (hereafeter designated P10; sufficient 
+to decrease viability by 90% in drug-naive cells; Fig. 1b) and 320 μM 
+(hereafter, P320) (see Supplementary Fig. 2 and Supplementary Dis-
+cussion). We found that acute doses induced persister-specific states 
+(Extended Data Fig. 3k), an observation also noted when comparing PC9 
+persister and adapted lines (Extended Data Fig. 4i,j). The set of differen-
+tially expressed genes in P10 and P320 (relative to the parental control 
+cells) strongly overlapped with gene module A (expressed by untreated 
+and state S1 cells) (Fig. 2c). Genes associated with adapted states 
+such as CD44, HMOX1, GPX4, DDIT4 and PFKP were highly expressed 
+b
+−2 −1 0
+1
+2
+NES
+–log10(P value)
+1
+2
+3
+Metabolism of
+nucleotides
+Metabolism of
+carbohydrates
+OXPHOS
+PPP
+Ferroptosis
+Reactive oxygen
+species pathway
+Hypoxia
+Translation
+TNF signalling
+via NF-κB
+EMT
+Adherens junction
+Keratinization
+IFNγ
+IFNα
+D
+E
+F
+A
+B
+C
+a
+PAX8
+SOX17
+WT1
+CD24
+KRT8
+FN1
+CRABP2
+TM4SF1
+BCAT1
+SOX4
+COL3A1
+VIM
+SNAI2
+CD44
+CITED2
+SMAD3
+ASNS
+HMOX1
+TKT
+TXNRD1
+MBOAT7
+IMPDH2
+GSTM3
+AKR1B1
+0
+100
+Percentage of cells
+0
+100
+A
+B
+C
+D
+E
+F
+Signatures
+Gene module
+State
+S1
+S2
+S3
+S4
+S5
+C
+Treatment
+C
+T1
+T2.5
+T5
+T10
+T20
+T40
+T80
+T160
+T320
+Expression
+−4
+−2
+0
+2
+4
+d
+TRE
+UbC IRES NeoR
+Slug
+C
+C-Slug1
+Dox
+Slug
+OE
+Adaptation
+Imaging
+Time
+Proliferation
+C-Slug0
+0
+10
+20
+30
+40
+50
+60
+0
+20
+40
+60
+80
+100
+Time elapsed (days)
+Conﬂuence (%)
+C
+T5
+T40
+T320
+C-Slug0
+C-Slug1
+0
+50
+100
+150
+62
+59
+16
+4
+2
+0
+2
+7
+3
+14
+2
+0
+6
+6
+2
+29
+30
+1
+0
+0
+0
+1
+82
+25
+0
+0
+3
+2
+14 108
+1
+1
+8
+16
+1
+3
+A
+B
+C
+D
+E
+F
+C
+P10
+P320
+T10-1
+T10-2
+T320
+Gene module
+c
+–log10(P value)
+Fig. 2 | Assembly of gene module expression accompanies drug adaptation. 
+a, Heat map indicating gene modules associated with distinct transcriptional 
+states: genes (rows) and cell signatures (columns). Bar plots (bottom) show the 
+frequency of cells from each signature and state (see Supplementary Fig. 1a,b 
+and Supplementary Table 1). b, Gene set enrichment analysis (GSEA) of each 
+gene module (P < 0.01 and false discovery rate (FDR) < 0.25 for multiple test 
+correction, one-sided Kolmogorov–Smirnov test). The colour scale is the 
+normalized enrichment score (NES) as calculated by GSEA and circle sizes 
+indicate P values. OXPHOS, oxidative phosphorylation. c, Gene overlap between 
+the differentially expressed genes across persister and adapted lines with the 
+gene modules. Colour scale indicates P values from one-sided hypergeometric 
+tests. d, Schematic of the inducible Slug construct (top). Quantification by 
+live-cell imaging of the percentage of area covered by cells treated with 5 μM 
+olaparib over a 54-day time period (bottom). Growth curves compare the 
+parental C, adapted T5, T40 and T320 and Slug-induced C-Slug0 (control)  
+and C-Slug1 (1 μg ml−1 doxycycline). Data are mean ± s.d. of 3 replicates shown  
+(3 technical replicates each). Growth curve under DMSO is shown in Extended 
+Data Fig. 6m.
+
+
+===== PAGE 4 =====
+Nature  |  Vol 631  |  25 July 2024  |  879
+in persisters, albeit at lower levels compared with the adapted lines 
+(Extended Data Fig. 3l and Supplementary Table 6), suggesting partial 
+reprogramming that may prime subsequent adaptive paths.
+Lineage plasticity enables drug adaptation
+Our transcriptome data identified dedifferentiation as one axis within 
+the resistance continuum, as we observed: (1) loss of expression of the 
+lineage factor SOX17 (Fig. 2a); (2) upregulation of EMT programmes 
+(Fig. 2a,b); and (3) a CD24lowCD44hi phenotype (Extended Data Fig. 5), a 
+feature associated with enhanced plasticity and stem-like states19. Thus, 
+we aimed to investigate the effect of perturbing these programmes 
+on resistance. We induced SOX17 expression in the most adapted line 
+(T320) and observed an increase in the sensitivity to olaparib (Extended 
+Data Fig. 6a,b). Conversely, decreasing SOX17 expression in the parental 
+cells reduced their sensitivity (Extended Data Fig. 6c,d). These exper-
+iments suggest that modulating the activity of a lineage factor can 
+directly and partially affect resistance levels.
+Plasticity and EMT are often associated with ‘stem-like’ states and 
+drug resistance19, although the association between these two remains 
+poorly understood. One possible model is that the resistance con-
+tinuum reflects a progressive increase in EMT or stemness, implying 
+a direct explanation for the progressive resistance. Alternatively, EMT 
+or stemness may denote the ability of cells to undergo adaptive phe-
+notypic reprogramming, although not necessarily directly providing 
+high resistance. In this second model, EMT accounts for an essential 
+enabling—although not sufficient—property for subsequent state tran-
+sitions within the resistance continuum. To distinguish between these 
+two scenarios, we first compared the EMT signature scores across our 
+resistant populations. We observed an early increase in EMT scores 
+within the resistance continuum, yet a progressive increase in resistance 
+did not correspond to higher EMT scores (Extended Data Fig. 6e–i). 
+Next, we experimentally induced EMT in Kuramochi control cells using 
+a lentiviral doxycycline-controlled expression of Slug (SNAI2), a key 
+regulator of EMT20. We selected a Slug overexpression level that con-
+ferred enhanced invasion resembling that observed in T320 cells in a 
+Transwell assay (Fig. 2d and Extended Data Fig. 6j–l). We found that 
+the Slug-expressing cells were less sensitive to olaparib compared 
+with their parental controls, highlighting the role of EMT in providing 
+an initial survival advantage. However, these cells were substantially 
+less resistant to olaparib compared to the cells on the resistance contin-
+uum. After 3 weeks of exposure to 5 μM olaparib, Slug-overexpressing 
+cells did transition to net-positive growth, although they were notably 
+less resistant than the adapted lines (Fig. 2d). Therefore, these results 
+are consistent with the notion that the EMT programme directly and 
+partially reduces drug sensitivity, while it enables faster adaptation 
+through phenotypic plasticity over longer timescales.
+Adapted states are associated with CNAs
+We next tested whether the emergence of the adapted cell states is 
+associated with copy number alterations (CNAs). We first inferred CNAs 
+using the scRNA-seq data and found that alterations in the adapted 
+lines largely agreed with our defined state subpopulations (Fig. 3a and 
+Extended Data Fig. 7a), indicating clonal genetic evolution. By contrast, 
+clearly distinguishable CNAs were not present among the persister 
+cells (Extended Data Fig. 7a). We found concordant CNA profiles by 
+performing whole-exome sequencing (WES) (Fig. 3a). We observed sig-
+nificant overlaps between the genes present in the adaptation modules 
+and their gained or deleted status in the CNA regions (Extended Data 
+Fig. 7b). Some CNAs were conserved across the adapted lines (regions 
+of chromosomes 7 and 9), including a deleted region that spans the 
+CDKN2A/B locus (validated by WES), thus suggesting a potential con-
+tribution to PARPi resistance. We did not detect secondary BRCA1 or 
+BRCA2 mutations in the WES data from the resistant lines.
+The association between CNAs and cell states may reflect adaptive 
+changes or they may be a consequence of the PARPi treatment, as the 
+ensuing replication stress is expected to induce CNAs21. Indeed, we also 
+observed that the dose-escalation experiment across other cell lines 
+(Ovsaho and COV362) led to cell line-specific CNA profiles (Extended 
+Data Fig. 7c), despite exhibiting shared resistance markers (Fig. 2a and 
+Extended Data Fig. 3e,j). Additionally, state S5 cells exhibited distinct 
+profiles (Fig. 3a, see T160 and T320 cells), suggesting that CNAs alone 
+do not completely define an adapted state. This may imply that multiple 
+clones evolved in parallel through the resistance continuum.
+Progressive chromatin reprogramming
+To gain insight into the epigenetic mechanisms underlying drug adap-
+tation, we measured genome-wide chromatin accessibility by assay 
+for transposase-accessible chromatin with sequencing (ATAC-seq) in 
+the resistant and persister lines. In the adapted lines, we again sorted 
+CD24lowCD44hi cells to profile chromatin reprogramming at the sub-
+population level (Fig. 3b and Extended Data Fig. 5b). Principal compo-
+nent analysis (PCA) on the resulting chromatin accessibility profiles 
+revealed that PC1 and PC2 together capture the ancestral order from 
+the parental sensitive cells to the T320 adapted cells (Fig. 3c), indicating 
+cumulative changes in chromatin accessibility. Chromatin accessibility 
+from the T5 to the T320 lines revealed a dynamic process of increas-
+ing and shared differentially accessible regions (Fig. 3d). By contrast, 
+persister cells exhibited relatively fewer changes (Fig. 3e), mirroring 
+the transcriptome findings (Fig. 2c and Extended Data Fig. 3k,l).
+Enrichment analysis of binding sites for transcription factors pro-
+vided additional support for the widespread epigenetic reprogram-
+ming (Extended Data Fig. 8a–d). The adapted lines showed a progressive 
+decrease in accessibility for the lineage drivers SOX17, PAX8 and WT1 
+(Fig. 3e, left), indicating a coordinated dedifferentiation programme. 
+Acute drug exposure did not induce the same extent of reprogramming 
+in the persister populations. By contrast, the adapted lines exhibited a 
+steady increase in accessibility for the global stress regulators AP1, NRF2 
+and ATF4 in terms of both the number and proportion of accessible 
+peaks (Fig. 3e, right)—suggesting reinforced activity of stress-response 
+programmes along the olaparib resistance continuum.
+We next explored whether the chromatin changes would be sta-
+ble upon drug removal. After growing the most adapted line for 
+120 days without drug (T320W), we found that the cells remained 
+resistant to lower doses (10 μM and 40 μM) but exhibited pronounced 
+sensitivity to 320 μM, implying partial reversibility of the resistance 
+(Extended Data Fig. 8e). Notably, we did not observe a tradeoff in 
+proliferation, but rather faster rates in T320 and T320W lines rela-
+tive to the parental control cells (Extended Data Fig. 8e). Upon drug 
+removal and subsequent short re-treatment, less accessible chromatin 
+regions remained stable, indicating the maintenance of a dedifferen-
+tiated state (Fig. 3f, top and Extended Data Fig. 8f). By contrast, the 
+T320W line showed evidence of partial loss of the more accessible 
+chromatin regions that had been gained by their parental T320 line. 
+Upon re-exposure to the drug, however, the T320W line recovered 
+this chromatin accessibility, suggesting an underlying mechanism 
+for cellular memory that reinstates stress-associated regulation 
+(Fig. 3f, bottom and Extended Data Fig. 8f). Collectively, these find-
+ings indicate that drug adaptation involves gradual dedifferentia-
+tion alongside dynamic recruitment of reinforced stress-responsive 
+regulatory regions.
+In vivo adapted and persister states
+We next tested whether the adapted and persister states occur in vivo 
+using a BRCA2-mutant HGSOC patient-derived xenograft (PDX) 
+model. In a first experiment (hereafter, ‘persistence’), we sought to 
+study whether treatment with different doses elicits a persister-like 
+
+
+===== PAGE 5 =====
+880  |  Nature  |  Vol 631  |  25 July 2024
+Article
+state. Cohorts of PDX were treated with the PARPi talazoparib (Fig. 4a) 
+and tumour growth showed the expected dose-dependent responses 
+(Extended Data Fig. 9a). In a second experiment (hereafter, ‘resist-
+ance’), we tested whether prolonged treatment with a standard dose 
+over three serial passages generates PARPi-resistant tumours with 
+adaptive-like states. Tumours initially showed remission, but relapsed 
+upon treatment interruption. When the treatment was reintroduced, 
+the tumours did not respond, indicating resistance (R1) (Extended Data 
+Fig. 9b). One replicate (R1*) was reimplanted for second (R2) and third 
+(R3) passages of continuous therapy (Fig. 4c), whose tumours failed 
+to respond, indicating stable resistance (Extended Data Fig. 9c,d). 
+scRNA-seq analysis revealed that cells from the persistence experiment 
+were largely intermixed across dose treatments (Fig. 4b). By contrast, 
+cells from the resistance experiment showed greater heterogeneity, 
+with the emergence of resistant-specific clusters primarily consisting 
+of cells from tumours of the second (cluster 7) and third (clusters 8 
+and 9) passages (Fig. 4d).
+Analysis of the differentially upregulated genes revealed that genes 
+from clusters 0 and 6 overlapped highly with genes that defined the 
+untreated Kuramochi cell state, indicating a correspondence between 
+the in vivo and in vitro drug-naive states (Fig. 4e). Genes upregulated 
+in cluster 4 overlap highly with genes that define the persister states 
+(P10 and P320) and module A (Fig. 4e). Genes from cluster 7, mostly 
+composed of cells from R1 tumours, overlap with persister and mod-
+ules A and E genes, and possibly constitute an intermediate state. Most 
+notably, in the resistance experiment, we found that cells from cluster 9 
+exhibited gene programmes that overlap significantly with the adap-
+tive states (modules C, D and E; Fig. 4e), providing evidence that the 
+in vitro adapted states also emerge in vivo.
+Expression of individual genes further supported the in vitro find-
+ings. Specifically, cells from the persistence experiments and certain 
+clusters (5, 6 and 8) from the resistance experiments maintained 
+expression of the lineage markers SOX17, PAX8 and WT1. Conversely, 
+their expression was markedly reduced in resistant cells from cluster 9 
+d
+C
+P10
+P320
+T5
+T10
+T20
+T40
+T80
+T160
+T320
+1,000
+3,000
+5,000
+7,000
+No. of
+peaks
+Less
+More
+Peak
+accessibility
+Peak
+signal
+−4
+−2
+0
+2
+4
+n = 14,110
+n = 12,392
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12 1314 15 16
+17 18 19
+20
+21
+22
+T10
+T40
+T320
+Chr.
+CNA ratio
+Low
+High
+WES
+scRNA-seq inferred CNAs
+Treatment
+T1
+T2.5
+T5
+T10
+T20
+T40
+T80
+T160
+T320
+State
+S1
+S2
+S3
+S4
+S5
+Inferred
+CNA
+Low
+High
+a
+Persisters
+ATAC-seq
+Adapted
+ATAC-seq
+CD24+CD44+
+b
+C
+T5
+T10 T20
+T40 T80 T160 T320
+P10 P320
+c
+−20
+−10
+0
+10
+20
+−60
+−30
+0
+30
+PC1: 80% variance
+PC2: 8% variance
+0
+20
+40
+60
+80
+AP1
+500
+1,000
+1,500
+2,000
+2,500
+1,000
+3,000
+5,000
+0
+2.5
+5.0
+7.5
+NRF2
+100
+200
+300
+400
+500
+200
+400
+600
+P10
+P320
+T5
+T10
+T20
+T40
+T80
+T160
+T320
+0
+5
+10
+15
+20
+20
+40
+60
+80
+400
+800
+1,200
+1,600
+ATF4
+e
+ns
+Percentage of peaks with motif
+0
+10
+20
+PAX8
+25
+50
+75
+100
+400
+800
+1,200
+1,600
+0
+10
+20
+30
+40
+P10
+P320
+T5
+T10
+T20
+T40
+T80
+T160
+T320
+WT1
+100
+200
+300
+400
+500
+1,500
+2,500
+0
+20
+40
+SOX17
+NS
+100
+200
+300
+400
+1,000
+2,000
+3,000
+No. of peaks
+−log(P)
+5
+10
+15
+–1 kb
+1 kb
+C
+T320
+T320W
+T320-D T320W-D
+C
+T320
+T320W
+T320-D T320W-D
+10
+20
+0
+5
+10
+15
+20
+25
+0
+2
+4
+6
+8
+10
+12
+14
+Peak
+signal
+f
+Peaks (n = 6,771)
+Peaks (n = 7,332)
+−log(P)
+−log(P)
+No. of peaks
+No. of peaks
+No. of peaks
+−log(P)
+−log(P)
+−log(P)
+No. of peaks
+No. of peaks
+CD24–CD44++
+CD24–CD44+++
+C
+P10
+P320
+T5
+T10
+T20
+T40
+T80
+T160
+T320
+–1 kb
+1 kb
+Fig. 3 | CNAs and chromatin reprogramming during drug adaptation.  
+a, CNA inference using scRNA-seq data (top) and WES (bottom). Cells (rows) are 
+ordered on the basis of hierarchical clustering. Chr. chromosome. b, Schematic 
+of the ATAC-seq data generation for adapted and persister lines. Cell populations 
+from C and T5–T320 lines were sorted on the basis of their CD24 and CD44 
+profiles (see Extended Data Fig. 5b). Persisters were generated as described in 
+Extended Data Fig. 3k. c, PCA on the top 2,000 most variable peaks across 
+conditions. Dots indicate the two replicates for each condition. d, Heat map  
+of the ordered differentially accessible peaks relative to untreated cells (C) 
+represented as scaled values of the normalized counts (Methods). The number 
+of less (purple) and more (green) accessible peaks are represented by circle sizes. 
+e, Transcription factor motif enrichment analysis. Bar plots represent the 
+percentages of differentially less and more accessible peaks (relative to C) for 
+representative transcription factor motifs. Colour bars represent enrichment 
+P values and circle sizes represent the number of peaks (see Extended Data 
+Fig. 8b). f, Heat map of the chromatin accessibility signal across the differentially 
+accessible peaks in T320 and T320W without and with drug treatment (D) 
+(relative to C; Fig. 3d). Peak accessibility signal is shown as normalized read 
+coverage at ±1 kb of the peak centre. Histograms summarize the signal across 
+peaks.
+
+
+===== PAGE 6 =====
+Nature  |  Vol 631  |  25 July 2024  |  881
+(Fig. 4f and Supplementary Tables 7 and 8), highlighting the role of 
+lineage plasticity in drug adaptation5,22. Cells in cluster 9 distinctly 
+express genes associated with the more adapted states, including 
+dedifferentiation/mesenchymal markers (CD44 and SMAD3), meta-
+bolic rewiring such as hypoxia/glycolysis (DDIT4, PGK1 and PFKP) and 
+fatty acid (ACLY, SCD and MBOAT7) and nucleotide (CTPS1 and TYMS) 
+metabolism (Fig. 4f). Expression of CD44 and SOX17, tested by immuno-
+fluorescence, confirmed cell population heterogeneity in the resistant 
+tumour (R3.2) relative to the vehicle and persister tumours (Fig. 4g and 
+Extended Data Fig. 9e).
+As observed in the adapted in vitro lines, cells in cluster 9 also 
+exhibited activation of NRF2-dependent processes for antioxidant 
+defence (NQO1, TXNRD1 and PRDX1), glutathione metabolism (GGH and 
+GSTM3) and ferroptosis/iron homeostasis (GPX4 and STEAP3) (Fig. 4f 
+and Supplementary Table 8). Of note, in the persistence experiment, 
+high expression of NRF2, its regulator SQSTM1 (which encodes p62) and 
+oxidative stress genes (DCXR and QSOX1) showed a dose-dependent 
+trend (Fig. 4f and Extended Data Fig. 9f). Resistant cells in cluster 9 
+also exhibited loss of CDKN2A expression, contrasting with its high 
+expression in non-resistant tumours (cluster 4), indicative of growth 
+arrest23 (Fig. 4f). Furthermore, cluster 9 cells showed extensive CNAs 
+relative to the persister and other resistant populations (Extended Data 
+Fig. 9g), pointing to a possible role of CNAs in state transitions. These 
+results recapitulate diverse cellular states in a clinically relevant model, 
+with the emergence of adapted states accompanying drug resistance 
+after prolonged treatment.
+Systems-level metabolic dependencies
+Our findings pointed to metabolic changes related to NRF2-regulated 
+programmes in PARPi-induced oxidative stress. We therefore tested 
+whether the resistance continuum is coupled with a progressive acquisi-
+tion of systems-level metabolic dependencies. To test this hypothesis, 
+we performed a CRISPR-based negative-selection screen using a meta-
+bolic gene-knockout library24 on Kuramochi drug-naive cells (control 
+cells) and the adapted T10 and T320 lines (including the control cells on 
+1 μM of olaparib (CD); and the T320 cells on 40 μM of olaparib (T320D)) 
+(Fig. 5a and Supplementary Tables 9–14). We observed an increasing 
+number of depleted genes between the T10 to T320 when compared to 
+the parental control cells, indicating metabolic reprogramming along 
+the resistance continuum (Extended Data Fig. 10a,b, Supplementary 
+Fig. 9 and Supplementary Tables 15 and 16).
+The top depleted genes across the screens performed on the adapted 
+lines T10, T320 and T320D included NRF2 targets involved in redox bal-
+ance (TXNRD1 and PRDX1), the NADPH-producing PPP (PGD), glycolytic 
+enzymes (PGK1, ALDOA and ENO1), iron homeostasis (STEAP3) and 
+nucleotide biosynthesis enzymes (IMPDH2, GUK1 and DTYMK) (Fig. 5b 
+and Extended Data Fig. 10a). Specifically to both T320 and T320D, addi-
+tional nucleotide metabolism enzymes (TYMS, CAD and CTPS1) and 
+genes involved with iron–sulfur cluster biogenesis in mitochondria 
+such as FDX1 and FXN were depleted in these highly adapted cells 
+(Fig. 5b and Supplementary Tables 12 and 13). The adapted T320D cells 
+were specifically dependent on mitochondrial activity and oxidative 
+d
+0
+25
+50
+75
+100
+V1
+V2
+R1.1
+R1.2
+R3.V
+R3.1
+R3.2
+Percentage of cells
+R1.1
+R1.2
+R3.2
+R3.1
+R3.V
+V1
+V2
+Sample
+UMAP1
+UMAP2
+Cluster
+5
+6
+7
+8
+9
+−2 −1 0 1 2
+Scaled mean
+expression
+SOX17
+PAX8
+WT1
+KRT8
+CDKN2A
+IFI6
+IFI27
+IFITM3
+VIM
+CD44
+SMAD3
+DDIT4
+CITED2
+SGK1
+PGK1
+PFKP
+ACLY
+SCD
+MBOAT7
+SREBF1
+CTPS1
+TYMS
+GPX4
+STEAP3
+FTL
+SOD2
+GGH
+GSTM3
+PRDX1
+CYP1B1
+TXNRD1
+NQO1
+SQSTM1
+NRF2
+Persistence
+Resistance
+4
+3
+2
+1
+0
+9
+8
+7
+6
+5
+25
+50
+75
+100
+Percentage of cells
+f
+Hypoxia/glycolysis
+Lipid metabolism
+Emt/stemness
+Nucleotide metabolism
+NRF2 regulation/redox balance
+Ferroptosis/iron homeostasis
+Dedifferentiation
+Interferon
+Cell cycle
+Cluster
+g
+DAPI SOX17 CD44
+Resistant (R3.2)
+Vehicle (V1)
+b
+Cluster
+0
+1
+2
+3
+4
+0
+25
+50
+75
+100
+V
+D1
+D2
+D3
+D4
+Percentage of cells
+D4.1
+D4.2
+D2.1
+D2.2
+D3.1
+D3.2
+V1
+V2
+D1.2
+D1.1
+Sample
+UMAP1
+UMAP2
+a
+50–57
+24
+V (×2)
+D (×8)
+Persistence
+Day:
+Tumour size
+HEP
+Start
+Patient
+HGSOC
+Talazoparib (mg kg–1):
+Vehicle
+D1 (0.13)
+D3 (0.33)
+D4 (0.66)
+D2 (0.23)
+154–165 175
+35
+77
+116
+207
+227
+R1 (×2)
+R1*
+V (×2)
+R2
+R3 (×2), R3.V
+Day:
+Tumour size
+HEP
+Start
+Talazoparib (mg kg–1): D3 (0.33)
+Off
+c Resistance
+Patient
+HGSOC
+e
+−log10(P value)
+0
+5
+10
+15
+PDX cluster
+0
+20
+40
+60
+21
+7
+1
+0
+1
+0
+0
+0
+0
+43
+2
+1
+0
+1
+10
+8
+1
+0
+0
+15
+4
+0
+0
+0
+5
+5
+0
+1
+0
+3
+5
+0
+0
+0
+1
+1
+5
+0
+0
+5
+1
+0
+1
+0
+0
+Control
+P10
+P320
+A
+B
+C
+D
+E
+F
+0
+13
+1
+11
+1
+0
+0
+6
+0
+1
+1
+5
+6
+1
+1
+0
+8
+6
+4
+0
+0
+3
+2
+1
+1
+0
+3
+0
+1
+5
+0
+3
+1
+0
+3
+2
+1
+9
+0
+6
+0
+1
+1
+2
+1
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+Persistence
+Resistance
+Kuramochi module
+−log10(P value)
+Fig. 4 | In vivo models recapitulate persister and adapted states. a, Schematic 
+of the experimental design for the PARPi (talazoparib) persistence experiment 
+using a patient-derived HGSOC. Two replicates of vehicle (V1 and V2) and dose 
+conditions (D1–D4) were generated. Tumours were collected for scRNA-seq at 
+the humane endpoint (2,000 mm3) or after 50–57 days of treatment. Tumour 
+growth curves are presented in Extended Data Fig. 9a. b, UMAP representation 
+of the clusters for the persistence experiment. Bar plot indicates the percentage 
+of cells from each condition in each cluster. c, Schematic of the experimental 
+design for the PARPi resistance experiment. Three passages were performed 
+with talazoparib treatment, with a drug holiday in the first passage (indicated 
+in red). Two replicates of vehicle (V1 and V2) and resistant tumours from 
+passages 1 (R1.1 and R1.2) and 3 (R3.1 and R3.2) (including one treated with 
+vehicle, R3.V) were collected for scRNA-seq at the humane endpoint. A replicate 
+from passage 1 (R1*) was used to seed the second passage (R2). Tumour growth 
+curves are presented in Extended Data Fig. 9b–d. d, UMAP and bar plot as 
+described in b, but for the resistance experiment. e, Gene overlap between the 
+differentially expressed genes across clusters with the in vitro gene modules. 
+Colour scales indicate P values (Benjamini–Hochberg corrected) determined 
+from one-sided hypergeometric tests. f, Representative differentially expressed 
+genes. Colour bar shows the scaled average expression and circle sizes indicate 
+the fraction of cells expressing the genes. g, Immunofluorescence staining of 
+V1 (vehicle) and R3.2 (resistant) tumor sections (scale bars 100 μm, one replicate).
+
+
+===== PAGE 7 =====
+882  |  Nature  |  Vol 631  |  25 July 2024
+Article
+phosphorylation (COX5B, CYCS and ACAD9). Of note, NRF2 targets such 
+as TKT, PRDX1 and TXNRD1 were even more depleted in T320 cells grow-
+ing on drug treatment (T320D) when compared with the steady state 
+(Fig. 5b and Supplementary Table 14). Notably, many of these depleted 
+genes are highly expressed in the adaptive gene modules (Fig. 2a and 
+Supplementary Table 1), as well as in the resistant in vivo (Fig. 4f) and 
+other in vitro models (Extended Data Fig. 3e,j), suggesting that they 
+have a functional role in PARPi resistance.
+In line with the adaptive modules (Fig. 2a,b), we found, at the path-
+way level, a dependency on nucleotide metabolism, which increased 
+from T10 to T320 and T320D. Also consistent with the gene expression 
+data, we observed dependencies on genes with a role in the PPP, an 
+antioxidant defence mechanism that produces the reducing co-factor 
+NADPH and generates precursors for nucleotide biosynthesis (Fig. 5c). 
+Targeted metabolomics confirmed an increased abundance of nucleo-
+tides as well as their precursors and derivatives in T320 (Extended Data 
+Fig. 10c). Dependencies on cholesterol biosynthesis and oxidative 
+phosphorylation were more specific to T320 and T320D, respectively, 
+whereas T10 and T320 showed dependencies on iron homeostasis and 
+cellular response to starvation pathways (Fig. 5c).
+We postulated that cells spanning the resistance continuum would 
+gradually become more susceptible to a drug combination targeting 
+both the emerging dependencies on NRF2 pathways and nucleotide 
+biosynthesis. In lung cancer, hyperactivation of NRF2 pathways leads 
+to an increased dependency on glutaminolysis25, thus exposing a vul-
+nerability to the glutaminase (GLS) inhibitor CB-839. Ovarian cancer 
+cell lines that highly express GLS have also been shown to be more 
+sensitive to the combination of CB-839 and olaparib. This drug com-
+bination decreases the pool of reduced glutathione (a major antioxi-
+dant) and suppresses nucleotide biosynthesis, enhancing replication 
+stress26. Therefore, chronic DNA damage caused by continuous olaparib 
+treatment may lead to an insufficiency in the nucleotide pool. Upon 
+olaparib-induced reactive oxygen species production, adaptation 
+through activation of NRF2 antioxidant programmes would alleviate 
+reactive oxygen species by regulating glutathione metabolism and PPP, 
+which also provides precursors for nucleotide biosynthesis. The GLS 
+inhibitor CB-839 depletes glutamate, whose availability is important 
+for both glutathione production and nucleotide biosynthesis through 
+tricarboxylic acid cycle intermediates (Fig. 5d).
+Testing the combination of olaparib and CB-839, we indeed found 
+that the adapted lines were gradually more vulnerable to the combina-
+tion; leading to a sixfold decrease in the IC50 relative to the olaparib- 
+only treatment in the most adapted line (Fig. 5e and Extended Data 
+Fig. 10d,e). Monotherapy with CB-839 led to only slight sensitivity to 
+CB-839, suggesting a synergistic effect with NRF2 activation (Extended 
+Data Fig. 10f–h).
+Discussion
+Our study reveals a process that we term the resistance continuum, 
+which involves a gradual adaptation to cancer therapy mediated by 
+a series of cell-state transitions, progressively leading to increasing 
+fitness (Fig. 5f). In our longitudinal in vitro experiments, we leveraged 
+a dose-escalation regime to query the adaptive potential of malig-
+nant cells, enabling us to dissect individual stages throughout this 
+continuum.
+The series of state transitions characterizing a resistance continuum 
+encompasses axes of dedifferentiation and physiological adaptation. 
+The link between lineage plasticity and partial EMT has been caus-
+ally associated with resistance19,27. Here we propose that whereas EMT 
+induction directly contributes to partial resistance, it more gener-
+ally facilitates phenotypic plasticity over the long term, enabling the 
+emergence of additional mechanisms that increase drug resistance.
+Our work also provides insight into the underpinning of drug adapta-
+tion through the assembly of transcriptional programmes and chro-
+matin states, with a steady increase in activity of the stress regulators 
+AP1, NRF2 and ATF4. A possible mechanism is that promiscuous AP1 
+binding ‘pioneers’ the enhancer landscape, which is potentiated by 
+recurrent stress stimuli28,29, thus establishing and maintaining a cellular 
+memory upon continuous stress30.
+The fitness of a cell population may increase by gradual exposure 
+to injury as cells epigenetically ‘learn’ and fine-tune stress regulatory 
+networks31, thus priming stable adaptive states. Initially drug-sensitive 
+cells thereby accumulate transcriptional and epigenetic changes upon 
+encountering stress, leading to more robust responses upon sub­
+sequent stimulation. We speculate that a similar process may occur 
+during treatment of patients, potentially influenced by drug gradients 
+and tumour spatial heterogeneity32. Persister cells, which also rely on 
+stress-related programmes7,33 and chromatin remodelling34, may rep-
+resent an early stage within the resistance continuum. In this scenario, 
+the AP1–NRF2–ATF4 axis may act as a molecular rheostat to support cell 
+survival both in acute treatment and throughout the establishment of 
+a
+C
+T10 T320
+Library infection
++ selection
+CRISPR–Cas9
+metabolism library
+Initial
+C
+CD
+Sorting
+CD24/CD44
+Olaparib
+1 μM
+Olaparib
+40 μM
+No drug
+End
+~10 doublings
+T10
+T320
+T320D
+Sequencing
+MAGeCK-MLE
+Score
+(end vs
+initial)
+gRNA
+count
+|Score diff.|
+Rank
+Genes
+2,978 genes
+29,790 gRNAs
+~10 gRNAs
+per gene
+d
+Nucleotides
+PPP
+GSH
+Glutamine
+Glutamate
+GLS
+TCA
+DNA
+damage
+Olaparib
+ROS
+NRF2
+CB-839
+Treatment
+Adaptation
+Vulnerability
+c
+b
+e
+Vulnerability to
+olaparib + CB-839
+0
+0.2
+0.4
+0.6
+0.8
+1.0
+1.2
+IC50 ratio
+C
+T5
+T10
+T40
+T320
+OXPHOS
+Cholesterol biosynthesis
+by SREBP/SREBF
+PPP
+Metabolism of nucleotides
+Pyrimidine metabolism
+Cellular response to starvation
+Iron uptake and transport
+MTORC1 signalling
+−log10(P value)
+1
+2
+3
+NES
+1.00
+1.25
+1.50
+1.75
+C
+C
+T320
+C
+C
+T10 T320
+Scaled
+score
+difference
+−2
+−1
+0
+1
+2
+Depletion
+SCD
+CMPK1
+FXN
+FDX1
+CYCS
+SLC31A1
+FTO
+ACAD9
+COX5B
+SOD1
+NDUFC1
+DTYMK
+PGK1
+OGDH
+LIAS
+STEAP3
+GUK1
+IMPDH2
+PGD
+CTPS1
+CAD
+PFAS MBOAT7
+UMPS DLST
+DHFR
+TYMS SLC4A7
+SCAP
+TXNRD1
+PRDX1
+ACLY
+Genes (n = 264)
+CD
+T320D
+Fitness
+Cell state transitions
+High
+Low
+f
+T10 T320
+CD
+T320DT320D
+Fig. 5 | CRISPR-based negative-selection screen reveals systems-level 
+metabolic dependencies. a, Schematic of the CRISPR-based screen. Kuramochi 
+cells sorted from C, T10 and T320 lines (see Extended Data Fig. 5b). Score 
+differences (|score diff.|) relative to a reference sample were used to assess 
+gene depletions. gRNA, guide RNA. b, Heat map showing depleted genes across 
+conditions relative to C, or CD and T320 for T320D. Genes were ordered on the 
+basis of hierarchical clustering. Nucleotide metabolism-related genes are shown 
+in red. c, GSEA performed on genes ranked by their highest negative score 
+differences relative to C or T320. Selected pathways are shown based on NES 
+and P < 0.05 (FDR < 0.25, one-sided Kolmogorov–Smirnov test). Colour scale is 
+the NES as calculated by GSEA and circle sizes indicate P values. d, Schematic 
+illustrating the rationale for the combined treatment with olaparib and CB-839. 
+GSH, glutathione; TCA, tricarboxylic acid cycle. e, Bar plot showing the average 
+of IC50 ratios between the combined olaparib and CB-839 treatment relative to 
+olaparib monotherapy (3 independent experiments, 6 technical replaicates). 
+Data are mean ± s.d. f, Progressive cell-state transitions along a resistance 
+continuum. Cell states with differential fitness emerge and are selected during 
+adaptation to therapy.
+
+
+===== PAGE 8 =====
+Nature  |  Vol 631  |  25 July 2024  |  883
+resistance. The precise epigenetic mechanisms that constitute such a 
+cellular memory-based adaptation remain unidentified.
+Conceptually, the resistance continuum can incorporate both 
+expression-level and mutational changes. Indeed, a combined effect 
+of both copy-number and expression-level changes was documented 
+in cells that underwent gradual adaptation to different ALK inhibitors11, 
+or the acquisition of genetic mechanisms evolved from drug-tolerant 
+cells35. Mutational processes, including CNAs, might restrict the epi-
+genetic landscapes and accessibility of cell states, thus modifying the 
+trajectories of adaptation.
+The spectrum of resistance states may be strongly influenced by 
+pre-existing variability6,14. As we demonstrate here, extrinsic forces such 
+as dosing14 and duration of treatment can shift the adaptive trajectories. 
+It is interesting to ponder whether the mechanisms propelling cells 
+throughout the resistance continuum are primarily shaped by an evolu-
+tionary process, stemming from stochastic events, or are deterministi-
+cally constrained by the underlying developmental programmes. The 
+emergence of states may be seen as variants emerging from historical 
+contingencies36 and their increased fitness fixed through a selective 
+regime. Conversely, transitions to attractor states37 induced by therapy 
+may exhibit recurrent properties indicative of a learning process. Both 
+of these processes are likely to be involved in cellular adaptation and it 
+may not be possible to achieve a complete uncoupling.
+Finally, we uncovered systems-level dependencies that expose latent 
+vulnerabilities along the resistance continuum. This underscores 
+the importance of monitoring the emergence of adaptive states in 
+clinical practice, as demonstrated in a longitudinal assessment of 
+stress-response states enriched during patient chemotherapy38. Given 
+the possibility of pharmacological control over cell-state transitions39, 
+it might be possible to either impede the adaptive process, or steer the 
+evolving populations toward more treatable fates40.
+Online content
+Any methods, additional references, Nature Portfolio reporting summa-
+ries, source data, extended data, supplementary information, acknowl-
+edgements, peer review information; details of author contributions 
+and competing interests; and statements of data and code availability 
+are available at https://doi.org/10.1038/s41586-024-07690-9.
+1.	
+Vasan, N., Baselga, J. & Hyman, D. M. A view on drug resistance in cancer. Nature 575, 
+299–309 (2019).
+2.	
+McGranahan, N. & Swanton, C. Clonal heterogeneity and tumor evolution: past, present, 
+and the future. Cell 168, 613–628 (2017).
+3.	
+Sharma, S. V. et al. A chromatin-mediated reversible drug-tolerant state in cancer cell 
+subpopulations. Cell 141, 69–80 (2010).
+4.	
+Hugo, W. et al. Non-genomic and immune evolution of melanoma acquiring MAPKi 
+resistance. Cell 162, 1271–1285 (2015).
+5.	
+Marine, J.-C., Dawson, S.-J. & Dawson, M. A. Non-genetic mechanisms of therapeutic 
+resistance in cancer. Nat. Rev. Cancer 20, 743–756 (2020).
+6.	
+Shaffer, S. M. et al. Rare cell variability and drug-induced reprogramming as a mode of 
+cancer drug resistance. Nature 546, 431–435 (2017).
+7.	
+Oren, Y. et al. Cycling cancer persister cells arise from lineages with distinct programs. 
+Nature 596, 576–582 (2021).
+8.	
+Brock, A., Chang, H. & Huang, S. Non-genetic heterogeneity–a mutation-independent 
+driving force for the somatic evolution of tumours. Nat. Rev. Genet. 10, 336–342 (2009).
+9.	
+Pisco, A. O. et al. Non-Darwinian dynamics in therapy-induced cancer drug resistance. 
+Nat. Commun. 4, 2467 (2013).
+10.	
+Tsoi, J. et al. Multi-stage differentiation defines melanoma subtypes with differential 
+vulnerability to drug-induced iron-dependent oxidative stress. Cancer Cell 33, 890–904.e5 
+(2018).
+11.	
+Vander Velde, R. et al. Resistance to targeted therapies as a multifactorial, gradual 
+adaptation to inhibitor specific selective pressures. Nat. Commun. 11, 2393 (2020).
+12.	
+Domcke, S., Sinha, R., Levine, D. A., Sander, C. & Schultz, N. Evaluating cell lines  
+as tumour models by comparison of genomic profiles. Nat. Commun. 4, 2126  
+(2013).
+13.	
+Lord, C. J. & Ashworth, A. PARP inhibitors: synthetic lethality in the clinic. Science 355, 
+1152–1158 (2017).
+14.	
+Goyal, Y. et al. Diverse clonal fates emerge upon drug treatment of homogeneous cancer 
+cells. Nature 620, 651–659 (2023).
+15.	
+Shen, S., Vagner, S. & Robert, C. Persistent cancer cells: the deadly survivors. Cell 183, 
+860–874 (2020).
+16.	
+Lin, L. et al. SOX17 and PAX8 constitute an actionable lineage-survival transcriptional 
+complex in ovarian cancer. Oncogene 41, 1767–1779 (2022).
+17.	
+Kim, C., Wang, X.-D. & Yu, Y. PARP1 inhibitors trigger innate immunity via PARP1 trapping- 
+induced DNA damage response. eLife 9, e60637 (2020).
+18.	
+Kreß, J. K. C. et al. The integrated stress response effector ATF4 is an obligatory metabolic 
+activator of NRF2. Cell Rep. 42, 112724 (2023).
+19.	
+Shibue, T. & Weinberg, R. A. EMT, CSCs, and drug resistance: the mechanistic link and 
+clinical implications. Nat. Rev. Clin. Oncol. 14, 611–629 (2017).
+20.	 Guo, W. et al. Slug and Sox9 cooperatively determine the mammary stem cell state. Cell 
+148, 1015–1028 (2012).
+21.	
+Arlt, M. F., Wilson, T. E. & Glover, T. W. Replication stress and mechanisms of CNV formation. 
+Curr. Opin. Genet. Dev. 22, 204–210 (2012).
+22.	 Quintanal-Villalonga, Á. et al. Lineage plasticity in cancer: a shared pathway of therapeutic 
+resistance. Nat. Rev. Clin. Oncol. 17, 360–371 (2020).
+23.	 Schmitt, C. A. et al. A senescence program controlled by p53 and p16INK4a contributes 
+to the outcome of cancer therapy. Cell 109, 335–346 (2002).
+24.	 Birsoy, K. et al. An essential role of the mitochondrial electron transport chain in cell 
+proliferation is to enable aspartate synthesis. Cell 162, 540–551 (2015).
+25.	 Sayin, V. I. et al. Activation of the NRF2 antioxidant program generates an imbalance in 
+central carbon metabolism in cancer. eLife 6, e28083 (2017).
+26.	 Shen, Y.-A. et al. Inhibition of the MYC-regulated glutaminase metabolic axis is an effective 
+synthetic lethal approach for treating chemoresistant ovarian cancers. Cancer Res. 80, 
+4514–4526 (2020).
+27.	
+Debaugnies, M. et al. RHOJ controls EMT-associated resistance to chemotherapy. Nature 
+616, 168–175 (2023).
+28.	 Seo, J. et al. AP-1 subunits converge promiscuously at enhancers to potentiate transcription. 
+Genome Res. 31, 538–550 (2021).
+29.	 Martínez-Zamudio, R. I. et al. AP-1 imprints a reversible transcriptional programme of 
+senescent cells. Nat. Cell Biol. 22, 842–855 (2020).
+30.	 Larsen, S. B. et al. Establishment, maintenance, and recall of inflammatory memory.  
+Cell Stem Cell 28, 1758–1774.e8 (2021).
+31.	
+Freddolino, P. L., Yang, J., Momen-Roknabadi, A. & Tavazoie, S. Stochastic tuning of gene 
+expression enables cellular adaptation in the absence of pre-existing regulatory circuitry. 
+eLife 7, e31867 (2018).
+32.	 Gallaher, J. A., Enriquez-Navas, P. M., Luddy, K. A., Gatenby, R. A. & Anderson, A. R. A. 
+Spatial heterogeneity and evolutionary dynamics modulate time to recurrence in 
+continuous and adaptive cancer therapies. Cancer Res. 78, 2127–2139 (2018).
+33.	 Rehman, S. K. et al. Colorectal cancer cells enter a diapause-like DTP state to survive 
+chemotherapy. Cell 184, 226–242.e21 (2021).
+34.	 Marsolier, J. et al. H3K27me3 conditions chemotolerance in triple-negative breast cancer. 
+Nat. Genet. 54, 459–468 (2022).
+35.	 Hata, A. N. et al. Tumor cells can follow distinct evolutionary paths to become 
+resistant to epidermal growth factor receptor inhibition. Nat. Med. 22, 262–269 
+(2016).
+36.	 Blount, Z. D., Lenski, R. E. & Losos, J. B. Contingency and determinism in evolution: 
+replaying life’s tape. Science 362, eaam5979 (2018).
+37.	
+Huang, S. Reconciling non-genetic plasticity with somatic evolution in cancer. Trends 
+Cancer Res. 7, 309–322 (2021).
+38.	 Zhang, K. et al. Longitudinal single-cell RNA-seq analysis reveals stress-promoted 
+chemoresistance in metastatic ovarian cancer. Sci. Adv. 8, eabm1831 (2022).
+39.	 Rukhlenko, O. S. et al. Control of cell state transitions. Nature 609, 975–985 (2022).
+40.	 Boumahdi, S. & de Sauvage, F. J. The great escape: tumour cell plasticity in resistance to 
+targeted therapy. Nat. Rev. Drug Discov. 19, 39–56 (2020).
+Publisher’s note Springer Nature remains neutral with regard to jurisdictional claims in 
+published maps and institutional affiliations.
+Springer Nature or its licensor (e.g. a society or other partner) holds exclusive rights to this 
+article under a publishing agreement with the author(s) or other rightsholder(s); author self-
+archiving of the accepted manuscript version of this article is solely governed by the terms of 
+such publishing agreement and applicable law.
+© The Author(s), under exclusive licence to Springer Nature Limited 2024
+
+
+===== PAGE 9 =====
+Article
+Methods
+Cell culture
+Kuramochi cells (BRCA2 mutant12) were cultured in RPMI-1640 (Ther-
+moFisher) with 10% fetal bovine serum (FBS), 1% MEM non-essential 
+amino acids, 1% l-glutamine 200 mM, 1% Antibiotic-Antimycotic solu-
+tion 100× and 0.25 U ml−1 insulin solution (Sigma-Aldrich). Ovsaho 
+(BRCA2 homozygous deleted12) and PC9 (EGFR exon 19 deletion) 
+cells were cultured in RPMI-1640 (ThermoFisher) with 10% FBS, 1% 
+l-glutamine 200 mM and 1% penicillin and streptomycin (10,000 U ml−1, 
+ThermoFisher). COV362 (BRCA1 mutant12) and A375 (BRAFV600E) cells 
+were cultured in DMEM (ThermoFisher) supplemented with 10% FBS, 1% 
+l-glutamine and 1% penicillin and streptomycin. Cells were maintained 
+at 37 °C with 5% CO2. Ovarian cancer cell lines were provided by the 
+laboratory of B. Neel. Melanoma A375 cells and lung adenocarcinoma 
+(LUAD) PC9 cells were provided by the laboratories of A. Lund and 
+K.-K. Wong, respectively. The cell line identities were confirmed by 
+genotyping using short tandem repeat fingerprinting and were tested 
+negative for mycoplasma with Mycoplasma PCR Detection Kit (ABM).
+Dose-escalation experiments
+To generate drug-induced resistant populations, 1 × 106 drug-naive 
+cells were initially seeded in 150-mm plates. Twenty four hours after 
+seeding, 1 μM of olaparib (Selleckchem, S1060) was added and cells 
+were maintained under treatment until reaching confluency (>70%), 
+thus characterizing resistance at this dose. Cells were collected (0.25% 
+trypsin/EDTA for 5 min at 37 °C) and a fraction of the surviving popula-
+tion (1 × 106 cells) was seeded again and treated with 2.5 μM olaparib 
+until cells reached confluency. This process was repeated sequentially 
+by doubling the drug concentrations until the cell populations were 
+able to achieve confluency at 320 μM olaparib. The initial dose was 
+determined by cell viability assays (see below), indicating a low start-
+ing dose (giving less than 30% of the maximal response (IC30)). At each 
+step, aliquots of the adapted populations were frozen (10% DMSO, 50% 
+FBS, 40% medium) for further experiments. Using this approach, we 
+generated nine drug-adapted lines for Kuramochi (T1–T320) and six 
+adapted lines for Ovsaho and COV362 (T1–T40) plus the untreated 
+controls (C). Similar dose-escalation experiments were performed 
+for A375 cells treated with dabrafenib (Selleckchem, S2807), starting 
+at 30 nM until resistant to 4 μM (8 drug-adapted lines plus untreated 
+control), and for PC9 cells treated with osimertinib (Selleckchem, 
+S7297), starting at 8 nM until resistant to 1.2 μM (8 drug-adapted lines 
+plus untreated control).
+To compare the resistant phenotypes generated by dose-escalation 
+versus constant dose treatment, we repeated the dose escalation in 
+triplicates for Kuramochi up to 10 μM, while initially drug-naive cells 
+were maintained under treatment with the same doses (1, 2.5, 5 and 
+10 μM) for the same amount of time in each step of the dose-escalation 
+experiment. Medium with fresh drug was replenished every 3 days. 
+Olaparib was added 24 h after plating, in the final concentrations from 
+a stock solution of 50 mM dissolved in DMSO and maintained at −80 °C. 
+Cell number was determined by trypan blue exclusion (Sigma-Aldrich) 
+and counted on a Countess II cell counter (Life Technologies).
+Cell viability assays
+Viability experiments to test the resistance phenotypes (here defined 
+as fitness) were performed using the CellTiter-Glo 2.0 Luminescent Cell 
+Viability Assay (Promega) according to the manufacturer’s protocol. 
+Before performing the viability assays, frozen aliquots of the resistant 
+cells were thawed and cells were recovered without drug treatment for 
+7–10 days. Cells were plated in 96-well plates at seeding density of 700 
+to 800 cells per well. After 24 h, cells were treated with the drug with 
+the same concentrations used in the dose-escalation experiments for 
+6–9 days for the ovarian cancer cell lines, 4 days for A375 and 5 days 
+for PC9 cells. For the olaparib and CB-839 (MCE, HY-12248) treatment 
+combinations, dose–response curves were generated after 6-day treat-
+ments on a range of olaparib doses (1 to 320 μM) with or without 50 nM 
+of CB-839. This was performed on C, T5, T10, T40 and T320 adapted 
+lines after sorting for CD44/CD24 populations as in Extended Data 
+Fig. 5b. The effect of this drug combination was calculated using the 
+Bliss synergy score41. DMSO without drug was used as a negative con-
+trol to normalize the cell viability of drug treated wells. Luminescence 
+was determined using the BioTek Cytation 5 Cell Imaging Multi-Mode 
+Reader (Agilent). Cell viability analysis was performed on GraphPad 
+Prism 9 and IC50 values were determined using a nonlinear regression 
+curve fit. Pairwise significant differences between IC50 were assessed 
+by Student’s two-tailed t-tests.
+Cell cycle analysis
+Cells were treated with 10 μM or 320 μM of olaparib 24 h after plating 
+and cell cycle analysis was performed after 48 h of treatment using pro-
+pidium iodide staining. Cells were fixed in cold 70% ethanol overnight 
+at 4 °C, washed twice in PBS and resuspended in 1× PBS with 0.2 mg ml−1 
+RNase A (Sigma-Aldrich) and 25 mg ml−1 propidium iodide (Biolegend). 
+After 30 min incubation at room temperature in the dark, cells were 
+analysed on a LSR II Flow Cytometer (BD Biosciences). Quantification of 
+cell cycle phases was performed on FlowJo software v.10.8.1 (FLOWJO) 
+using the Watson model.
+Drug-tolerant persister generation
+Persister cells were generated similarly to those described in refs. 3,42 
+by seeding 1 × 106 Kuramochi cells in 150 mm plates and treated with 
+either 10 or 320 μM of olaparib for 9 days (greater than 90% inhibi-
+tion concentration (>IC90)). Fresh medium with drug was added every 
+3 days. For PC9 cells, treatment was 9 days with 1.2 μM of osimertinib. 
+Cells that remained attached to the plates were considered persis­
+ters. To confirm that the Kuramochi resistant phenotypes were due 
+to adaptation rather than selection of pre-existing resistant clones, we 
+performed two rounds of treatment-recovery of drug-naive cells. For 
+this, we generated persisters in triplicates with 320 μM (the highest dose 
+used in the escalation experiment) and cells were allowed to recover 
+without drug treatment for 9 days prior to performing viability assays.
+Apoptosis assay
+To quantify apoptosis and cell viability of drug-tolerant persisters 
+treated with different doses, we generated persister cells with either 10 
+or 320 μM of olaparib as previously described. The adherent cells were 
+collected (0.25% trypsin/EDTA for 5 min at 37 °C), stained with trypan 
+blue and counted manually using haemocytometer or on a Countess II 
+cell counter. Cells were washed twice in cold PBS and stained with DAPI 
+(ThermoFisher) and Annexin V using the Annexin V Apoptosis Detec-
+tion Kit (BD Biosciences) according to the manufacturer’s instructions. 
+Stained cells were analysed on a LSR II Flow Cytometer (BD Biosciences). 
+Quantification of apoptotic and viable cells was performed on FlowJo 
+software v.10.8.1 (Supplementary Fig. 2).
+CD24 and CD44 cell staining and sorting
+The untreated and resistant Kuramochi populations were collected and 
+stained with DAPI (D1306, ThermoFisher), anti-CD24-PE (555428) and 
+anti-CD44-APC (559942) (BD Biosciences). Populations were sorted 
+on the basis of their CD24/CD44 profiles using a Sony SY3200 Highly 
+Automated Parallel cell sorter and analysed with BD Facs Diva 8.0.2 and 
+FlowJo v10.8.1. Sorted cells were used either for ATAC-seq or plating 
+for cell viability experiments (Extended Data Fig. 5b).
+Invasion assays
+Invasion assay was performed in 12 well plates with transparent PET 
+membrane with 8-μm pore inserts (Falcon, 353182). Cells from C, T5, 
+T320, C-Slug0 and C-Slug1 populations were plated in appropriate 
+FBS-free medium containing 0.1% BSA (Sigma) on Transwell insert 
+
+
+===== PAGE 10 =====
+membrane covered with 30% Matrigel (BD Biosciences) in PBS. The 
+lower wells contained medium with 10% FBS. Approximately 50,000 
+cells per well were plated and cultured for 72 h. Matrigel was removed 
+from the Transwell insert and cells that migrated through the mem-
+brane were fixed in 100% methanol for 10 min on ice and stained with 
+0.5% crystal violet solution in 25% methanol. Membranes were cut off 
+and mounted on glass slides with xylene-based Cytoseal mounting 
+medium (ThermoFisher). Slides were scanned at 10× using Jenoptik 
+ProgRes camera.
+Live-cell imaging
+Cells were plated in a 48 well plate at a low density (6,000 cells per 
+well) and allowed to attach for 24 h. The following day, either DMSO 
+(0.5%) or olaparib (5 μM) was added. Medium and Olaparib or vehicle 
+(DMSO) were subsequently changed every 3 days. Images were taken 
+at least every 24 h. IncuCyte live-cell imaging system (Zoom 2016) was 
+used to collect and analyse images.
+PCR
+Quantitative PCR reactions were carried out in triplicate on specific 
+genomic regions using SensiFAST SYBR Hi-ROX One-Step Kit (Merid-
+ian Biosciences, BIO-73005) on a QuantStudio 7 Pro (ThermoFisher). 
+Primers were: SNAI2 FW, 5′-TCCTGGTCAAGAAGCATT-3′; SNAI2 
+RV, 5′-GAGGAGGTGTCAGATGGA-3′; RPL19 FW, 5′-GATCCGGAAGC 
+TCATCAAAG-3′ and RPL19 RV, 5′-GGCTGTACCCTTCCGCTTAC-3′.
+Lentiviral overexpression of SOX17 and Slug
+Lentiviral vector for constitutive overexpression of SOX17 (TFORF2260) 
+was a gift from F. Zhang (Addgene #141998). Lentiviral vector for induc-
+ible expression of Slug (Addgene #82162) was Gateway-cloned under a 
+doxycycline induced promoter on a pInducer20 backbone (Addgene 
+#44012). JetPrime reagents and protocol (Polyplus) were followed for 
+transfection into HEK-293T packaging cells. Kuramochi control (C) and 
+adapted lines T5, T40 and T320 were infected with viral lysate before 
+selection in the appropriate antibiotic (puromycin 2 μg ml−1 for SOX17; 
+neomycin 2 μg ml−1 for Slug). The appropriate selection antibiotic was 
+subsequently added to medium every 3 weeks in culture. To induce 
+Slug, doxycycline was added to the cell medium at the indicated dose 
+for 45 days prior to experiment initiation.
+shRNA knockdown of SOX17
+SOX17 inducible lentiviral small hairpin RNA (shRNA) gene set was pur-
+chased from TransOmic Technologies (TLHSU2330). JetPrime reagents 
+and protocol (Polyplus) were followed for transfection into HEK-293T 
+packaging cells. Kuramochi Control cells were infected with one of 
+three shRNA constructs or a non-targeting scrambled shRNA negative 
+control construct by viral lysate before selection in the appropriate 
+antibiotic (puromycin 1.5 μg ml−1). To induce SOX17 knockdown, doxy-
+cycline (500 ng ml−1) was added to the cell medium for 3 days prior to 
+drug exposure.
+Generation of patient derived xenografts and drug treatments
+All animal experiments were carried out under an approved animal 
+protocol by the Institutional Animal Care and Use Committee (IACUC) 
+of NYU Langone Grossmann School of Medicine. Immunodeficient 
+six-week-old female NOD SCID gamma (NSG) (NOD.Cg-Prkdcscid 
+Il2r gtm1Wjl/SzJ) mice were purchased from Jackson Laboratory and 
+allowed to acclimatize to housing conditions. Animals were housed 
+in an specific-pathogen-free-grade animal facility at 25 ± 2 °C with a 
+humidity of 40–70%. Besides, 12-h:12-h light periods were alternated 
+between day and night, and these mice were given an unrestricted 
+diet. Before the experiment, these mice were adaptively reared for 
+more than three days. To generate high-grade serous ovarian cancer 
+(HGSOC) PDX models of PARPi treatments, we used a previously charac-
+terized BRCA2-mutated tumour derived from PDX models43 (ID: 66799). 
+Approximately 1 × 106 cells in a 1:1 ratio with Matrigel Matrix (Corning) 
+were subcutaneously injected with a 27-gauge needle (BD Micro-Fine) 
+into the right lower mammary fat pad on the abdominal dorsal surface. 
+Observation of animals including caliper measurements of tumour 
+volume and body weight continued twice a week. Mice were euthanized 
+with CO2 (confirmed by cervical dislocation) and tumours were excised 
+for further procedures at sizes not exceeding the IACUC permitted 
+measurements or volumes (up to 2,000 mm3 or up to 20 mm in one 
+dimension). When tissue was available, a portion of the tumours was 
+embedded in optimal cutting temperature and snap-frozen in a bath 
+of isopentane chilled over liquid nitrogen. The tumour blocks were 
+stored at −80 °C until use for staining. Tissue sections were mounted 
+onto a slide at a thickness of 5–7 μm. Haematoxylin and eosin staining 
+was performed and annotated by an expert gynaecologic pathologist.
+PARPi dose–response. To study the transcriptional changes that 
+occur upon different dose regimen, the BRCA2-mutant HGSOC cells 
+were injected as previously described and mice were randomized 
+into five groups after reaching 100–200 mm3 tumour volume. Treat-
+ments were performed as follows: (1) Vehicle controls (10% dimeth-
+ylacetamide, 5% Solutol HS15, 85% PBS) (n = 2); (2) dose 1 (D1) was 
+0.13 mg kg−1 of talazoparib (Selleckchem, S7048) (n = 2); (3) dose 2 
+(D2) was 0.23 mg kg−1 (n = 2); (4) dose 3 (D3) was 0.33 mg kg−1 (n = 2); and 
+(5) dose 4 (D4) was 0.66 mg kg−1 (5 consecutive days a week, oral gav-
+age). Mice were monitored by routine palpation and tumour sizes meas-
+ured by caliper. Vehicle tumours were collected at sizes not exceeding 
+the humane endpoint and talazoparib treated tumours were collected 
+after 50–57 days of treatment.
+PARPi resistance model. To establish a drug-resistance model, 
+tumours were treated along three passages. In a first passage, when 
+the PDX tumours reached 100–200 mm3 tumour volume, vehicle (10% 
+dimethylacetamide, 5% Solutol HS15, 85% PBS) or talazoparib 
+(0.0066 mg per mouse = 0.33 mg kg−1, oral gavage44) was adminis-
+tered for 5 consecutive days a week. Talazoparib treatment caused 
+tumour remission and treatment was interrupted. Tumour sizes were 
+followed until reappearance and treatment was reintroduced. Vehicle 
+and drug treated tumours that did not show further regression upon 
+re-treatment—thus indicating resistance—were collected for scRNA-seq 
+at sizes not exceeding the humane endpoint. A replicate tumour was 
+implanted in a second passage and maintained under treatment upon 
+tumour detection. The resulting tumour was implanted in a third passage, 
+generating three replicates (two talazoparib treated and one vehicle).
+Tumour dissociation for scRNA-seq
+Upon arrival to the laboratory, tumours were minced with a razor blade 
+and enzymatically dissociated in two steps. First, minced samples were 
+incubated with 5 ml of digestion mix 1 (9 ml Advanced DMEM/F12, 1 ml 
+Gentle Collagenase and 100 μl DNase I) at 37 °C for 30 min, centrifuged 
+at 1,000 rpm for 4 min. After removing the supernatant, samples were 
+incubated with 5 ml of digestion mix 2 (3 ml Advanced DMEM/F12, 2 ml 
+Dispase, 5 ml TrypLE, 100 μl DNase I) at 37 °C for 15 min, placed on a 
+70-μm cell strainer and washed with Advanced DMEM/F12 + 10% FBS. 
+Samples were centrifuged at 1,000 rpm for 4 min, incubated with 1 ml 
+of ACK Lysing Buffer (ThermoFisher) for 4 min, washed with PBS + 10% 
+FBS, resuspended in PBS, placed on a 35-μm cell strainer and viability 
+was determined by trypan blue staining, which ranged from 65% to 
+90%. Dissociated cells were collected for scRNA-seq immediately (resis­
+tance experiment) or cryopreserved (dose–response experiment) by 
+resuspending in freezing medium (50% FBS, 40% Advanced DMEM/
+F12 and 10% DMSO) and stored at −80 °C. Batches of replicates were 
+processed on the same day. Frozen samples were thawed, washed in 
+medium, resuspended in PBS and the cell concentration adjusted for 
+the 10× Genomics single-cell encapsulation protocol following library 
+preparation and sequencing.
+
+
+===== PAGE 11 =====
+Article
+Tissue staining
+Serial sections following haematoxylin and eosin staining were used 
+for immunofluorescence experiments. Following tissue retrieval with 
+acetone, tissues were rehydrated in PBS, and fixed in a solution of 1.6% 
+paraformaldehyde. Sections were blocked and permeabilized for 1 h in a 
+solution of 3% BSA in PBS with 0.1% Triton X-100. Sections were stained 
+with primary antibodies for SOX17 (R&D Systems AF1924-SP, 10 μg ml−1) 
+and CD44 (R&D Systems MAB7045-SP, 10 μg ml−1) for 3 h at room tem-
+perature in 3% BSA. Sections were subsequently stained with secondary 
+antibodies (ThermoFisher Scientific, rabbit anti-mouse, A-11059, 1:200) 
+and (ThermoFisher Scientific, donkey anti-goat, A-21432, 1:200), fol-
+lowed by DAPI (1 μg ml−1). Sections were mounted with Gold Antifade 
+Mountant solution (Invitrogen, P36934) and imaged using a Keyence 
+BZ-X Series microscope. All immunofluorescence staining was per-
+formed in triplicate for each tumor sample, and representative images 
+of one replicate per tumor were selected.
+inDrop library preparation and sequencing
+Cells from the Kuramochi dose-escalation experiment (C and T1–T320) 
+were collected when they reached confluency at their respective dose 
+treatments and collected for single-cell encapsulation and library 
+preparation using the inDrop platform45 as previously described46. 
+Libraries were sequenced on an Illumina NextSeq 500 and reads were 
+processed using a custom inDrop pipeline as described46 using the 
+hg38/GRGh38 human genome assembly and the Ensembl 93 transcrip-
+tome annotation.
+10X Genomics library preparation and sequencing
+We used the 10X Genomics workflow for scRNA-seq on cells collected 
+for the comparison between Kuramochi persisters (P10 and P320) and 
+adapted (T10 and T320) populations, as well as for Ovsaho, COV362, 
+A375, PC9 dose-escalation experiments and for PDX data. Cell loading 
+for droplet-based scRNA-seq and library preparation was performed 
+using the 10X Genomics Chromium platform with the Chromium Single 
+Cell 30 Library & Gel Bead Kit v3.1 following the manufacturer’s instruc-
+tions. Libraries were diluted to 2 nM and 75 bp paired-end sequencing 
+was performed using the Illumina NextSeq 500 and 150-200 million 
+paired reads were generated for each library. Raw reads were processed 
+with the CellRanger v3.1 or v.7.0.0 (10X genomics) pipeline (default 
+parameters) with the hg38/GRCh38 genome and Ensembl 93 tran-
+scriptome references. For PDX samples, reads were processed with the 
+CellRanger multi-species detection and only cells assigned to ‘human’ 
+were considered for further analysis.
+Cell multiplexing for pooled scRNA-seq. To compare the expression 
+among untreated (C), persister (P10 and P320; two replicates) and the 
+adapted cells (T10 and T320), we used the cell hashing method47 to tag 
+cells from different conditions based on the expression of surface mark-
+ers (TotalSeqA, Hashtag oligonucleotides (HTOs) 1–5, Biolegend). Five 
+samples from each condition were pooled into a single-cell suspension 
+in equal amounts and loaded in the 10X Genomics Chromium Controller 
+with Single Cell 3′ v3.1 system and libraries prepared according to the 
+manufacturer’s protocol. For the hashtag oligos, 1 μl of HTO PCR additive 
+primer was added to the 10X cDNA amplification step, and the superna-
+tant from the 0.6× cDNA cleanup was kept and processed according to 
+the Cell Hashing protocol, with 14 PCR cycles and a 1.2× cleanup after 
+the PCR. The same procedure was applied to pool cells from Ovsaho (C 
+and T5–T40; HTOs 1–5) and COV362 (C and T5–T40; HTOs 6–10) experi-
+ments. Sample demultiplexing was performed using the CITE-seq-Count 
+pipeline (v1.4.3; https://github.com/Hoohm/CITE-seq-Count) and Seu-
+rat48. For the A375 and PC9 scRNA-seq, cell suspensions from each cor-
+responding sample were labelled using the 10X Genomics 3′ CellPlex kit 
+Set A according to the manufacturer’s instructions. Cells were pooled in 
+equal amounts and loaded in the 10X Genomics Chromium Controller. 
+Demultiplexing of the corresponding CMOs was performed using Cell-
+Ranger v.7.0.0 with 0.8 as assignment confidence.
+ATAC-seq sample preparation and sequencing
+ATAC-seq samples (C, P10, P320, T5–T320 and T320W) were prepared 
+in duplicates using a modified version of the OMNI-ATAC protocol49. 
+Briefly, cells grown in tissue culture under drug treatment with their 
+respective adapted doses were trypsinized, stained for expression of 
+CD44 and CD24 and sorted as previously described (C and T5–T320). To 
+assess the stability of the chromatin states, T320 cells were grown for 
+120 days without drug treatment, generating T320W. Together with its 
+parental T320 (grown without drug for 10 days), cells were re-exposed 
+to 320 μM. Cells from these four conditions (T320 and T320W on and 
+off drug treatment) were collected for ATAC-seq in duplicates. Briefly, 
+approximately 50,000 cells per condition were used for nuclei extrac-
+tion using the ATAC-seq resuspension buffer as previously described49. 
+Nuclei were resuspended in 50 μl of transposition mix (25 μl 2× TD 
+buffer, 2.5 μl transposase (100 nM final), 16.5 μl PBS, 0.5 μl 1% digitonin, 
+0.5 μl 10% Tween-20, and 5 μl water). Transposition reactions were 
+incubated at 37 °C for 40 min in a thermomixer with shaking at 1,000 
+rpm. Reactions were cleaned up with Zymo DNA Clean and Concen-
+trator 5 columns. ATAC-seq libraries were amplified using Ad2_noMx 
+(universal forward) and Ad2.x (indexed reverse). Libraries were diluted 
+to 2 nM and 75 bp paired-end sequencing was performed using the 
+Illumina NextSeq 500/550. Between 50 and 200 million paired reads 
+were generated for each library.
+Single-cell data analysis
+Filtering. Raw gene expression matrices were TPM (transcripts per 
+million)-normalized (scale factor of 104) and log2-transformed. For each 
+cell, the number of transcripts, genes expressed, and the proportion 
+of transcripts derived from mitochondrial and ribosomal genes were 
+determined. For each dataset, cells with transcript number lower than 
+500 or higher than 2× s.d., with less than 500 genes detected and with 
+higher than 20% of transcripts corresponding to mitochondrial genes 
+were excluded from further analysis. Genes expressed in less than 1% 
+of the cells in each dataset were removed.
+Cell clustering and differential gene expression. For all samples 
+we observed that differences due to cell cycle gene expression were 
+a major source of variation. To mitigate this effect for the interpreta-
+tion of cell states, we used the Seurat function CellCycleScoring to 
+assign cells to G1, S and G2/M phases. We then considered the G1 cells 
+for further analyses. Dimensionality reduction, clustering and differ-
+ential expression were performed using the Seurat R package v4.0.5 
+and v2.3.2. To control for unwanted sources of variation, the number 
+of unique molecular identifiers (UMIs) and the fraction of mitochon-
+drial and ribosomal UMIs were regressed out during data scaling. For 
+the individual analysis of the Kuramochi datasets (C-T320) we used 
+the DrImpute method (k parameter = 5:10)50 before clustering. Highly 
+variable genes were identified using the Seurat FindVariableGenes 
+function (default parameters) and these were used to compute the 
+PCA following UMAP using the top five to ten principal components 
+(cutoffs determined by the elbow method). Louvain clustering was 
+performed using the FindClusters function using the selected pricipal 
+components with resolution set to 0.3 to 0.6. For the analysis of PDX 
+dose–response samples, we observed a batch effect driven mostly 
+by one of the vehicle samples and we used the fastMNN method51 for 
+correction of the aggregated datasets before clustering. Differential 
+gene expression across clusters was performed using the FindMarkers 
+function using the MAST test (logfc.threshold=0.25, min.pct=0.2, min.
+cells.genes=10).
+Defining cell states across resistant populations. To study cellular 
+states across the Kuramochi resistant populations, we first assessed the 
+
+
+===== PAGE 12 =====
+differentially expressed genes among the cell clusters within each sam-
+ple separately. The top 100 most differentially expressed genes (ranked 
+by their adjusted P values) in each cluster were selected to generate a 
+non-redundant list of genes (n = 1,511). These genes were used to build 
+an average expression matrix of each cell cluster across all samples. 
+A correlation matrix (Spearman’s correlation coefficients) across these 
+average profiles was used for average linkage hierarchical clustering 
+and the cell states were defined based on the cluster structure (k = 5).
+Gene module identification. To identify gene expression programmes 
+across the Kuramochi lines from C to T320, we implemented the app­
+roach of Neftel et al.52, with some modifications. First, we aggregated 
+all G1 cells (non-imputed dataset) from all conditions and performed 
+an average linkage hierarchical clustering using the 1,000 most highly 
+variable genes (defined by the FindVariableGenes function) on the 
+centred dataset using one minus the Pearson correlation as the distance 
+metric, as proposed previously52. To evaluate all possible clusters of 
+cells that have a potential gene expression signature, we recovered all 
+clusters excluding by size (less than 30 cells and no more than 80% of 
+all cells) and by signal of differential expression. Each cluster of cells 
+was evaluated for a signature of differential expression relative to the 
+remaining cells using the FindMarkers function as described above. 
+Clusters with a signature of differentially expressed genes were retained 
+according to the following criteria: genes expressed >1.8 average fold 
+change, adjusted P value < 0.001 and with more than 50 genes match-
+ing these criteria. Gene signatures were then hierarchically clustered 
+based on their Jaccard index and, for pairs with similarity above 0.75, 
+the signature with the largest number of genes was considered. To 
+integrate the gene signatures into gene modules, clusters with less 
+than three signatures were excluded. The genes from all signatures 
+that constitute a particular cluster were merged and ranked based on 
+the ratio of their average expression in cells from a particular cluster 
+relative to their average expression in cells from the other clusters. 
+The gene module definition did not enforce mutual exclusivity, allow-
+ing genes to be associated with multiple modules. To assess the sig-
+nificance of gene overlap across modules and differentially expressed 
+gene lists from other analyses, P values were computed with Fisher’s 
+Exact tests implemented in the GeneOverlap v.1.26 R package. To assign 
+EMT scores, cells were scored for the Hallmark EMT gene set (MSigDB) 
+using the UCell 2.0.0 package in R. To assess the significance of overlap 
+among genes in modules and genes in CNA regions, permutation tests 
+(10,000) were performed using the regioneR 1.10.0 package53.
+Identification of genes with dose–response patterns. Using the PDX 
+datasets from the dose–response experiments, we identified genes 
+with dose–response patterns by first performing pairwise differential 
+expression across all treated conditions versus vehicles for each batch 
+of replicates independently. Genes differentially expressed in both of 
+the replicates were considered. A non-redundant list of these differ-
+entially expressed genes was used to generate an average expression 
+matrix across conditions. The samples were ordered from low to high 
+doses (V, D1, D2, D3, D4) and the genes were clustered using the Mfuzz 
+2.5.0 package54 setting the number of clusters to 7 and m parameter = 
+1.8. Genes with membership score higher than 0.3 were included and 
+those with similar profiles of decreasing or increasing expression rela-
+tive to high (or low) doses in both replicates were aggregated.
+Single-cell inferred CNAs
+Large-scale chromosomal alterations from scRNA-seq datasets were 
+inferred by the inferCNV v1.4.0 package. Untreated samples were used 
+as a reference for CNA inference in the treated samples. The default 
+options were used except for a cut-off of 0.1 for the minimum average 
+read counts per gene and clustering by groups was set based on the 
+cluster annotations determined from the transcriptome analyses. The 
+output consisting of a denoised modified expression matrix as genes 
+ordered by chromosomal location was used for heat map visualization 
+considering 30% of the cells from each condition with ComplexHeat-
+map 2.11.1 in R.
+Gene set enrichment analysis
+Gene set enrichment using the hallmark annotations (MSigDB), KEGG 
+and Reactome pathways was performed using the R package fgsea 
+v1.16. Differential expression between groups was determined using 
+the MAST algorithm implemented in Seurat and the genes were ranked 
+using the sign of the average log fold change multiplied by the −log10 
+of P value. Ranked lists were used as inputs for the fgsea package with 
+a minimum gene set size of 10 and a maximum of 500, and significance 
+assessed by 10,000 permutations. Terms were considered significantly 
+enriched at P values < 0.05 and FDR < 0.25 as suggested in the GSEA 
+manual. For the analysis shown in Fig. 2b, the comparison was per-
+formed across the adapted cells (that is, excluding untreated cells that 
+belong to the module A annotation).
+ATAC-seq data processing and analysis
+Peak detection. Adapter sequences were removed using TrimGalore 
+0.5.0 (https://github.com/FelixKrueger/TrimGalore) (-q 20, - --length 
+30). Filtered reads were aligned to the human genome (hg38/GRCh38) 
+with Bowtie255 v2.3.4.1 (--very-sensitive, -k 10, -X 2000). After removing 
+reads mapping to mitochondrial DNA and duplicate reads removed 
+with PicardTools 2.18.2 MarkDuplicates (http://broadinstitute.github.
+io/picard/), only properly mapped pairs assigned by SAMTools 1.956 
+were included for further analysis. To avoid peak detection bias due 
+to sequencing depth differences, read depth across samples was 
+downsampled with SAMTools to match the lowest depth. Peak call-
+ing was performed with MACS2 v2.2.457 and blacklisted regions were 
+excluded58. Reproducible peaks between replicates for each sample 
+were determined using the IDR 2.0.3 framework (https://github.com/
+nboley/idr) and peaks with high reproducibility (IDR score <0.05) were 
+considered. A consensus peak set across all samples was constructed 
+by merging the reproducible peaks from each sample using HOMER 
+v4.159. Finally, a read count table for the consensus peaks was generated 
+using deepTools 3.160.
+Differential peak accessibility and motif analysis. The count 
+table of consensus peaks was normalized and differentially accessible 
+peaks were calculated using DESeq2 1.18.161. Differentially accessible 
+peaks relative to the untreated sample (C) were considered as adjusted 
+P < 0.001 and fold change ≥ 3. The top 2,000 most variable peaks were 
+used for PCA. To visualize the peak signal (read counts) across samples, 
+Zavit62 was used to sort the mean peak signal (between replicates) across 
+samples. Motif enrichment analysis on the differentially accessible 
+peaks was performed using HOMER’s findMotifsGenome for known 
+transcription factor motifs. To assess the significance of the overlap 
+between the genomic regions of the differentially accessible peaks and 
+the regions that encompass CNAs (determined by WES), permutation 
+tests (1,000 permutations) were performed using the regioneR pack-
+age. To verify the influence of CNAs on the motif enrichment patterns, 
+the motif analysis was repeated by removing the more or less differen-
+tially accessible peaks that overlap with gained or deleted copy-number 
+regions, respectively. To assess the stability of the chromatin states in 
+T320 after drug removal (and re-exposure, Fig. 3f), the normalized peak 
+signal (±1 kb of the peak centre) of the differentially accessible peaks 
+for T320 cells (versus C) was determined using deepTools (bamCover-
+age --binSize 1, --normalizeUsing RPGC; computeMatrix --binSize 1, 
+--referencePoint center) and visualized with the plotHeatmap com-
+mand. Differences in peak signal were assessed with Wilcoxon tests.
+Whole-exome sequencing and analysis
+Genomic DNA extraction for WES was performed using Qiagen Blood 
+and Cell DNA kit (13323). The extracted DNA from representative 
+
+
+===== PAGE 13 =====
+Article
+samples (C, T10, T40 and T320) was sent to the Broad Institute facility 
+and processed according to the in-house pipeline. Briefly, 125 ng in 
+50 μl was prepared for sequencing using the KAPA Hyper Prep Kit. 
+Hybridization and capture were performed using the relevant com-
+ponents of IDT’s XGen hybridization and wash kit and following the 
+manufacturer’s suggested protocol. Sequencing was performed using 
+Illumina Novaseq.
+Sequencing results were demultiplexed and converted to FASTQ 
+format using Illumina bcl2fastq 2.2.0 software. The FASTQ files were 
+processed using the Seq-N-Slide v21.1 pipeline (https://doi.org/10.5281/
+zenodo.5550459). Adapter sequences were trimmed with Trimmo-
+matic 0.3663 and then aligned to the human reference genome (build 
+hg38/GRCh38) using the Burrows–Wheeler Aligner with the BWA-MEM 
+algorithm64. Low confidence mappings (mapping quality <10) and 
+duplicate reads were removed using Sambamba 0.6.865. Further local 
+indel realignment and base-quality score recalibration were performed 
+using the Genome Analysis Toolkit (GATK 3.8.1)66. Copy-number pro-
+files were calculated using Control-FREEC67 with untreated samples 
+as the matched controls. ANNOVAR (170716)68 was used to annotate 
+variants with genomic context such as functional consequence on 
+genes and identify presence in public variant databases gnomAD 3.0 
+and COSMIC 90.
+Metabolic CRISPR–Cas9 genetic screen
+The human metabolic CRISPR–Cas9 knockout library was a gift from 
+K. Birsoy24. Virus was produced by cotransfection of HEK293 cells with 
+lentiviral library pool with packaging vectors (psPAX2 and VSV-G) 
+using PEI Pro (PolyPlus). The titre of lentiviral supernatants was deter-
+mined by infecting target cells with several amounts of virus in the 
+presence of polybrene (8 μg ml−1; Millipore), counting the number of 
+puromycin-resistant infected cells after 3 days of selection. Kuramochi 
+C, T10 and T320 (CD44hiCD24low, sorted as in Extended Data Fig. 5b) 
+cells were infected at a multiplicity of infection of ~0.3 and selected 
+with puromycin (4 μg ml−1) 48 h after infection. An initial pool of cells 
+was collected for genomic DNA extraction (initial time point). Remain-
+ing cells were cultured for 10 population doublings either off (C, T10, 
+T320) and on olaparib treatment (C in 1 μl and T320 in 40 μl), after 
+which cells were collected for genomic DNA extraction (end time point). 
+sgRNA inserts were PCR-amplified, gel purified, quantified with NEB-
+Next Library Quantification Kit (E7630S) and sequenced on a Illumina 
+NextSeq 500/550, generating between 20–40 million paired reads for 
+each library.
+Data analysis of the metabolic CRISPR–Cas9 genetic screen. 
+Sequencing reads were mapped to the sgRNA library sequences with 
+MAGeCK-count69 algorithm implemented in MAGeCK 0.5.8, resulting 
+in 75–80% of mappability. The sgRNAs counts were used as inputs for 
+the MAGeCK-MLE algorithm to calculate gene scores, which takes into 
+account the differences in sgRNA abundance from the initial and the 
+end points of the screen. Genes were considered depleted in a sample 
+when having negative β scores, P < 0.05 and FDR < 0.25, as suggested 
+in the MAGeCK manual. To analyse gene depletions across samples 
+(Fig. 5d), only genes with negative β scores were considered. Gene score 
+differences between a sample and a reference were determined consid-
+ering depleted genes (negative β scores in the sample) with FDR < 0.25 
+and negative score differences higher than one standard deviation 
+between the sample and the reference. The samples CD, T10 and T320 
+were compared relative to C, and the T320D included comparisons with 
+T320 and CD. The overlap among depleted genes in a sample relative to 
+C were computed with Fisher’s Exact tests implemented in the GeneO-
+verlap R package (Fig. 5c). For GSEA analysis, genes were ranked based 
+on the negative score differences between a sample and a reference (for 
+example, T320 versus C). Only genes with negative score differences 
+were considered. GSEA was performed using the fgsea R package and 
+significant terms were selected with P < 0.05 and FDR < 0.25.
+Immunoblotting
+Samples were collected and lysed in the Laemmli buffer. Protein con-
+centrations were determined using the Bio-Rad DC Protein Assay. 
+Twenty milligrams of total protein was separated on a 4 to 12% bis-Tris 
+gradient gel (Invitrogen) and then transferred onto PVDF membrane 
+(Bio-Rad). Proteins were immunoblotted with the indicated antibodies. 
+Goat anti-Rabbit immunoglobulin G (IgG) (H + L) horseradish peroxi-
+dase (HRP) (31460) and Goat anti-Mouse IgG (H + L) HRP (31430) were 
+used as secondary antibodies (Invitrogen, ThermoFisher Scientific). 
+Immunoblots were visualized (Amersham Imager 600 or 680) using 
+the Pierce ECL Western Blotting Substrate (Thermo Scientific, 32106), 
+and quantification was performed using ImageJ software. Anti-beta 
+actin antibody (Santa Cruz, sc-47778 or mAbcam 8226) was used as a 
+loading control for all of the following staining, the NRF2 (Cell Signaling 
+Technology (CST), 12721), ATF4 (CST, 11815), HO-1 (HMOX1, MA1-112), 
+Slug (CST, 95855) and SOX17 (CST, 8177). Full scans are provided in 
+Supplementary Figs. 6–8 and 10.
+Targeted metabolomics profiling
+Sample processing. Kuramochi cells (C and T320) were cultured until 
+~80% confluence either on 320 μM of olaparib for 24 h or off treatment 
+in triplicates per condition. Cell pellets were collected and frozen with 
+liquid nitrogen for submission to the NYU Metabolomics Core Resource 
+Laboratory. Samples were analysed by liquid chromatography–mass 
+spectrometry to detect and quantify known peaks. A metabolite extrac-
+tion was carried out on each sample based on a previously described 
+method70. The LC column was a MilliporeTM ZIC-pHILIC (2.1 × 150 mm, 
+5 μm) coupled to a Dionex Ultimate 3000TM system and the column 
+oven temperature was set to 25 °C for the gradient elution. A flow rate 
+of 100 μl min−1 was used with the following buffers: 10 mM ammonium 
+carbonate in water, pH 9.0 (buffer A) and neat acetonitrile (buffer B). 
+The gradient profile was as follows: 80–20% B (0–30 min), 20–80% B 
+(30–31 min), 80–80% B (31–42 min). Injection volume was set to 2 μl 
+for all analyses (42 min total run time per injection). Mass spectrom-
+etry analyses were carried out by coupling the liquid chromatography 
+system to a Thermo Q Exactive HFTM mass spectrometer operating in 
+heated electrospray ionization mode. Method duration was 30 min with 
+a polarity switching data-dependent top 5 method for both positive and 
+negative modes. Spray voltage for both positive and negative modes 
+was 3.5 kV and capillary temperature was set to 320oC with a sheath gas 
+rate of 35, aux gas of 10, and max spray current of 100 μA. The full mass 
+spectrometry scan for both polarities utilized 120,000 resolution with 
+an AGC target of 3 × 106 and a maximum IT of 100 ms, and the scan range 
+was from 67–1,000 m/z. Tandem mass spectra for both positive and 
+negative mode used a resolution of 15,000, AGC target of 105, maximum 
+IT of 50 ms, isolation window of 0.4 m/z, isolation offset of 0.1 m/z, 
+fixed first mass of 50 m/z, and 3-way multiplexed normalized collision 
+energies (nCE) of 10, 35, 80. The minimum AGC target was 104 with an 
+intensity threshold of 2 × 105. All data were acquired in profile mode.
+Data analysis. The resulting ThermoTM RAW files were converted to 
+mzXML format using ReAdW.exe version 4.3.1 to enable peak detec-
+tion and quantification. The centroided data were searched using an 
+in-house Python script, Mighty_skeleton version 0.0.2 and peak heights 
+were extracted from the mzXML files based on a previously established 
+library of metabolite retention times and accurate masses adapted 
+from the Whitehead Institute71, and verified with authentic standards 
+and/or high resolution MS/MS spectral manually curated against the 
+NIST14MS/MS72 and METLIN (2017)73 tandem mass spectral libraries. 
+Metabolite peaks were extracted based on the theoretical m/z of the 
+expected ion type—for example, [M + H]+, with a ±5 ppm tolerance, and 
+a ±7.5 s peak apex retention time tolerance within an initial retention 
+time search window of ±0.5 min across the study samples. The resulting 
+data matrix of metabolite intensities for all samples and blank controls 
+
+
+===== PAGE 14 =====
+was processed with an in-house statistical pipeline, Metabolyze version 
+1.0, and final peak detection was calculated based on a signal to noise 
+ratio (S/N) of 3× compared to blank controls, with a floor of 10,000 
+(arbitrary units). For samples where the peak intensity was lower than 
+the blank threshold, metabolites were annotated as not detected, and 
+the threshold value was imputed for any statistical comparisons to 
+enable an estimate of the fold change as applicable. The resulting blank 
+corrected data matrix was then used for all group-wise comparisons, 
+and t-tests were performed with the Python SciPy (1.1.0) library to test 
+for differences and generate statistics for downstream analyses. Any 
+metabolite with P < 0.05 was considered significantly regulated (up 
+or down). Heat maps were generated with hierarchical clustering per-
+formed on the matrix values utilizing the R library ComplexHeatmap.
+Reporting summary
+Further information on research design is available in the Nature Port-
+folio Reporting Summary linked to this article.
+Data availability
+Raw and processed data from this manuscript have been deposited 
+in the NCBI Genome Expression Omnibus (GEO) under the acces-
+sion number GSE247691. Metabolomics data have been deposited 
+in the Metabolomics Workbench (study ID: ST003102; https://doi.
+org/10.21228/M8WM7T).
+Code availability
+Relevant code used in this study is available at https://github.com/
+yanailab/drug-resistance.
+ 
+41.	
+Zhao, W. et al. A new bliss independence model to analyze drug combination data.  
+J. Biomol. Screen. 19, 817–821 (2014).
+42.	 Hangauer, M. J. et al. Drug-tolerant persister cancer cells are vulnerable to GPX4 inhibition. 
+Nature 551, 247–250 (2017).
+43.	 Cybulska, P. et al. A genomically characterized collection of high-grade serous ovarian 
+cancer xenografts for preclinical testing. Am. J. Pathol. 188, 1120–1131 (2018).
+44.	 Shen, Y. et al. BMN 673, a novel and highly potent PARP1/2 inhibitor for the treatment of 
+human cancers with DNA repair deficiency. Clin. Cancer Res. 19, 5003–5015 (2013).
+45.	 Klein, A. M. et al. Droplet barcoding for single-cell transcriptomics applied to embryonic 
+stem cells. Cell 161, 1187–1201 (2015).
+46.	 Baron, M. et al. The stress-like cancer cell state is a consistent component of tumorigenesis. 
+Cell Syst. 11, 536–546.e7 (2020).
+47.	
+Stoeckius, M. et al. Cell hashing with barcoded antibodies enables multiplexing and 
+doublet detection for single cell genomics. Genome Biol. 19, 224 (2018).
+48.	 Butler, A., Hoffman, P., Smibert, P., Papalexi, E. & Satija, R. Integrating single-cell 
+transcriptomic data across different conditions, technologies, and species. Nat. Biotechnol. 
+36, 411–420 (2018).
+49.	 Corces, M. R. et al. An improved ATAC-seq protocol reduces background and enables 
+interrogation of frozen tissues. Nat. Methods 14, 959–962 (2017).
+50.	 Gong, W., Kwak, I.-Y., Pota, P., Koyano-Nakagawa, N. & Garry, D. J. DrImpute: imputing 
+dropout events in single cell RNA sequencing data. BMC Bioinformatics 19, 220 (2018).
+51.	
+Haghverdi, L., Lun, A. T. L., Morgan, M. D. & Marioni, J. C. Batch effects in single-cell 
+RNA-sequencing data are corrected by matching mutual nearest neighbors. Nat. 
+Biotechnol. 36, 421–427 (2018).
+52.	 Neftel, C. et al. An integrative model of cellular states, plasticity, and genetics for 
+glioblastoma. Cell 178, 835–849.e21 (2019).
+53.	 Gel, B. et al. regioneR: an R/Bioconductor package for the association analysis of genomic 
+regions based on permutation tests. Bioinformatics 32, 289–291 (2016).
+54.	 Kumar, L. & E Futschik, M. Mfuzz: a software package for soft clustering of microarray 
+data. Bioinformation 2, 5–7 (2007).
+55.	 Langmead, B. & Salzberg, S. L. Fast gapped-read alignment with Bowtie 2. Nat. Methods 
+9, 357–359 (2012).
+56.	 Li, H. et al. The Sequence Alignment/Map format and SAMtools. Bioinformatics 25,  
+2078–2079 (2009).
+57.	
+Zhang, Y. et al. Model-based analysis of ChIP-seq (MACS). Genome Biol. 9, R137 (2008).
+58.	 Amemiya, H. M., Kundaje, A. & Boyle, A. P. The ENCODE Blacklist: Identification of 
+problematic regions of the genome. Sci. Rep. 9, 9354 (2019).
+59.	 Heinz, S. et al. Simple combinations of lineage-determining transcription factors prime 
+cis-regulatory elements required for macrophage and B cell identities. Mol. Cell 38,  
+576–589 (2010).
+60.	 Ramírez, F. et al. deepTools2: a next generation web server for deep-sequencing data 
+analysis. Nucleic Acids Res. 44, W160–W165 (2016).
+61.	
+Love, M. I., Huber, W. & Anders, S. Moderated estimation of fold change and dispersion 
+for RNA-seq data with DESeq2. Genome Biol. 15, 550 (2014).
+62.	 Levin, M. et al. The mid-developmental transition and the evolution of animal body plans. 
+Nature 531, 637–641 (2016).
+63.	 Bolger, A. M., Lohse, M. & Usadel, B. Trimmomatic: a flexible trimmer for Illumina sequence 
+data. Bioinformatics 30, 2114–2120 (2014).
+64.	 Li, H. & Durbin, R. Fast and accurate short read alignment with Burrows–Wheeler transform. 
+Bioinformatics 25, 1754–1760 (2009).
+65.	 Tarasov, A., Vilella, A. J., Cuppen, E., Nijman, I. J. & Prins, P. Sambamba: fast processing of 
+NGS alignment formats. Bioinformatics 31, 2032–2034 (2015).
+66.	 McKenna, A. et al. The Genome Analysis Toolkit: a MapReduce framework for analyzing 
+next-generation DNA sequencing data. Genome Res. 20, 1297–1303 (2010).
+67.	
+Boeva, V. et al. Control-FREEC: a tool for assessing copy number and allelic content using 
+next-generation sequencing data. Bioinformatics 28, 423–425 (2012).
+68.	 Wang, K., Li, M. & Hakonarson, H. ANNOVAR: functional annotation of genetic variants 
+from high-throughput sequencing data. Nucleic Acids Res. 38, e164 (2010).
+69.	 Li, W. et al. MAGeCK enables robust identification of essential genes from genome-scale 
+CRISPR/Cas9 knockout screens. Genome Biol. 15, 554 (2014).
+70.	 Pacold, M. E. et al. A PHGDH inhibitor reveals coordination of serine synthesis and 
+one-carbon unit fate. Nat. Chem. Biol. 12, 452–458 (2016).
+71.	
+Simón-Manso, Y. et al. Metabolite profiling of a NIST Standard Reference Material for 
+human plasma (SRM 1950): GC–MS, LC–MS, NMR, and clinical laboratory analyses, 
+libraries, and web-based resources. Anal. Chem. 85, 11725–11731 (2013).
+72.	 Chen, W. W., Freinkman, E., Wang, T., Birsoy, K. & Sabatini, D. M. Absolute quantification  
+of matrix metabolites reveals the dynamics of mitochondrial metabolism. Cell 166,  
+1324–1337.e11 (2016).
+73.	 Smith, C. A. et al. METLIN: a metabolite mass spectral database. Ther. Drug Monit. 27,  
+747–751 (2005).
+Acknowledgements The authors thank R. White, S. Frank, M. Schober, M. D. Vibranovski,  
+A. Rozanski and the members of the Yanai laboratory for helpful discussions; the laboratories 
+of B. Neel, K.-K. Wong and A. Lund for providing cell lines; J. A. Ferry for providing histology 
+annotations; and the laboratory of M. Maurano for assistance with sequencing. We are grateful 
+to NYU Langone Metabolomics Core Resource Laboratory for their assistance with metabolomics 
+experiments and NYU Langone Experimental Pathology Laboratory for their assistance with 
+sectioning, staining and imaging services. This work was supported by the following NIH 
+grants: P50 CA225450, R01 LM013522, R21 CA264361, U01 CA260432 and U54 CA263001 (I.Y.); 
+R01AG075272 (T.L.); 1U54CA274507-01A1 (A.M.); R37CA222504 and R01CA227649 (T.P.); 
+F32CA239394 (B.R.K.); and F30 CA257400 (D.B.). This work was also supported by grants from 
+the Leon Lowenstein Foundation and the Mary Kay Ash Foundation (I.Y.).
+Author contributions G.S.F. conceived the study with I.Y., and performed the experiments  
+and all data analyses. M.B. assisted with scRNA-seq experiments. B.R.K., S.M., D.A. Levine and 
+T.L. designed the in vivo resistance experiments and B.R.K. performed scRNA-seq for these 
+experiments. B.R.K., S.M., G.S.F., T.L. and I.Y. designed the persistence in vivo experiments. 
+B.R.K., G.S.F. and M.P. performed scRNA-seq for these experiments with assistance from D.B. 
+S.M. performed all of the mouse work. M.P. performed and assisted with in vitro experiments. 
+G.S.F., J.P.B., T.P. and I.Y. designed the CRISPR screen experiments. G.S.F. and J.P.B. performed 
+the CRISPR screen experiments under the supervision of T.P. and I.Y. G.S.F., A.B., A.M. and  
+I.Y. designed the SOX17 and Slug functional experiments. A.B. performed these experiments 
+under the supervision of A.M. G.S.F. and A.R. designed and performed the ATAC-seq, scRNA-seq 
+and WES experiments. I.D. contributed with WES data processing and analysis. G.S.F. and 
+A.S.P. performed additional scRNA-seq and ATAC-seq experiments. K.H.T., M.C. and A.S.P. 
+assisted with in vitro experiments. D.A. Liberman assisted with data analysis and staining.  
+G.A. and F.K. assisted with scRNA-seq. G.S.F and I.Y. wrote the manuscript with inputs from 
+A.M. I.Y. oversaw the project. All authors commented on the manuscript.
+Competing interests D.A. Levine is a founder of Resident Diagnostics and is a full-time 
+employee of Merck & Co. T.P. received funding from Dracen Pharmaceuticals, Kymera 
+Therapeutics, Bristol Myers Squibb and Agios Pharmaceuticals not related to the submitted 
+work. T.P. consulted for Vividion Therapeutics, Tohoku University and Faeth Therapeutics.
+Additional information
+Supplementary information The online version contains supplementary material available at 
+https://doi.org/10.1038/s41586-024-07690-9.
+Correspondence and requests for materials should be addressed to Itai Yanai.
+Peer review information Nature thanks Isaac Harris and the other, anonymous, reviewer(s) for 
+their contribution to the peer review of this work. Peer review reports are available.
+Reprints and permissions information is available at http://www.nature.com/reprints.
+
+
+===== PAGE 15 =====
+Article
+a
+7
+20
+38
+59
+83
+111
+125
+0
+1 
+2.5 
+5 
+10 
+20 
+40 
+confluency
+10⁶
+olaparib dose (µM)
+time (cumulative days)
+C
+T1
+T2.5
+T5
+T10
+T20
+T40
+Ovsaho - High grade serous ovarian cancer
+c
+COV362 - High grade serous ovarian cancer
+olaparib dose (µM)
+6
+34
+56
+80
+120
+146
+162
+0
+1 
+2.5 
+5 
+10 
+20 
+40 
+confluency
+10⁶
+time (cumulative days)
+C
+T1
+T2.5
+T5
+T10
+T20
+T40
+0
+50
+100
+150
+Cell viability (%)
+[olaparib] µM
+1
+2.5
+5
+10
+20
+40
+80
+160 320
+C
+T1
+T2.5
+T5
+T10
+T20
+T40
+d
+e
+A375 - Melanoma
+g
+PC9 - Lung adenocarcinoma
+confluency
+10⁶
+0
+0.03 
+0.06 
+0.125
+0.25 
+0.5 
+1 
+2
+4
+5
+15
+22
+28
+41
+48
+58
+dabrafenib dose (µM)
+time (cumulative days)
+C
+T003
+T006
+T0125
+T025
+34
+53
+T05
+T1
+T2
+T4
+confluency
+10⁶
+0
+0.008 0.016 
+0.032
+0.075 
+0.15
+0.3
+0.6
+1.2
+5
+12
+21
+30
+45
+51
+68
+osimertinib dose (µM)
+time (cumulative days)
+C
+T0008
+T0016
+T0032
+T0075
+37
+58
+T015
+T03
+T06
+T1.2
+0
+25
+50
+75
+100
+125
+150
+[dabrafenib] µM
+Cell viability (%)
+C
+T003
+T006
+T0125
+T025
+T05
+T1
+T2
+T4
+0.03
+0.06
+0.125
+0.250
+0.5
+1
+2
+4
+f
+0
+25
+50
+75
+100
+Cell viability (%)
+C
+T0008
+T0016
+T0032
+T0075
+T0150
+0.008
+0.016
+0.032
+0.075
+0.15
+0.3
+0.6
+1.2
+T0300
+T0600
+T1.2
+[osimertinib] µM
+h
+C
+T1
+T2.5
+T5
+T10
+T20
+T40
+0
+50
+100
+150
+Cell viability (%)
+[olaparib] µM
+1
+2.5
+5
+10
+20
+40
+80
+160 320
+b
+0
+5
+10
+15
+20
+C
+T1
+T2.5
+T5
+T10
+T20
+T40
+IC50 (µM)
+0
+5
+10
+15
+20
+25
+IC50 (µM)
+C
+T1
+T2.5
+T5
+T10
+T20
+T40
+Extended Data Fig. 1 | Generation of drug-adapted populations in additional 
+resistance models. a, Drug-adapted lines generated for Ovsaho, a BRCA-mutant 
+ovarian cancer cell line, using dose-escalation from 1 to 40 μM of olaparib.  
+b, Cell viability assays (9 days of treatment) for the Ovsaho adapted lines showing 
+progressive increase in resistance. Bar plots show the average of 6 technical 
+replicates with standard deviation (SD) error bars. c, Same as in a for COV362, 
+also a BRCA-mutant ovarian cancer cell line. d, Same as in b for COV362. e, Drug- 
+adapted lines generated for A375, a melanoma cell line, using dose-escalation 
+from 30 nM to 4 μM of dabrafenib. f, Cell viability assays (4 days of treatment) 
+for the A375 adapted lines. g, Drug-adapted lines generated for PC9, a lung 
+adenocarcinoma cell line, using dose-escalation from 8 nM to 1.2 μM of 
+osimertinib. h, Cell viability assays (5 days of treatment) for the PC9 adapted 
+lines. Cell viability assays were performed using CellTiter Glo 2.0 and values are 
+normalized by DMSO control. Data are shown as means and SDs of 6 technical 
+replicates.
+
+
+===== PAGE 16 =====
+320µM - 9 days
+320µM - 9 days
+P320.1
+P320.1
+P320.2
+C
+Recovery - 9 days
+Recovery - 9 days
+P320.2
+5µM - 50 days
+T5-E
+T5
+0
+50
+100
+150
+T5
+T5-E
+T10
+Cell viability (%)
+[olaparib] µM
+1
+2.5 5 10 20 40 80 160320
+T20-E
+T20
+20µM - 40 days
+0
+50
+100
+150
+T20
+T20-E
+T40
+[olaparib] µM
+1
+2.5 5 10 20 40 80 160320
+Cell viability (%)
+80µM - 47 days
+T80-E
+T80
+0
+50
+100
+150
+T80
+T80-E
+T160
+Cell viability (%)
+[olaparib] µM
+1
+2.5 5 10 20 40 80 160320
+1µM - 9 days
+2.5µM - 25 days
+5µM - 18 days
+10µM - 59 days
+T1
+T2.5
+T5
+C
+T10
+2.5µM - 34 days
+T2.5.C
+C
+5µM - 52 days
+T5.C
+C
+10µM - 111 days
+C
+T10.C
+R2
+C
+T1
+T2.5
+T5
+T10
+0
+50
+100
+150
+1
+2.5
+5
+10
+20
+40
+80
+160
+320
+R3
+a
+b
+c
+d
+e
+f
+g
+h
+T10.C
+T10
+Cell viability (%)
+0
+50
+100
+150
+1
+2.5
+5
+10
+20
+40
+80
+160
+320
+R1
+T2.5.C
+T2.5
+Round 1
+Round 2
+0
+50
+100
+150
+C
+P320.1
+P320.2
+Cell viability (%)
+1
+2.5
+5
+10 20 40 80 160320
+[olaparib] µM
+IC50 (µM)
+P = 0.03
+ns
+C
+P320.1
+P320.2
+0
+1
+2
+3
+4
+T5
+T5-E
+T10
+0
+5
+10
+15
+P = 0.01
+P = 0.002
+IC50 (µM)
+T5
+T5-E
+T10
+0
+5
+10
+15
+Relative cell count
+ns
+P = 0.0008
+10µM
+T20
+T20-E
+T40
+0
+5
+10
+15
+20
+ns
+P = 0.026
+IC50 (µM)
+T20
+T20-E
+T40
+0
+5
+10
+15
+Relative cell count
+40µM
+P = 0.02
+P = 0.02 
+Relative cell count
+ns
+ns
+T80
+T80-E
+T160
+0
+2
+4
+6
+8
+10
+T80
+T80-E
+T160
+0
+10
+20
+30
+40
+50
+IC50 (µM)
+P = 0.02
+ns
+160µM
+0
+50
+100
+150
+R1
+Cell viability (%)
+1
+2.5
+5
+10
+20
+40
+80
+160
+320
+[olaparib] µM
+IC50
+0
+5
+10
+15
+20
+C
+T1
+T2.5
+T5
+T10
+1
+2.5
+5
+10
+20
+40
+80
+160
+320
+0
+50
+100
+150
+C
+T1
+T2.5
+T5
+T10
+0
+5
+10
+15
+IC50
+0
+5
+10
+15
+C
+T1
+T2.5
+T5
+T10
+IC50
+0
+1.10⁶
+2.10⁶
+3.10⁶
+4.10⁶
+Cell count
+ns
+T2.5.C
+T2.5
+T2.5.C
+T2.5
+T5.C
+T5
+0
+2.10⁵
+4.10⁵
+6.10⁵
+3.10⁶
+4.10⁶
+5.10⁶
+6.10⁶
+Cell count
+P < 0.0001
+T10.C
+T10
+0
+1×10³
+2×10³
+3×10³
+4×10³
+5×10⁵
+1×10⁶
+1.5×10⁶
+Cell count
+P < 0.0001
+T5.C
+T5
+1
+2.5
+5
+10
+20
+40
+80
+160
+320
+R1
+0
+50
+100
+150
+Cell viability (%)
+T5.C
+T5
+0
+50
+100
+150
+1
+2.5
+5
+10
+20
+40
+80
+160
+320
+R2
+0
+2
+4
+6
+150
+0
+50
+100
+1
+2.5
+5
+10
+20
+40
+80
+160
+320
+R2
+T2.5.C
+T2.5
+R3
+1
+2.5
+5
+10
+20
+40
+80
+160
+320
+0
+50
+100
+150
+T2.5.C
+T2.5
+0
+50
+100
+150
+1
+2.5
+5
+10
+20
+40
+80
+160
+320
+R3
+T5.C
+T5
+0
+2
+4
+6
+8
+IC50
+T5.C
+T5
+ns
+P = 0.04
+IC50
+Extended Data Fig. 2 | See next page for caption.
+
+
+===== PAGE 17 =====
+Article
+Extended Data Fig. 2 | Drug-adaptation in acute versus gradual dose 
+exposure and treatment duration. a, Generation of drug-tolerant persisters 
+for Kuramochi cell line by treatment with 320 μM of olaparib for 9 days. The 
+surviving cells were allowed to recover for 9 days without treatment. Two rounds 
+of treatment-recovery experiments were performed in triplicates and the 
+viability of the recovering cells was tested. Cell viability curves are shown as the 
+average of three replicates (n = 6 technical replicates) and error bars as SD. The 
+bar plot shows no significant IC50 increase for persisters relative to the parental 
+population (C vs P320.1: P = 0.03; ns, not significant; two-tailed t-tests).  
+b–d, Extended treatments at constant doses. Representative Kuramochi adapted 
+lines (T5, T20 and T80) were maintained on olaparib treatment at the final 
+concentrations to which they had adapted (5, 20 and 80 μM, respectively) for 
+the number of days that they had taken to adapt to their subsequent populations 
+at increased concentrations (T10, T40, T160, respectively) (see Fig. 1a), generating 
+the extended T5-E, T10-E and T80-E populations (three independent replicates). 
+Prolonged exposure at constant doses did not generate similarly resistant 
+populations for the T5 and T20 extended treatments when compared to their 
+dose-escalated counterparts (T10 and T40, respectively). The extended 
+treatments did however lead to higher resistance relative to their parental 
+populations. The cells from the T80 extended treatments were similarly resistant 
+to T160, highlighting the role of treatment duration. Together, these observations 
+indicate that both dose and time influence the fitness outcomes along the 
+adaptive path. Cell viability was measured by CellTiter Glo 2.0 (each biological 
+replicate with 6 technical replicates) and by cell counting (bar plots show the 
+average of three biological replicates and error bars as SD) after 9 days of 
+treatment at their respective escalated doses (10, 40 and 160 μM). IC50 (left bar 
+plots) and relative cell counts (right bar plots) were compared with their parental 
+and dose-escalated populations (significant P-values are shown; ns, not 
+significant; two-tailed t-tests). Dose response curves for the original T5, T10, 
+T20, T40, T80 and T160 are from Fig. 1b as performed in 3 independent 
+experiments. e–h, To test whether dose escalation facilitates drug adaptation 
+in our model, we compared the resistance phenotypes between cells that were 
+dose-escalated from 1 to 10 μM with drug-naive cells directly exposed to the 
+same doses for the same duration. Dose-escalated cells were able to proliferate 
+and reach confluency, contrasting with drug-naive cells directly exposed to 
+higher doses (5 and 10 μM). The continuous long-term 10 μM treatment led to 
+very few viable cells, which prevented us from testing their fitness with viability 
+assays (h). The populations that were dose-escalated up to 2.5 μM were 
+significantly more resistant than their continuously treated counterparts. 
+Plots indicate dose-response curves for three biological replicates (R1, R2, R3; 
+6 technical replicates each) and bar plots of average IC50 values (3 biological 
+replicates with SD error bars). Bar plots (right) showing the average cell counts 
+in f-h for the 3 biological replicates with SD error bars. Cell viability assays and 
+cell counts (treated with 2.5, 5 and 10 μM of olaparib, respectively) after the 
+treatment periods are shown and compared with the dose-escalated populations 
+(P-values are indicated; ns, not significant; two-tailed t-tests). Microscopic 
+photos show that T10 (dose-escalated) cells reached confluency while T10.C 
+(continuous) did not (scale bar 50 μm).
+
+
+===== PAGE 18 =====
+OVSAHO (HGSOC)
+C
+T5
+T10
+T20
+T40
+C
+T5
+T10
+T20
+T40
+Correlation
+0.8
+0.85
+0.9
+0.95
+1
+a
+b
+c
+d
+Treatment
+C
+T5
+T10
+T20
+T40
+Cluster
+0
+1
+2
+3
+4
+Cluster
+0
+25
+50
+75
+100
+C
+T5
+T10
+T20
+T40
+% of cells
+0
+1
+2
+3
+4
+UMAP1
+UMAP2
+4
+3
+2
+1
+0
+SOX17
+PAX8
+WT1
+KRT8
+IFI27
+ISG15
+VIM
+CD24
+CD44
+HIF1A
+DDIT4
+DUSP1
+PGK1
+LDHA
+IMPDH2
+GPX4
+FTH1
+FTL
+ATF4
+PHGDH
+ASNS
+GDF15
+TKT
+SOD2
+AKR1B1
+NQO1
+SQSTM1
+NRF2
+−1
+0
+1
+scaled
+mean expression
+25
+50
+75
+100
+Percent of cells
+ATF4-regulation
+NRF2-regulation/
+Redox balance
+Nucleotide metabolism
+Hypoxia/Glycolysis
+Ferroptosis/
+Iron homeostasis
+Dedifferentiation
+Interferon
+EMT/Stemness
+e
+COV362 (HGSOC)
+C
+T5
+T10
+T20
+T40
+C
+T5
+T10
+T20
+T40
+Correlation
+0.7
+0.8
+0.9
+1
+f
+g
+h
+i
+Treatment
+C
+T5
+T10
+T20
+T40
+Cluster
+0
+1
+2
+0
+25
+50
+75
+100
+C
+T5
+T10
+T20
+T40
+% of cells
+0
+1
+2
+Cluster
+UMAP1
+UMAP2
+j
+2
+1
+0
+SOX17
+PAX8
+KRT8
+IFI27
+IFI35
+FN1
+VIM
+CD44
+SMAD3
+HIF1A
+CITED2
+SGK1
+PGK1
+PFKP
+ACLY
+MBOAT7
+CTPS1
+TYMS
+GPX4
+FTH1
+FTL
+PHGDH
+SHMT2
+ASNS
+GSTP1
+GDF15
+TKT
+SOD2
+AKR1B1
+GGH
+GSTM3
+PRDX1
+CYP1B1
+TXNRD1
+SQSTM1
+NRF2
+−1
+0
+1
+scaled
+mean expression
+Percent of cells
+25
+50
+75
+100
+Nucleotide metabolism
+Hypoxia/Glycolysis
+Lipid metabolism
+Dedifferentiation
+Interferon
+EMT/Stemness
+ATF4-regulation
+NRF2-regulation/Redox balance
+Ferroptosis/Iron homeostasis
+C
+P10
+P320
+T10-1
+T320
+T10-2
+k
+C
+P10
+P320
+T10
+T320
+Treatment
+T320
+T10-2
+T10-1
+P320
+P10
+C
+SOX17
+PAX8
+WT1
+KRT8
+CDKN2A
+IFI27
+ISG15
+STAT1
+JAK1
+IFITM3
+VIM
+TGFBI
+FN1
+CD24
+CD44
+SMAD3
+HIF1A
+DDIT4
+DUSP1
+CITED2
+PGK1
+PFKP
+LDHA
+SCD
+IMPDH2
+GPX4
+FTH1
+FTL
+HMOX1
+TKT
+AKR1B1
+AKR1C3
+TXNRD1
+NQO1
+SQSTM1
+NRF2
+Percent of cells
+25
+50
+75
+100
+−1 0
+1
+2
+scaled
+mean expression
+Hypoxia/Glycolysis
+Lipid metabolism
+EMT/Stemness
+Nucleotide metabolism
+NRF2-regulation/Redox balance
+Ferroptosis/Iron homeostasis
+Dedifferentiation
+Interferon
+Cell cycle
+l
+UMAP1
+UMAP2
+Kuramochi: Persisters vs Adapted
+10 µM
+P10
+C
+olaparib (9 d)
+T10
+T10
+10 µM
+T320
+T320
+320 µM
+P320
+320 µM
+C
+Extended Data Fig. 3 | See next page for caption.
+
+
+===== PAGE 19 =====
+Article
+Extended Data Fig. 3 | scRNA-Seq analysis for two additional ovarian cancer 
+adapted cell lines. a, Spearman’s correlations across the averaged transcriptomes 
+of the Ovsaho olaparib-adapted lines. Untreated control (C) and T5 to T40 were 
+collected for scRNA-Seq. b-c, UMAP of Ovsaho scRNA-seq data on the adapted 
+lines colored by treatment (b) and by cluster as determined by Louvain 
+clustering (c), highlighting the emergence of distinct cellular states. d, Bar plot 
+representing the percentage of cells from each condition in each cluster, 
+indicating cell state frequency changes across the adapted lines. e, Differentially 
+expressed genes across Ovsaho clusters, highlighting the expression of shared 
+genes with Kuramochi (Fig. 2a), COV362 (Extended Data Fig. 3j) and PDX 
+resistance models (Fig. 4f). Color bar represents the scaled average expression 
+for a particular cluster and circle sizes are the fraction of cells expressing the 
+gene. Overall, genes highlight dedifferentiation and metabolic reprogramming 
+along the resistance continuum. f, Same as in a for COV362. g-h, Same as in b 
+and c for COV362, respectively. i-j, Same as in d and e for COV362, respectively. 
+k, Drug-tolerant persisters generation by treatment of drug-naive cells with 10 
+and 320 μM of olaparib for 9 days. The adapted T10 and T320 lines were 
+maintained at the same doses, respectively (left, scale bar 50 μm, representative 
+of two biological replicates). UMAP of the scRNA-Seq data for the persister and 
+adapted cell populations (right). Phenotypic features of persisters are shown in 
+Supplementary Fig. 2. l, Differentially expressed genes across conditions 
+(relative to C) highlighting shared and distinct marker gene expression among 
+the persister and adapted lines.
+
+
+===== PAGE 20 =====
+A375 (Melanoma)
+a
+b
+Cluster
+0
+1
+2
+3
+4
+5
+6
+7
+d
+e
+0
+25
+50
+75
+100
+C
+T003
+T006
+T0125
+T0250
+T0500
+T1
+T2
+T4
+% of cells
+0
+1
+2
+3
+4
+5
+6
+7
+Cluster
+0
+1
+2
+C
+0
+1
+2
+0
+1
+2
+3
+T003
+0
+1
+3
+2
+0
+1
+2
+T006
+0
+1
+2
+0
+1
+2
+T0125
+0
+1
+2
+0
+1
+2
+3
+T0250
+0
+1
+2
+3
+0
+1
+2
+T0500
+0
+1
+2
+0
+1
+2
+3
+4
+T1
+0
+1
+2
+3
+4
+0
+1
+2
+3
+T2
+0
+1
+2
+3
+0
+1
+2
+3
+T4
+0
+1
+3
+2
+UMAP1
+UMAP2
+T003
+C
+T006
+T0125
+T0250
+T05
+T1
+T2
+T4
+T003
+C
+T006
+T0125
+T0250
+T05
+T1
+T2
+T4
+Correlation
+0.7
+0.8
+0.9
+1
+C
+T003
+T006
+T0125
+T0250
+T0500
+T1
+T2
+T4
+Treatment
+c
+UMAP1
+UMAP2
+PC9 (LUAD)
+g
+h
+C
+P1.2
+T0008
+T0016
+T0032
+T0075
+T0150
+T0300
+T0600
+T1.2
+C
+P1.2
+T0008
+T0016
+T0032
+T0075
+T0150
+T0300
+T0600
+T1.2
+Correlation
+0.8
+0.85
+0.9
+0.95
+1
+0
+C
+0
+0
+1
+T0008
+0
+1
+0
+1
+T0016
+0
+1
+0
+1
+2
+T0032
+0
+1
+2
+0
+1
+2
+T0075
+0
+1
+T0150
+0
+1
+0
+1
+T0300
+0
+1
+0
+1
+T0600
+0
+1
+0
+1
+T1.2
+0
+1
+UMAP1
+UMAP2
+Treatment
+C
+P1.2
+T0008
+T0016
+T0032
+T0075
+T0150
+T0300
+T0600
+T1.2
+Cluster
+0
+1
+2
+3
+4
+k
+0
+25
+50
+75
+100
+C
+P1.2
+T0008
+T0016
+T0032
+T0075
+T0150
+T0300
+T0600
+T1.2
+% of cells
+Cluster
+0
+1
+2
+3
+4
+j
+i
+UMAP1
+UMAP2
+7
+6
+5
+4
+3
+2
+1
+0
+SOX10
+CD74
+HLA−DRA
+HLA−DRB1
+FOS
+JUN
+GAS7
+DCT
+NGFR
+MITF
+RAP1B
+TMSB4X
+ROBO1
+BMP5
+SYT4
+TRPC4
+FOXP1
+EXT1
+SOX9
+FN1
+HIF1A
+PFKP
+GPX4
+FTH1
+FTL
+IMPDH2
+ATF4
+PHGDH
+SHMT2
+PSAT1
+GSTP1
+GSTK1
+MGST1
+MGST3
+SLC3A2
+TKT
+TALDO1
+AKR1B1
+AKR1C3
+TXNRD1
+CYP1B1
+−1 0 1 2
+scaled
+mean expression
+Percent of cells
+0
+25
+50
+75
+100
+Nucleotide metabolism
+ATF4-regulation
+NRF2-regulation/
+Redox balance
+Hypoxia/Glycolysis
+Ferroptosis/
+Iron homeostasis
+Dedifferentiation
+MHC II
+EMT
+f
+4
+3
+2
+1
+0
+KRT6A
+CD44
+CD24
+TMSB4X
+LCN2
+NFKBIA
+HLA−A
+FTH1
+AKR1B1
+AKR1C1
+SQSTM1
+TXNRD1
+TKT
+GCLM
+CDKN3
+MKI67
+PTTG1
+TUBA1B
+SCD
+G6PD
+SLC7A11
+GLS
+GSTK1
+MGST3
+TSTD1
+Percent of cells
+25
+50
+75
+100
+−1
+0
+1
+scaled
+mean expression
+NRF2-regulation/
+Redox balance
+Lipid metabolism
+Cell cycle
+Ferroptosis/
+Iron homeostasis
+Immune response
+Dedifferentiation
+EMT/Stemness
+l
+0
+1
+2
+Extended Data Fig. 4 | See next page for caption.
+
+
+===== PAGE 21 =====
+Article
+Extended Data Fig. 4 | scRNA-Seq analysis for the melanoma and lung 
+adenocarcinoma adapted lines. a, Spearman’s correlations across the averaged 
+transcriptomes of the A375 (melanoma) adapted lines that evolved resistance 
+through dose-escalation from 30 nM to 4 μM of dabrafenib (Extended Data 
+Fig. 1e,f). b, UMAP of scRNA-seq data on the individual lines. Colors and numbers 
+indicate subpopulations determined by Louvain clustering. c-d, UMAP for all 
+cells colored by treatment (c) and by cluster as determined by Louvain clustering (d), 
+highlighting distinct transcriptional states across the adapted lines. e, Bar plot 
+representing the percentage of cells from each condition in each cluster, indicating 
+the emergence of cell states and frequency changes that suggest state selection 
+along the resistance continuum. f, Differentially expressed genes across A375 
+clusters, highlighting the expression of lineage plasticity and metabolic 
+reprogramming markers across the resistance continuum. Differentiation 
+markers indicate multiple intermediate states, showing a progression from 
+SOX10high (clusters 0-3) to SOX10low expression (clusters 4-7) and loss of MHC 
+class II genes (CD74, HLDA-DRA/B) (Supplementary Table 4). Diverse lineage 
+states arise along the resistance path, such as cells expressing both melanocytic 
+(DCT, MITF) and neural-crest (NGFR) lineage markers (cluster 3); a population 
+expressing highly MITF, RAP1B and TMSB4X (cluster 4); cells expressing neuronal 
+markers (ROBO1, BMP5, SYT4) (cluster 5); and finally a mesenchymal-like invasive 
+state (SOX9, FN1) (clusters 6-7, Supplementary Table 4). A gradual increase in 
+the expression of ATF4 and NRF2 regulated genes toward the most resistant 
+states (clusters 4 to 7), indicating extensive metabolic rewiring. Color bar 
+represents the scaled average expression for a particular cluster and circle sizes 
+are the fraction of cells expressing the gene. g-h, Same as in a and b for PC9 
+(lung adenocarcinoma), respectively. Adapted lines evolved resistance through 
+dose-escalation from 8 nM to 1.2 μM of osimertinib (Extended Data Fig. 1g,h).  
+A persister population (P1.2) was generated by treatment with 1.2 μM of 
+osimertinib for 9 days. i-l, Same as in c-f for PC9, respectively, including a 
+persister population (P1.2, i). PC9 cells transitioned to a KRT6Alow low expression 
+and coexist in a combination of CD44highCD24low and CD44lowCD24high states (l) 
+(Supplementary Table 5).
+
+
+===== PAGE 22 =====
+6.30
+62.6
+35.4
+T1
+100
+101
+102
+103
+104
+100
+101
+102
+103
+104
+17.6
+33.4
+59.9
+T2.5
+CD44
+CD24
+0.0
+0.3
+0.6
+0.9
+0.0
+0.5
+1.0
+1.5
+2.0
+CD44 (log2(TPM))
+C
+S1
+S2
+S3
+S4
+S5
+State
+a
+0.0
+0.3
+0.6
+0.9
+0.0
+0.5
+1.0
+1.5
+2.0
+CD44 (log2(TPM))
+CD24 (log2(TPM))
+C
+T1
+T2.5
+T5
+T10
+T20
+T40
+T80
+T160
+T320
+Treatment
+7.38
+68.7
+90.0
+T20
+CD24 CD44
+-
+++
+21.9
+24.4
+69.5
+T5
+CD24 CD44
+-
+++
+6.53
+79.9
+90.9
+T40
+CD24 CD44
+-
++++
+6.83
+33.5
+76.7
+T10
+CD24 CD44
+-
+++
+CD24 CD44
+-
++
+CD24 CD44
+-
++++
+6.81
+80.1
+92.8
+T80
+100
+101
+102
+103
+104
+100
+101
+102
+103
+104
+CD44
+CD24
+CD24 CD44
+-
++++
+2.88
+71.0
+97.0
+T160
+CD24 CD44
+-
++++
+25.6
+59.9
+74.3
+T320
+CD24 CD44
+-
++++
+CD44
+1.95
+89.3
+100
+101
+102
+103
+104
+100
+101
+102
+103
+104
+9.47
+C
+CD24
+b
+CD24 CD44
++
++
+c
+0
+25
+50
+75
+100
+125
+150
+Cell viability (%)
+1
+2.5
+5
+10
+20
+40
+80 160 320
+[olaparib] µM
+T10 (CD24 CD44)
+-
++
+T10 (CD24 CD44)
+-
++++
+T40 (CD24 CD44)
+-
++++
+C (CD24 CD44)
++
++
+T320(CD24 CD44)
+-
++++
+0
+20
+40
+60
+80
+IC50 (µM)
+Extended Data Fig. 5 | Expression of CD24 and CD44 as a proxy for adapted 
+states in Kuramochi cells. a, Scatter plot showing the average expression of 
+CD24 and CD44 markers in each of the identified subpopulations colored by 
+treatment condition (left) and state (right). b, Representative plots of the flow 
+cytometry analysis of CD24 and CD44 staining across the Kuramochi adapted 
+populations. Bottom left quadrants represent double negative staining for 
+both markers. A transition from CD24highCD44low (top right) to CD24lowCD44high 
+(bottom right quadrants) is observed. Numbers indicate the percentage of 
+cells in each quadrant. Colored squares indicate the subpopulations sorted for 
+the cell viability assays shown in (c), ATAC-Seq (Fig. 3) and CRISPR-based screen 
+(Fig. 5). c, Cell viability assays of sorted subpopulations indicating differential 
+resistance within (T10) and between (T10, T40, T320) treatment conditions. 
+Sorted subpopulations were labeled according to their CD24/CD44 profiles. 
+Bar plots show the IC50 averages of two independent experiments (6 technical 
+replicates each).
+
+
+===== PAGE 23 =====
+Article
+j
+C-Slug0
+C-Slug1
+T320
+T5
+C
+100 µm
+0
+10
+20
+30
+40
+50
+60
+0
+20
+40
+60
+80
+100
+DMSO
+Days elapsed
+Confluence (%)
+C
+T5
+T40
+T320
+C-Slug0
+C-Slug1
+C
+T5
+T320
+C-Slug1
+C-Slug0
+0
+20
+40
+60
+80
+100
+Confluence (%)
+P = 0.0093
+0
+10
+20
+30
+40
+Slug (SNAI2)
+Expression Fold Change
+P <0.0001
+C
+T5
+T40
+T320
+C-Slug0
+C-Slug1
+k
+Invasion quantification
+m
+42kDa β-actin
+30 kDa Slug
+C
+T5
+T40
+T320
+C-Slug0
+C-Slug0.01
+C-Slug0.1
+C-Slug1
+l
+0
+50
+100
+150
+200
+Normalized Signal
+C
+T5
+T40
+T320
+C-Slug0
+C-Slug1
+b
+55kDa SOX17
+42kDa β-actin
+T320 + SOX17
+C
+T320
+C
+T320
+T320 + SOX17
+0
+100
+200
+300
+400
+500
+Normalized Signal
+a
+55kDa SOX17
+42kDa β-actin
+Neg. ctrl
+SOX17  #1
+SOX17  #2
+SOX17 #3
+c
+C  
+scrambled 
+SOX17  #1 
+SOX17  #2 
+SOX17  #3 
+T5 
+T40 
+T320 
+0
+20
+40
+60
+80
+100
+Norm. confluence (%  of control)
+P = 0.01
+P = 0.02
+ns
+P = 0.004
+P = 0.008
+d
+P = 0.05
+0
+50
+100
+150
+Normalized Signal
+Neg. ctrl
+SOX17  #1
+SOX17 #2
+SOX17  #3
+0.14
+0.16
+0.18
+0.20
+0.22
+0.24
+C
+T1
+T2.5
+T5
+T10
+T20
+T40
+T80
+T160
+T320
+EMT Score +/−SD
+Treatment
+C
+T1
+T2.5
+T5
+T10
+T20
+T40
+T80
+T160
+T320
+e
+Kuramochi
+0.14
+0.16
+0.18
+0.20
+C
+T5
+T10
+T20
+T40
+EMT Score +/−SD
+Treatment
+C
+T5
+T10
+T20
+T40
+f
+OVSAHO
+0.14
+0.16
+0.18
+0.20
+0.22
+C
+T5
+T10
+T20
+T40
+EMT Score +/−SD
+Treatment
+C
+T5
+T10
+T20
+T40
+g
+COV362
+0.150
+0.175
+0.200
+0.225
+C
+T003
+T006
+T0125
+T0250
+T05
+T1
+T2
+T4
+EMT Score +/−SD
+Treatment
+C
+T003
+T006
+T0125
+T0250
+T05
+T1
+T2
+T4
+h
+A375
+i
+PC9
+0.150
+0.175
+0.200
+EMT Score +/−SD
+Treatment
+C
+P1.2
+T0008
+T0016
+T0032
+T0075
+T0150
+T0300
+T0600
+T1.2
+C
+T0008
+P1.2
+T0016
+T0032
+T0075
+T0150
+T0300
+T0600
+T1.2
+olaparib 5 µM
+0
+10
+20
+30
+40
+50
+60
+70
+80
+90
+100
+Days elapsed
+Confluence (%)
+T320
+T320 +
+SOX17
+0
+5
+10
+15
+20
+EF-1α
+SV40
+SOX17
+PuroR
+T320 SOX17
+o/e
+resistance
+imaging
+time
+proliferation
+0
+10
+20
+30
+40
+50
+60
+70
+80
+90
+100
+DMSO
+Days elapsed
+Confluence (%)
+T320
+T320 +
+SOX17
+0
+10
+15
+5
+20
+Extended Data Fig. 6 | See next page for caption.
+
+
+===== PAGE 24 =====
+Extended Data Fig. 6 | EMT signatures and perturbation of lineage plasticity 
+in drug resistance. a, Western blot of the induced SOX17 in the T320 line 
+compared to the parental control (C) cells (three technical replicates). Bar plot 
+shows the quantification signal. Full western blot shown in Supplementary 
+Fig. 6. b, Schematic of the constitutive SOX17 overexpression construct (top). 
+Quantification by live cell imaging of the percent area covered by cells over a  
+20 day time period of T320 parental and T320 with SOX17 overexpression on 
+DMSO (left) and on olaparib (5 μM) treatment (right). Average and SD of three 
+biological replicates (three technical replicates each) shown. c, Western blot of 
+SOX17 shRNA knockdown in parental control (C) cells compared to non-targeting 
+scrambled shRNA (three technical replicates). Bar plot shows the quantification 
+signal. Full western blot shown in Supplementary Fig. 7. d, Quantification of 
+SOX17 shRNA knockdown in parental control (C) cells and adapted T5, T40 and 
+T320 by live cell imaging (three biological replicates, three technical replicates 
+each) of the percent area covered by cells normalized by DMSO controls on day 
+five of treatment of 2.5 μM olaparib. Standard two-sided t-test was performed 
+by comparing with the negative control cells (Neg. Ctrl) (SOX17 #1: P = 0.01; 
+SOX17 #2: P = 0.02; SOX17 #3: P = 0.05; T40: P = 0.004; T320: P = 0.008; ns: not 
+significant). e-i, EMT signature scores were calculated across treatment conditions 
+for each resistance model. The set of genes annotated as “Hallmark epithelial-
+mesenchymal transition” from the MSigDB was used to calculate the scores 
+with the UCell algorithm. Violin plots represent the score distributions with the 
+average plus and minus SD. Numbers of cells are: (e) C (N = 453), T1 (N = 1223), 
+T2.5 (N = 760), T5 (N = 398), T5 (N = 398), T10 (N = 1030), T20 (N = 640), T40 (N = 918), 
+T80 (N = 910), T160 (N = 1348), T320 (N = 568); (f) C (N = 840), T5 (N = 713),  
+T10 (N = 704), T20 (N = 731), T40 (N = 650); (g) C (N = 1148), T5 (N = 180), T10 
+(N = 278), T20 (N = 447), T40 (N = 272); (h) C (N = 442), T003 (N = 478), T006 
+(N = 906), T0125 (N = 306), T0250 (N = 733), T05 (N = 493), T1 (N = 605), T2 
+(N = 641), T4 (N = 455); (i) C (N = 169), P1.2 (N = 673), T0008 (N = 329), T0016 
+(N = 528), T0032 (N = 414), T0075 (N = 505), T0150 (N = 329), T0300 (N = 442), 
+T0600 (N = 424), T1.2 (N = 395). j, Representative images (biological duplicates) 
+of stained membranes from a transwell cell invasion assay. Colors represent the 
+untreated cells (C), adapted lines T5 and T320 and the Slug-lines on different 
+doxycycline (dox) concentrations (C-Slug0 as negative and C-Slug1 on 1 μg/ml of 
+dox). Quantification of transwell cell invasion assay data of three images per 
+cell line (right). One way ANOVA comparing Slug-induced (SNAI2) lines to the 
+drug-naive (C) cell line. k, Quantification of induced SNAI2 gene expression 
+from qRT-PCR (two independent runs in triplicates). One way ANOVA comparing 
+Slug-induced lines to the drug-naive (C) cell line. l, Representative western blot 
+(three technical replicates) of the induced Slug lines with different doxycycline 
+concentrations ranging from 0.01 μg/ml to 1 μg/ml. We observed that C-Slug1 
+produced a relevant phenotype, which was used for further experiments. Bar 
+plot shows the quantification signal. Full western blot shown in Supplementary 
+Fig. 8. m, Quantification by live cell imaging of DMSO controls For Slug-induced 
+lines. Data represents percent area covered by cells over a 54 day time period. 
+Average and SD of three biological replicates (three technical replicates each) 
+are shown.
+
+
+===== PAGE 25 =====
+Article
+T5
+0
+1
+1
+2
+3
+4
+5
+6
+7
+8
+9 10 11 12 131415 16
+17 18 19 202122
+T2.5
+0
+1
+2
+3
+1
+2
+3
+4
+5
+6
+7
+8
+9 10 11 12 131415 16
+17 18 19 202122
+0
+1
+2
+3
+T1
+cluster
+chr
+1
+2
+3
+4
+5
+6
+7
+8
+9 10 11 12 131415 16
+17 18 19 202122
+T40
+0
+2
+1
+1
+2
+3
+4
+5
+6
+7
+8
+9 10 11 12 131415 16
+17 18 19 202122
+1
+2
+3
+4
+5
+6
+7
+8
+9 10 11 12 131415 16
+17 18 19 202122
+T10
+0
+1
+2
+3
+1
+2
+3
+4
+5
+6
+7
+8
+9 10 11 12 131415 16
+17 18 19 202122
+T20
+0
+2
+1
+0.8
+1
+1.2
+modified expression
+a
+P320
+1
+2
+3
+4
+5
+6
+7
+8
+9 10 11
+12 13141516 1718 19 202122
+P10
+1
+2
+3
+4
+5
+6
+7
+8
+9 10 11
+1213141516 1718 19 202122
+T320
+0
+1
+2
+1
+2
+3
+4
+5
+6
+7
+8
+9 10 11 12 131415 16
+17 18 19 202122
+T160
+0
+1
+2
+1
+2
+3
+4
+5
+6
+7
+8
+9 10 11 12 131415 16
+17 18 19 202122
+T80
+0
+1
+2
+1
+2
+3
+4
+5
+6
+7
+8
+9 10 11 12 131415 16
+17 18 19 202122
+1
+2
+3
+4
+5
+6
+7
+8 9 10
+11
+1213141516 17 18 19 202122
+cluster
+0
+1
+2
+3
+4
+sample
+T10
+T20
+T40
+T5
+OVSAHO
+1
+2
+3
+4
+5
+6
+7
+8
+9 10
+11
+12 131415 16 17 18 19 202122
+cluster
+0
+1
+2
+sample
+T10
+T20
+T40
+T5
+COV362
+c
+ p−value:  0.0001 
+ Z−score:  11.606 
+Number of overlaps
+Number of overlaps
+Number of overlaps
+60
+80
+100
+120
+140
+160
+0.00
+0.01
+0.02
+0.03
+0.04
+0.05
+r
+obs
+ p−value:  0.0001 
+ Z−score:  5.269 
+20
+30
+40
+50
+0.00
+0.02
+0.04
+0.06
+0.08
+obs
+ p−value:  0.0001 
+ Z−score:  9.224 
+10
+20
+30
+40
+50
+60
+70
+0.00
+0.02
+0.04
+0.06
+0.08
+obs
+0.05
+
+0.05
+
+0.05
+
+T320 Copy number loss genes x Module A genes
+T320 Copy number gain genes x Module D genes
+T320 Copy number gain genes x Module E genes
+b
+0.8
+1
+1.2
+modified expression
+0
+1
+4
+2
+3
+1
+2
+0
+Extended Data Fig. 7 | See next page for caption.
+
+
+===== PAGE 26 =====
+Extended Data Fig. 7 | Copy number inference from scRNA-seq data for the 
+adapted and persister lines. a, Heat maps depicting scRNA-Seq inferred copy 
+number alterations (CNAs) for Kuramochi adapted and persister lines relative 
+to untreated control (C). Gene expression signal is scaled along the chromosomes 
+as calculated by inferCNV. Red represents genomic regions with inferred copy 
+number gain and blue represents regions with inferred copy number loss. 
+Colors and labels on the left represent the subpopulations identified by 
+transcriptome clustering (Fig. 1d) showing correspondence between inferred 
+CNAs and transcriptional states. b, Enrichment of genes within CNA regions 
+identified by whole-exome sequencing overlapping with the genes present in 
+the transcriptional modules detected for the adapted lines (Fig. 2a) in respect 
+to random distributions (P-values determined by 10,000 permutations, two-
+sided permutation tests). Blue and red lines indicate the observed overlap of 
+copy number loss and gain, respectively, and the gray lines indicate the 
+significance threshold in an expected random distribution. c, Inferred CNAs 
+defined for the adapted Ovsaho and COV362 lines relative to their untreated 
+controls. Color annotations represent sample and transcriptional clusters 
+identified in Extended Data Fig. 3c,h.
+
+
+===== PAGE 27 =====
+Article
+a
+25000
+35000
+45000
+55000
+65000
+75000
+2000
+4000
+6000
+8000 10000 12000 14000
+Total differentially accessible peaks
+Total detected peaks
+Sample
+P10
+P320
+T5
+T10
+T20
+T40
+T80
+T160
+T320
+rho = -0.62
+p-value = 0.07
+b
+Number of overlaps
+ p−value:  0.001 
+ Z−score:  40.184 
+600 800 1000
+1400
+0.000
+0.005
+0.010
+0.015
+p
+obs
+ p−value:  0.001 
+ Z−score:  52.67 
+600
+1000
+1400
+1800
+0.000
+0.005
+0.010
+0.015
+p
+obs
+T320 CN loss x Less accessible peaks
+T320 CN gain x More accessible peaks
+0.05
+
+0.05
+
+ p−value:  0.001 
+ Z−score:  32.939 
+300 400 500 600 700 800
+0.000
+0.005
+0.010
+0.015
+0.020
+0.025
+0.030
+obs
+ p−value:  0.001  Z−score:  49.787 
+400 600 800
+1200
+1600
+0.000
+0.005
+0.010
+0.015
+0.020
+obs
+T40 CN loss x Less accessible peaks
+T40 CN gain x More accessible peaks
+0.05
+
+0.05
+
+ p−value:  0.001 
+ Z−score:  15.412 
+100
+150
+200
+250
+0.00
+0.01
+0.02
+0.03
+obs
+obs
+ p−value:  0.001 
+ Z−score:  38.724 
+300
+500
+700
+900
+0.000
+0.005
+0.010
+0.015
+0.020
+0.025
+obs
+T10 CN loss x Less accessible peaks
+T10 CN gain x More accessible peaks
+0.05
+
+0.05
+
+c
+EHF.ETS
+ETS1.ETS
+GABPA.ETS
+Etv2.ETS
+Ets1.distal.ETS
+ETV4.ETS
+ERG.ETS
+EWS.FLI1.fusion.ETS
+Fli1.ETS
+IRF3.IRF
+IRF1.IRF
+PU.1.IRF8.ETS.IRF
+IRF8.IRF
+Elf4.ETS
+ELF1.ETS
+PU.1.ETS
+ETS.ETS
+EWS.ERG.fusion.ETS
+ELF3.ETS
+ELF5.ETS
+ISRE.IRF
+bZIP.IRF.bZIP.IRF
+IRF2.IRF
+MITF.bHLH
+MYB.HTH
+AMYB.HTH
+Rfx2.HTH
+RFX.HTH
+RUNX1.Runt
+RUNX.AML.Runt
+RUNX.Runt
+RUNX2.Runt
+NFAT.AP1.RHD.bZIP
+MafA.bZIP
+AP.2gamma.AP2
+AP.2alpha.AP2
+Fosl2.bZIP
+Jun.AP1.bZIP
+Bach2.bZIP
+Fra2.bZIP
+JunB.bZIP
+BATF.bZIP
+Atf3.bZIP
+Fra1.bZIP
+AP.1.bZIP
+MafK.bZIP
+NF.E2.bZIP
+Bach1.bZIP
+Nrf2.bZIP
+NFE2L2.bZIP
+MafB.bZIP
+NFAT.RHD
+Zic.Zf
+Elk4.ETS
+SPDEF.ETS
+Unknown.ESC.element
+Zic3.Zf
+Elk1.ETS
+ETV1.ETS
+IRF.BATF.IRF.bZIP
+Stat3.il21.Stat
+STAT1.Stat
+STAT4.Stat
+EBF1.EBF
+EBF.EBF
+Tlx
+NF1.CTF
+Smad2.MAD
+Bcl6.Zf
+STAT5.Stat
+Stat3.Stat
+Rfx6.HTH
+Pdx1.Homeobox
+TEAD1.TEAD
+TEAD3.TEA
+TEAD4.TEA
+TEAD.TEA
+TEAD2.TEA
+NF1.FOXA1.CTF.Forkhead
+Six2.Homeobox
+Six4.Homeobox
+Six1.Homeobox
+Ap4.bHLH
+MyoD.bHLH
+NF1.halfsite.CTF
+IRF4.IRF
+MyoG.bHLH
+Tcf21.bHLH
+Tcf12.bHLH
+Atoh1.bHLH
+Myf5.bHLH
+SCL.bHLH
+NeuroG2.bHLH
+Foxa3.Forkhead
+Hoxc9.Homeobox
+Rbpj1
+STAT6.Stat_1
+STAT6.Stat
+EBF2.EBF
+Fox.Ebox.Forkhead.bHLH
+NFkB.p50.p52.RHD
+NFkB.p65.Rel.RHD
+NFkB.p65.RHD
+CEBP.bZIP
+Atf4.bZIP
+CEBP.AP1.bZIP
+Chop.bZIP
+HLF.bZIP
+NFIL3.bZIP
+P10
+P320
+T5
+T10
+T10-no-CNA
+T20
+T40
+T40-no-CNA
+T80
+T160
+T320
+T320-no-CNA
+Rfx6.HTH
+MafA.bZIP
+Rfx5.HTH
+Zic.Zf
+Zic3.Zf
+Unknown.ESC.element
+FOXP1.Forkhead
+PAX5.Paired.Homeobox
+Pax8.Paired.Homeobox
+PAX6.Paired.Homeobox
+LEF1.HMG
+Tcf3.HMG
+ZNF467.Zf
+WT1.Zf
+Egr1.Zf
+Fox.Ebox.Forkhead.bHLH
+Sox6.HMG
+Sox9.HMG
+Sox15.HMG
+Sox4.HMG
+Sox17.HMG
+Sox3.HMG
+Sox2.HMG
+Sox10.HMG
+Oct4.Sox17.Homeobox
+Maz.Zf
+Zfp281.Zf
+TEAD2.TEA
+TEAD4.TEA
+TEAD.TEA
+TEAD1.TEAD
+TEAD3.TEA
+CTCF.Zf
+BORIS.Zf
+STAT4.Stat
+Stat3.il21.Stat
+Tlx
+NF1.CTF
+Stat3.Stat
+Bcl6.Zf
+Egr2.Zf
+STAT5.Stat
+NFkB.p65.RHD
+NFkB.p65.Rel.RHD
+Bach2.bZIP
+Jun.AP1.bZIP
+Fra2.bZIP
+Fosl2.bZIP
+JunB.bZIP
+BATF.bZIP
+Atf3.bZIP
+Fra1.bZIP
+AP.1.bZIP
+NF.E2.bZIP
+NFE2L2.bZIP
+Nrf2.bZIP
+Bach1.bZIP
+EKLF.Zf
+KLF6.Zf
+Znf263.Zf
+Hoxc9.Homeobox
+PBX2.Homeobox
+Pdx1.Homeobox
+Hoxb4.Homeobox
+HOXA1.Homeobox
+HOXA2.Homeobox
+NF1.halfsite.CTF
+EBF.EBF
+Ap4.bHLH
+EBF2.EBF
+EBF1.EBF
+AP.2alpha.AP2
+AP.2gamma.AP2
+Nur77.NR
+RFX.HTH
+X.box.HTH
+Rfx2.HTH
+Rfx1.HTH
+STAT6.Stat
+Six1.Homeobox
+Six4.Homeobox
+NF1.FOXA1.CTF.Forkhead
+Six2.Homeobox
+Foxa3.Forkhead
+P10
+P320
+T5
+T10
+T10-no-CNA
+T20
+T40
+T40-no-CNA
+T80
+T160
+T320
+T320-no-CNA
+Scaled
+p−value
+−4
+−2
+0
+2
+4
+Less
+More
+Peak
+accessibility
+Peaks with motif (%)
+d
+0
+20
+40
+60
+500
+1000
+1500
+2000
+2500
+−log
+(p−value)
+AP1
+0.0
+2.5
+5.0
+7.5
+100
+200
+300
+400
+500
+NRF2
+T10
+T10-no-CNA
+T40
+T40-no-CNA
+T320
+T320-no-CNA
+0
+5
+10
+15
+20
+20
+40
+60
+80
+ATF4
+More accessible
+0
+20
+40
+300
+350
+400
+−log
+(p−value)
+SOX17
+0
+10
+20
+40
+60
+80
+100
+PAX8
+T10
+T10-no-CNA
+T40
+T40-no-CNA
+T320
+T320-no-CNA
+0
+10
+20
+30
+40
+200
+250
+300
+350
+WT1
+Less accessible
+40 µM
+320 µM
+DMSO
+10 µM
+0
+2
+4
+6
+8
+0
+2
+4
+6
+8
+0
+2
+4
+6
+8
+10
+12
+14
+16
+0
+2
+4
+6
+8
+10
+12
+14
+16
+Days
+Proliferation
+320 µM
+0
+2
+4
+6
+8
+0.0
+0.5
+1.0
+1.5
+2.0
+2.5
+C
+T320
+T320W
+Sample
+e
+f
+Chromatin
+accessibility
+Less
+More
+log2(signal)
+P = 0.00013
+P = 0.12
+T320
+T320W
+T320
+T320W
+T320
+T320W
+T320
+T320W
+0.0
+2.5
+5.0
+7.5
+P = 0.74
+P < 2.22e−16
+d = -0.08
+d = 0.018
+d = 0.413
+d = 0.021
+off drug
+on drug
+off drug
+on drug
+Extended Data Fig. 8 | See next page for caption.
+
+
+===== PAGE 28 =====
+Extended Data Fig. 8 | Chromatin accessibility and stability of drug resistance. 
+a, Correlation between the number of differentially accessible peaks and total 
+number of detected peaks per sample. The lack of a positive correlation 
+indicates that the number of differentially accessible peaks are not explained 
+by peak detection bias (Spearman’s rho = −0.62, P = 0.07, two-sided Spearman 
+Rank Correlation test). b, Heat maps showing the hierarchical clustering (rows) 
+of the enriched TF motifs in the differentially more (green) and less (purple) 
+accessible peaks (relative to C). Color bar represents the scaled p-values for TF 
+motif enrichment (only transcription factors with P-value < 1e-5 were included, 
+one-sided hypergeometric test, Benjamini-Hochberg corrected). The analysis 
+controlled by peaks not overlapping CNAs (“no-CNA”) reveals the same patterns 
+when compared to all peaks. c, Enrichment of differentially accessible ATAC-Seq 
+peaks overlapping CNA regions (relative to the untreated control C) identified 
+by whole-exome sequencing for representative adaptive lines (T10, T40 and 
+T320) (P-values determined by 1,000 permutations, two-sided permutation 
+tests). Blue and red lines indicate the observed overlap of copy number loss and 
+gain, respectively, and the gray lines indicate the significance threshold from 
+the expected random distribution. The proportion of peaks not overlapping 
+CNAs ranged from 70% for less, and 80–90% for more accessible peaks, 
+highlighting widespread global chromatin changes. d, Transcription factor (TF) 
+motif enrichment analysis controlling for peaks not overlapping with CNAs, 
+showing similar frequency of peaks containing TFs motifs involved with 
+regulation of stress response (AP1, NRF2 and ATF4) and ovarian cancer TFs 
+(SOX17, PAX8 and WT1). Bar plots represent the percentage of differentially 
+accessible peaks for each condition (relative to C). Color bars represent the 
+motif enrichment P-values (one-sided hypergeometric test, Benjamini-Hochberg 
+corrected). e, Proliferation of C, T320 and T320W (which is the T320 population 
+after drug removal for 120 days) on DMSO, 10, 40 and 320 μM of olaparib for  
+8 days. The T320W exhibits partial reversibility in resistance, especially at 
+320 μM. Proliferation was measured every 2 days using Cell TiterGlo 2.0 assay 
+and values are normalized from day 0 (24 h after cell seeding). Data represents 
+the average (dots) of 6 technical replicates and error bars indicate the SD. f, Box 
+plots of the signal for less (purple) (N = 6771) and more (green) (N = 7332) 
+accessible peaks shown in Fig. 3f. This shows that the signal across the less 
+accessible regions (relative to C, Fig. 3d) both with and without treatment are 
+overall stable when comparing T320 and T320W. For the more accessible 
+regions, the signal decreases in T320W without treatment and recovers its 
+accessibility during drug treatment. P-values were determined from two-sided 
+Wilcoxon tests and the effect sizes are Cohen’s d. Boxes represent the 
+interquartile range (IQR) and centre lines represent the median. Whiskers extend 
+to the smallest and largest values within 1.5 times the IQR from the lower and 
+upper quartiles, respectively. Data points beyond the whiskers are outliers.
+
+
+===== PAGE 29 =====
+Article
+D1 = 0.13 mg/kg
+D2 = 0.23 mg/kg
+D3 = 0.33 mg/kg
+D4 = 0.66 mg/kg
+a
+Persistence
+0
+500
+1000
+1500
+2000
+0
+10
+20
+30
+40
+Tumor volume (mm³)
+R2
+ Days of treatment
+0.33 mg/kg
+Round 2
+c
+Tumor volume (mm³)
+0
+200
+400
+600
+800
+1000
+1200
+1400
+1600
+1800
+2000
+R3.1
+R3.2
+R3.V
+0
+10
+20
+30
+Round 3
+ Days of treatment
+0.33 mg/kg
+d
+V1
+V2
+D1.2
+D1.1
+D2.1
+D2.2
+D3.1
+D3.2
+D4.1
+D4.2
+CDKN2A
+DCXR
+KLF4
+MX1
+QSOX1
+SOX2
+NRF2
+FTH1
+JAK1
+NPC2
+FTL
+STAT2
+PHLDA2
+PLK2
+NFKBIA
+PARP14
+SQSTM1
+IFI27
+CDK4
+CRABP2
+LDHA
+XRCC6
+XPO1
+PCNA
+PEG10
+HMGCR
+PARP1
+GAPDH
+KRT8
+CYC1
+ENO1
+LDHB
+Scaled 
+mean
+expression
+−2
+−1
+0
+1
+2
+f
+0
+200
+400
+600
+800
+1000
+1200
+1400
+1600
+1800
+2000
+V2
+V1
+D1.1
+D1.2
+D2.2
+D2.1
+D3.1
+D3.2
+D4.1
+D4.2
+0
+10
+20
+30
+40
+50
+60
+0.33 mg/kg
+Resistance
+b
+Round 1
+0
+200
+400
+600
+800
+1000
+1200
+1400
+1600
+1800
+2000
+R1*
+R1.1
+V1
+V2
+R1.2
+0
+10
+20
+30
+40
+50
+60
+70
+80
+90 100 110 120 130 140 150 160 170 180 190
+off treatment
+ Days of treatment
+Tumor volume (mm³)
+Tumor volume (mm³)
+ Days of treatment
+0.8
+1
+1.2
+modified expression
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13 14
+15
+16
+17
+18
+19
+20 2122
+Cluster
+0
+1
+2
+3
+4
+Sample
+D4
+D2
+D3
+D1
+Persistence
+g
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13 14
+15
+16
+17
+18
+19
+20 2122
+Cluster
+5
+6
+7
+8
+9
+Sample
+R3.1
+R3.2
+R3.V
+R1.1
+R1.2
+Resistance
+H+E
+H+E
+DAPI
+CD44
+SOX17
+Merge
+Merge
+Vehicle (V1)
+Persister (D3.1)
+Resistant (R3.2)
+e
+g
+g
+(
+)
+(
+)
+Extended Data Fig. 9 | See next page for caption.
+
+
+===== PAGE 30 =====
+Extended Data Fig. 9 | Persistence and resistance model of high-grade 
+serous ovarian cancer patient-derived xenografts. a, Tumor growth curves 
+for PDXs treated with four doses of talazoparib (shades of green) and vehicle 
+controls (gray) in the persistence experiment. Each condition was collected in 
+duplicates for scRNA-Seq. Two replicates of each condition were generated 
+(indicated by “.1” and “.2”). b-d, Tumor growth curves for PDXs in first (b), 
+second (c) and third (d) rounds of talazoparib treatment in the resistance 
+experiment. A drug holiday in the first round is indicated in red. Two replicates 
+for each condition were collected for scRNA-Seq: vehicles (gray), round 1 (solid 
+pink) and round 3 (blue, with an additional vehicle treated R3.V). A replicate 
+tumor from round 1 (dashed pink) was seeded in a new cohort to generate the 
+round 2 treatment. e, Hematoxylin and eosin (H + E) staining of the entire 
+section of V1, D3.1 (persistence) and R3.2 (resistance) (column 1) and an 
+enlargement (column 2). Histology was annotated by a gynecologic pathologist. 
+The V1 tumor has the classic appearance of serous carcinoma with nests of 
+neoplastic cells with “slit-like spaces” separating strands of tumor cells. The 
+D3.1 tumor still is recognizable as serous carcinoma while more poorly 
+differentiated than V1. The R3.2 tumor has a biphasic pattern with some areas 
+that retain a recognizable papillary pattern, while it is dominated by poorly 
+differentiated/undifferentiated tumor structures with discohesive tumor 
+cells. DAPI staining (blue), CD44 (green) and SOX17 (red) as single channels 
+(columns 3-5), merged (column 6) and an enlargement (column 7). Consistent 
+with scRNA-Seq data, the well-differentiated regions in V1 highly express 
+SOX17 and lack expression of CD44, which is also observed in D3.1. Regions of 
+similar histology in R3.2 have weaker expression of SOX17 and remain to lack 
+expression of CD44 (columns 4-5). In contrast, the poorly differentiated 
+regions in R3.2 strongly express CD44 and weakly express SOX17 (columns 6-7), 
+thus indicating heterogeneous populations in different resistant states. Scale 
+bars represent 100 μm except in column 1 (1000 μm). f, Heat map of the scaled 
+gene average expression across samples of the dose-response experiment 
+(persistence), highlighting differentially expressed genes that show a dose-
+dependent trend. g, Inferred CNAs defined for the persistence and resistance 
+PDX experiments relative to their respective vehicle treated tumors. Color 
+annotations represent sample and transcriptional clusters identified in Fig. 4b,d.
+
+
+===== PAGE 31 =====
+Article
+d
+0
+50
+100
+150
+olaparib
+olaparib + CB-839
+[olaparib] µM
+1
+2.5 5
+10 20 40 80 160320
+T10
+0
+50
+100
+150
+olaparib
+olaparib + CB-839
+[olaparib] µM
+1
+2.5 5
+10 20 40 80 160 320
+T5
+0
+50
+100
+150
+Cell viability (%)
+[olaparib] µM
+1
+2.5 5
+10 20 40 80 160320
+C
+olaparib
+olaparib + CB-839
+0
+50
+100
+150
+[olaparib] µM
+1
+2.5 5
+10 20 40 80 160 320
+olaparib
+olaparib + CB-839
+T40
+0
+50
+100
+150
+T320
+[olaparib] µM
+1
+2.5 5
+10 20 40 80 160320
+olaparib
+olaparib + CB-839
+z−score
+−2
+−1
+0
+1
+2
+Inosine
+Guanosine
+5'−Methylthioadenosine
+Adenosine
+Taurine
+Guanine
+Uracil
+Hypoxanthine
+L−Lactic acid
+Hypotaurine
+Uridine
+Niacinamide
+Cytidine
+Phosphoserine
+L−Threonine
+Glutathione
+N−Acetylserine
+L−Acetylcarnitine
+Butyrylcarnitine
+Ureidopropionic acid
+N−Acetyl−L−alanine
+Phosphocreatine
+Phosphorylcholine
+L−Glutamine
+D−2−Hydroxyglutaric acid
+L−Aspartic acid
+Valerylcarnitine
+Pantothenic acid
+Uridine diphosphate glucose
+Uridine 5'−diphosphate
+Inosinic acid
+Carnosine
+Xanthine
+FAD
+cis−Aconitic acid
+Glucose 6−phosphate
+C_1
+C_2
+C_3
+T320_1
+T320_2
+T320_3
+C
+no drug
+C
+T320
+T320
+5'−Methylthioadenosine
+Ribose 1−phosphate
+L−Lactic acid
+N−Acetylglutamic acid
+Hypoxanthine
+Guanine
+Guanosine
+Uracil
+Uridine
+Inosine
+Hypotaurine
+Taurine
+Adenosine
+D−Ribose 5−phosphate
+L−Cystathionine
+Carnosine
+cis−Aconitic acid
+Argininosuccinic acid
+N−Acetylserine
+L−Aspartic acid
+Uridine 5'−diphosphate
+Xanthine
+Valerylcarnitine
+L−Acetylcarnitine
+Butyrylcarnitine
+Pantothenic acid
+Betaine
+L−Carnitine
+N−Acetyl−L−alanine
+Propionylcarnitine
+C_1D
+C_2D
+C_3D
+T320_1D
+T320_2D
+T320_3D
+C
+24 h
+320 µM
+CD
+T320
+T320D
+L−Glutamic acid
+Ureidopropionic acid
+N−Acetylglutamine
+L−Asparagine
+Taurine
+Glycerol 3−phosphate
+N−Acetyl−L−alanine
+L−Proline
+N−Acetylornithine
+L−Kynurenine
+NAD
+Argininosuccinic acid
+Oxidized glutathione
+Cytidine
+Hypoxanthine
+L−Valine
+L−Leucine
+L−Lactic acid
+Xanthine
+L−Phenylalanine
+L−Methionine
+L−Isoleucine
+N−Acetylglutamic acid
+4−Hydroxyproline
+L−Serine
+Succinic acid
+L−Threonine
+L−Cystathionine
+Valerylcarnitine
+Butyrylcarnitine
+L−Aspartic acid
+Pyruvic acid
+C_1
+C_2
+C_3
+C_1D
+C_2D
+C_3D
+C
+24 h
+320 µM
+C
+C
+CD
+no drug
+Inosinic acid
+4−Hydroxyproline
+Cytidine
+Glutathione
+Inosine
+Ornithine
+S−Adenosylmethionine
+Ribose 1−phosphate
+Pipecolic acid
+L−Kynurenine
+L−Asparagine
+L−Histidine
+L−Threonine
+Allantoin
+N−Acetylserine
+cis−Aconitic acid
+Ureidopropionic acid
+L−Glutamine
+Pantothenic acid
+L−Phenylalanine
+N−Acetylornithine
+L−Isoleucine
+L−Methionine
+L−Tyrosine
+L−Serine
+L−Proline
+L−Lactic acid
+Hypoxanthine
+Guanine
+L−Leucine
+L−Valine
+FAD
+N−Acetylglutamic acid
+5'−Methylthioadenosine
+Hypotaurine
+Niacinamide
+L−Aspartic acid
+Butyrylcarnitine
+Valerylcarnitine
+L−Carnitine
+Propionylcarnitine
+T320_1
+T320_2
+T320_3
+T320_1D
+T320_2D
+T320_3D
+T320
+T320
+T320
+T320D
+no drug
+c
+24 h
+320 µM
+C
+T5
+T10 T40 T320
+0
+20
+40
+60
+80
+100
+120
+Cell viability (%) (CB-839)
+f
+C
+T5
+T10
+T40
+T320
+1
+2.5
+5
+10
+20
+40
+80
+160
+320
+bliss score
+-20
+-10
+0
+10
+20
+30
+[olaparib] µM
+g
+C
+T5
+T10
+T40 T320
+T5
+T10
+T40 T320
+no drug
+olaparib (4 days)
+h
+97-100kDa NRF2
+32kDa HO-1
+40kDa -ACTIN
+0
+10
+20
+30
+40
+50
+60
+70
+80
+90
+IC50
+C
+T5
+T320
+T40
+T10
+olaparib
+olaparib + CB-839
+e
+a
+NAMPT
+ALDOA
+ENO1
+TPI1
+TXNRD1
+PGD
+TXNRD1
+TPI1
+GUK1
+DTYMK
+ALDOA
+ENO1
+SLC13A5
+PGD
+OGDH
+PGK1
+TYMS
+DHFR
+CAD
+GUK1
+ALDOA
+ENO1
+TXNRD1
+CTPS1
+PGD
+DTYMK
+TPI1
+OGDH
+SLC13A5
+CMPK1
+PGK1
+ENO1
+TPI1
+TYMS
+TXNRD1
+ALDOA
+ACAD9
+DHFR
+PGD
+PRDX1
+CAD
+DTYMK
+GUK1
+OGDH
+CD / C
+T10 / C
+T320 / C
+T320D / C
+0
+300
+600
+900
+0
+250
+500
+750
+1000
+0
+500
+1000
+1500
+0
+500
+1000
+1500
+0
+1
+2
+Rank
+Score difference|
+T10
+38
+23%
+73
+45%
+51
+31%
+T320
+P = 2.8e-51 
+T320D
+T320
+26
+13%
+76
+38%
+98
+49%
+P = 1.2e-109
+CD
+32
+26%
+70
+58%
+19
+16%
+T10
+P = 3.4e-17 
+b
+Extended Data Fig. 10 | See next page for caption.
+
+
+===== PAGE 32 =====
+Extended Data Fig. 10 | Metabolic vulnerabilities along the resistance 
+continuum. a, Rank plots showing the score differences for CD, T10, T320 and 
+T320D. Higher absolute score differences indicate increased gene depletion 
+relative to C. Highlighted genes are significantly depleted (FDR < 0.05, two-
+sided likelihood ratio test (LTR)) at the endpoint. Only genes with negative score 
+differences are shown, indicating gene depletion. b, Overlap between the 
+significantly depleted genes with high absolute score differences (>1 SD) relative 
+to C. P-values were determined by one-sided hypergeometric tests. c, Heat 
+maps of the differentially abundant metabolites (P < 0.05, two-sided t-tests) 
+comparing olaparib sensitive (C) and resistant (T320) populations. Conditions 
+represent cells on olaparib treatment (320 μM for 24 h) or cells without treatment. 
+The experiment was performed in triplicates for each condition. Color scale 
+represents scaled normalized metabolite abundance. Metabolites involved in 
+nucleotide biosynthesis are highlighted in red. d, Dose-response curves of 
+olaparib treatment or in combination with CB-839 after 6 days for representative 
+populations within the resistance continuum (C, T5, T10, T40 and T320). Data 
+points are normalized relative to vehicle-treated controls (for each respective 
+line) and represent the average of 3 independent experiments (6 technical 
+replicates per experiment) and SD. e, Bar plots showing the IC50 determined 
+from dose-response curves (d) after 6 days of treatment with olaparib, or the 
+combination of olaparib with CB-839. Dots represent three independent 
+experiments (average of 6 technical replicates). Cells were sorted based on 
+CD24low/CD44high profiles (as in Extended Data Fig. 5b,c). f, Bar plot showing the 
+average cell viability of cells treated with CB-839 (50 nM) normalized to vehicle 
+controls (3 independent experiments, 6 technical replicates each). g, Heat map 
+of the bliss synergy scores41 of the olaparib and CB-839 treatment combination. 
+h, Representative western blot (biological duplicates) showing the expression 
+of NRF2 and its target HO1 (HMOX1) with and without olaparib treatment. Full 
+western blot is shown in Supplementary Fig. 10.
+
+
+===== PAGE 33 =====
+
+
+===== PAGE 34 =====
+
+
+===== PAGE 35 =====
+
+
+===== PAGE 36 =====
+μ
