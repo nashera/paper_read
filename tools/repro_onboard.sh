@@ -214,8 +214,13 @@ validate_args() {
     [0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]) ;;
     *) die_usage "--date 格式应为 YYYY-MM-DD，收到：$PROJECT_DATE" ;;
   esac
+  # GNU date 用 -d，BSD/macOS date 用 -j -f（L0 §1.4：tools/ 脚本需跨平台可运行）
   local norm=""
-  if ! norm="$(date -d "$PROJECT_DATE" +%Y-%m-%d 2>/dev/null)"; then
+  if date -d "$PROJECT_DATE" +%Y-%m-%d >/dev/null 2>&1; then
+    norm="$(date -d "$PROJECT_DATE" +%Y-%m-%d 2>/dev/null)"
+  elif date -j -f "%Y-%m-%d" "$PROJECT_DATE" +%Y-%m-%d >/dev/null 2>&1; then
+    norm="$(date -j -f "%Y-%m-%d" "$PROJECT_DATE" +%Y-%m-%d 2>/dev/null)"
+  else
     die_usage "--date 不是合法日历日期：$PROJECT_DATE"
   fi
   if [ "$norm" != "$PROJECT_DATE" ]; then
@@ -354,7 +359,7 @@ gen_project_spec() {
 > **本文件层级**：**L1**（通用规范在本项目的实例化；不得违背 L0 红线，可填写 L0 未规定的项目特有内容）
 > **本项目**：$PAPER
 > **项目目录**：\`$ROOT_ABS\`
-> **启动日期**：$PROJECT_DATE　**本文件版本**：**v1.0**
+> **启动日期**：${PROJECT_DATE}　**本文件版本**：**v1.0**
 
 > **效力**：L0 \`$SPEC_REF\` > **本文件 L1** > 项目 QC 门槛表（L2）> 各模块文档（L3）；冲突时以高层级为准（L0 §0.2）。
 > **骨架说明**：本文件由 \`tools/repro_onboard.sh\` 依 L0 附录 A 模板生成，**只含结构与占位**。
@@ -482,7 +487,7 @@ gen_decisions() {
 
 | 日期 | 决策 | 触发原因 | 依据（D 编号 / 文献 / 实测） | 影响范围 | 决策人 |
 |---|---|---|---|---|---|
-| $PROJECT_DATE | 采用 L0 通用规范 \`$SPEC_REF\`（$SPEC_VERSION）作为本项目上位规范，并实例化 L1 \`PROJECT_SPEC.md\` v1.0 | 项目立项、规范统一 | L0 §0.2、附录 A | 全局 | — |
+| ${PROJECT_DATE} | 采用 L0 通用规范 \`${SPEC_REF}\`（${SPEC_VERSION}）作为本项目上位规范，并实例化 L1 \`PROJECT_SPEC.md\` v1.0 | 项目立项、规范统一 | L0 §0.2、附录 A | 全局 | — |
 | $PROJECT_DATE | 建立目录骨架 \`$RAW_DESC\`、\`processed/\`、\`results/\`、\`figures/\`、\`code/\`、\`logs/\` | 开工前置 | L0 §3.1、附录 B 第 4 步 | 全局 | — |
 
 ---
@@ -505,7 +510,7 @@ gen_overview() {
 > **目标文献**：$PAPER
 > **项目目录**：\`$ROOT_ABS\`
 > **启动日期**：$PROJECT_DATE
-> **上位规范**：\`$SPEC_REF\`（通用规范 $SPEC_VERSION，L0）；本文件属 L3 文档，只可引用 L1 的口径
+> **上位规范**：\`${SPEC_REF}\`（通用规范 ${SPEC_VERSION}，L0）；本文件属 L3 文档，只可引用 L1 的口径
 
 ---
 
@@ -588,7 +593,7 @@ create_skeleton() {
 print_next_steps() {
   local state="均未完成"
   if [ "$DRY_RUN" -eq 1 ]; then state="dry-run 未落盘"; fi
-  step 5/5 "下一步清单（L0 附录 B，$state）"
+  step 5/5 "下一步清单（L0 附录 B，${state}）"
   cat <<'NEXT'
   - [ ]  1. 目录命名 <YYYYMMDD>_<slug>，原文 PDF 归档并去掉非法字符
   - [ ]  2. 读全文，拆模块（01 … NN），确定 00 号骨架
@@ -614,11 +619,11 @@ main() {
   resolve_paths
 
   say "repro_onboard.sh —— 新复现项目一键脚手架（L0 附录 A/B 落地）"
-  say "上位规范：$SPEC_PATH（$SPEC_VERSION）"
+  say "上位规范：${SPEC_PATH}（${SPEC_VERSION}）"
   say "────────────────────────────────────────────────────────────"
   say "目标目录：$ROOT_ABS"
   say "文献引用：$PAPER"
-  say "启动日期：$PROJECT_DATE（随机种子常量 $SEED）"
+  say "启动日期：${PROJECT_DATE}（随机种子常量 ${SEED}）"
   if [ -n "$RAW_DIRS_NORM" ]; then
     say "raw 子目录：$RAW_DIRS_NORM"
   else
